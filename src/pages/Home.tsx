@@ -8,6 +8,8 @@ import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import FAQSection from '@/components/FAQSection';
 import CallToAction from '@/components/CallToAction';
+import MatricesSection from '@/components/MatricesSection';
+import CorrectionSection from '@/components/CorrectionSection';
 
 const Home = () => {
   useEffect(() => {
@@ -20,6 +22,8 @@ const Home = () => {
       <HeroSection />
       <ProblemsSection />
       <ApproachSection />
+      <MatricesSection />
+      <CorrectionSection />
       <ComparisonSection />
       <AboutSection />
       <ReviewsSection />

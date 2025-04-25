@@ -10,7 +10,7 @@ const Contact = () => {
 
   return (
     <>
-      <div className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
+      <div className="pt-32 pb-16 bg-gradient-to-b from-secondary to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
@@ -25,24 +25,24 @@ const Contact = () => {
 
       <ContactSection />
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-secondary">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-xl shadow-md p-8">
-              <h2 className="text-2xl font-bold mb-6 text-gray-800">Часто задаваемые вопросы о консультациях</h2>
+              <h2 className="text-2xl font-bold mb-6 text-gray-800">Часто задаваемые вопросы о коррекциях</h2>
               
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-medium mb-2 text-gray-800">Как проходят консультации?</h3>
+                  <h3 className="text-lg font-medium mb-2 text-gray-800">Как проходят коррекции?</h3>
                   <p className="text-gray-600">
-                    Консультации проводятся как очно, так и онлайн через Zoom или Skype. Первая встреча обычно длится около 30 минут и бесплатна — на ней мы обсуждаем вашу ситуацию и определяем, подходит ли вам мой метод. Последующие сеансы длятся 60-90 минут.
+                    Коррекции проводятся как очно, так и онлайн через Zoom или Skype. Коррекция длится в среднем 3-5 часов и направлена на выявление и деактивацию подсознательных программ, вызывающих вашу проблему.
                   </p>
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-medium mb-2 text-gray-800">Сколько стоит консультация?</h3>
+                  <h3 className="text-lg font-medium mb-2 text-gray-800">Сколько стоит коррекция?</h3>
                   <p className="text-gray-600">
-                    Стоимость одного сеанса зависит от сложности проблемы и формата встречи (очно или онлайн). Точную стоимость мы обсудим после первичной бесплатной консультации. Также доступны пакетные предложения с существенной экономией при оплате нескольких сеансов сразу.
+                    Стоимость одной коррекции зависит от сложности проблемы и формата встречи (очно или онлайн). Точную стоимость мы обсудим при первом контакте. Также доступны пакетные предложения с существенной экономией при оплате нескольких коррекций сразу.
                   </p>
                 </div>
                 
@@ -54,9 +54,9 @@ const Contact = () => {
                 </div>
                 
                 <div>
-                  <h3 className="text-lg font-medium mb-2 text-gray-800">Что нужно подготовить к первой консультации?</h3>
+                  <h3 className="text-lg font-medium mb-2 text-gray-800">Что нужно подготовить к коррекции?</h3>
                   <p className="text-gray-600">
-                    Для первой консультации не нужна специальная подготовка. Просто будьте готовы кратко рассказать о проблеме, с которой вы столкнулись, и о том, каких результатов хотели бы достичь. Всё остальное мы обсудим в процессе беседы.
+                    Для онлайн-коррекций важно выбрать комфортное, тихое место, где вы можете лечь, и где я могу видеть вас через камеру. Желательно заранее проверить работу камеры и микрофона, а также обеспечить себе пространство без отвлекающих факторов на время коррекции.
                   </p>
                 </div>
               </div>

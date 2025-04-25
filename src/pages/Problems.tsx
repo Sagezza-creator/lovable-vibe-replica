@@ -36,7 +36,7 @@ const problems: Problem[] = [
       "Избегание определенных ситуаций или мест",
       "Физические симптомы тревоги (учащенное сердцебиение, потливость)"
     ],
-    solution: "С помощью эпигенетического подхода мы найдем и устраним первичные триггеры страха в вашем подсознании, что позволит вам чувствовать себя спокойно и уверенно в любых ситуациях."
+    solution: "С помощью подсознательной коррекции мы найдем и устраним первичные триггеры страха в вашем подсознании, что позволит вам чувствовать себя спокойно и уверенно в любых ситуациях."
   },
   {
     id: 3,
@@ -100,14 +100,14 @@ const Problems = () => {
 
   return (
     <>
-      <div className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
+      <div className="pt-32 pb-16 bg-gradient-to-b from-secondary to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
               Какие проблемы я решаю
             </h1>
             <p className="text-lg md:text-xl text-gray-700">
-              Спектр проблем, с которыми помогает мой эпигенетический подход
+              Спектр проблем, с которыми помогает мой подход подсознательной коррекции
             </p>
           </div>
         </div>
@@ -134,7 +134,7 @@ const Problems = () => {
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2">
-                      <div className="p-6 bg-gray-50">
+                      <div className="p-6 bg-secondary">
                         <h3 className="font-medium text-gray-800 mb-3">Признаки проблемы:</h3>
                         <ul className="space-y-2">
                           {problem.symptoms.map((symptom, index) => (
@@ -150,7 +150,7 @@ const Problems = () => {
                         </ul>
                       </div>
                       
-                      <div className="p-6 bg-brand-50">
+                      <div className="p-6 bg-accent-50">
                         <h3 className="font-medium text-gray-800 mb-3">Как я помогаю:</h3>
                         <p className="text-gray-600">{problem.solution}</p>
                       </div>
@@ -160,10 +160,10 @@ const Problems = () => {
               ))}
             </div>
             
-            <div className="mt-16 p-8 bg-gradient-to-r from-brand-50 to-cyan-50 rounded-xl shadow-md">
+            <div className="mt-16 p-8 bg-gradient-to-r from-secondary to-accent-50 rounded-xl shadow-md">
               <h2 className="text-2xl font-bold mb-4 text-gray-800">Не нашли свою проблему?</h2>
               <p className="text-gray-700 mb-4">
-                Это лишь некоторые из наиболее распространенных проблем, с которыми я работаю. Подход, основанный на эпигенетике и работе с подсознанием, эффективен практически для любых психологических трудностей, вызванных негативным опытом.
+                Это лишь некоторые из наиболее распространенных проблем, с которыми я работаю. Подход, основанный на работе с подсознанием, эффективен практически для любых психологических трудностей, вызванных негативным опытом.
               </p>
               <p className="text-gray-700">
                 Свяжитесь со мной для бесплатной консультации, и мы обсудим, как я могу помочь именно в вашей ситуации.

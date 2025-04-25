@@ -16,6 +16,8 @@ import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ConceptionMatrices from "./pages/ConceptionMatrices";
+import Correction from "./pages/Correction";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +40,8 @@ const App = () => (
               <Route path="/faq" element={<FAQ />} />
               <Route path="/articles" element={<Articles />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/conception-matrices" element={<ConceptionMatrices />} />
+              <Route path="/correction" element={<Correction />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

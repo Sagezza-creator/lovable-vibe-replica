@@ -13,7 +13,7 @@ const HeroSection = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden brain-pattern flex items-center pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 to-white/95"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/90 to-secondary/95"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-3xl mx-auto text-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -22,11 +22,11 @@ const HeroSection = () => {
           </h1>
           
           <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-            Уберите подсознательные блоки и живите счастливо с помощью инновационных методов эпигенетики
+            Уберите подсознательные блоки и живите счастливо с помощью инновационных методов подсознательной перепрограммации
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="group">
+            <Button asChild size="lg" className="group bg-accent hover:bg-accent/90">
               <Link to="/contact">
                 Связаться со мной
                 <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
@@ -39,15 +39,15 @@ const HeroSection = () => {
           
           <div className="mt-16 flex flex-col md:flex-row justify-center gap-6 md:gap-12 stagger-animation">
             <div className={`bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-md opacity-0 animate-fade-up`}>
-              <p className="text-brand-600 font-semibold text-3xl mb-1">500+</p>
+              <p className="text-brand-500 font-semibold text-3xl mb-1">500+</p>
               <p className="text-gray-600">довольных клиентов</p>
             </div>
             <div className={`bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-md opacity-0 animate-fade-up`}>
-              <p className="text-brand-600 font-semibold text-3xl mb-1">2+</p>
+              <p className="text-brand-500 font-semibold text-3xl mb-1">2+</p>
               <p className="text-gray-600">года опыта</p>
             </div>
             <div className={`bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-md opacity-0 animate-fade-up`}>
-              <p className="text-brand-600 font-semibold text-3xl mb-1">95%</p>
+              <p className="text-brand-500 font-semibold text-3xl mb-1">95%</p>
               <p className="text-gray-600">успешных результатов</p>
             </div>
           </div>
