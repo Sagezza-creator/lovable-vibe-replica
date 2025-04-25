@@ -31,6 +31,30 @@ export default {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        brand: {
+          50: "#e6f3ff",
+          100: "#cce7ff",
+          200: "#99cfff",
+          300: "#66b7ff",
+          400: "#339fff",
+          500: "#0087ff",
+          600: "#006ccc",
+          700: "#005199",
+          800: "#003666",
+          900: "#001b33",
+        },
+        accent: {
+          50: "#f0f9f4",
+          100: "#e1f3e9",
+          200: "#c3e8d4",
+          300: "#a5dcbe",
+          400: "#87d1a9",
+          500: "#69c593",
+          600: "#549e76",
+          700: "#3f7658",
+          800: "#2a4d3b",
+          900: "#15271d",
+        },
       },
       keyframes: {
         "fade-up": {
@@ -43,9 +67,36 @@ export default {
             transform: "translateY(0)",
           },
         },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "scale-in": {
+          "0%": { 
+            opacity: "0",
+            transform: "scale(0.95)"
+          },
+          "100%": { 
+            opacity: "1",
+            transform: "scale(1)"
+          },
+        },
+        "slide-in-right": {
+          "0%": {
+            transform: "translateX(100%)",
+            opacity: "0"
+          },
+          "100%": {
+            transform: "translateX(0)",
+            opacity: "1"
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out forwards",
+        "fade-in": "fade-in 0.5s ease-out forwards",
+        "scale-in": "scale-in 0.5s ease-out forwards",
+        "slide-in-right": "slide-in-right 0.5s ease-out forwards",
       },
     },
   },
