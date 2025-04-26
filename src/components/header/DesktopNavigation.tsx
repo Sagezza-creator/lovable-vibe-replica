@@ -32,8 +32,8 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
                 >
                   {link.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="absolute left-1/2 transform -translate-x-1/2">
-                  <ul className="grid w-[200px] gap-2 p-2 bg-white">
+                <NavigationMenuContent className="absolute left-0 top-full mt-1 w-[200px] bg-white shadow-lg rounded-md border z-50">
+                  <ul className="grid gap-2 p-2">
                     {link.dropdown.map((item) => (
                       <li key={item.path}>
                         <NavigationMenuLink asChild>
