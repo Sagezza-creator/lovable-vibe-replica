@@ -38,7 +38,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
       formData.append('contact', data.contact);
       formData.append('question', data.message);
 
-      const response = await fetch('http://svobodarazuma.great-site.net/telegram.php', {
+      const response = await fetch('https://svobodarazuma.great-site.net/telegram.php', {
         method: 'POST',
         body: formData,
       });
