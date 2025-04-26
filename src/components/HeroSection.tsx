@@ -12,14 +12,16 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" 
-         style={{
-           backgroundImage: "url('/lovable-uploads/189d2f8e-4365-4483-a9e6-d5d9fed8c421.png')",
-           backgroundPosition: "right",
-           backgroundSize: "cover",
-           backgroundRepeat: "no-repeat"
-         }}>
-      <div className="absolute inset-0 bg-gradient-to-r from-white/95 to-white/50"></div>
+    <div className="min-h-screen relative overflow-hidden flex items-center pt-16 bg-white">
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url('/lovable-uploads/05e9afb7-255b-4e5c-993d-1714e948f6b5.png')",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat"
+        }}
+      />
       
       <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -31,8 +33,8 @@ const HeroSection = () => {
             Уберите подсознательные блоки и живите счастливо с помощью инновационных методов подсознательной перепрограммации
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="group bg-accent hover:bg-accent/90">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button asChild size="lg" className="bg-brand-500 hover:bg-brand-600 group">
               <Link to="/contact">
                 Связаться со мной
                 <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
@@ -43,7 +45,7 @@ const HeroSection = () => {
             </Button>
           </div>
           
-          <div className="mt-16 flex flex-col md:flex-row justify-center gap-6 md:gap-12 stagger-animation">
+          <div className="mt-16 flex flex-col md:flex-row justify-start gap-6 md:gap-12 stagger-animation">
             <div className={`bg-white/80 backdrop-blur-sm p-6 rounded-lg shadow-md opacity-0 animate-fade-up`}>
               <p className="text-brand-500 font-semibold text-3xl mb-1">500+</p>
               <p className="text-gray-600">довольных клиентов</p>
