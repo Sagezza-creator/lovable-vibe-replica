@@ -94,7 +94,7 @@ const ComparisonSection = () => {
                 <h4 className="lg:hidden font-semibold text-brand-600 mb-2">Мой подход</h4>
                 <p className="flex lg:justify-center items-center gap-2 text-gray-800">
                   <Check size={20} className="text-green-500 min-w-[20px]" />
-                  <span>Видимые изменения за 2-4 сеанса</span>
+                  <span>Видимые изменения за 1-3 коррекции</span>
                 </p>
               </div>
               <div className="lg:text-center">
@@ -109,14 +109,14 @@ const ComparisonSection = () => {
             {/* Row 4 */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-white rounded-lg border">
               <div className="font-medium text-gray-800">
-                <h4 className="lg:hidden font-bold text-lg mb-4">Научная основа</h4>
-                <p>Научная основа</p>
+                <h4 className="lg:hidden font-bold text-lg mb-4">Основа метода</h4>
+                <p>Основа метода</p>
               </div>
               <div className="lg:text-center">
                 <h4 className="lg:hidden font-semibold text-brand-600 mb-2">Мой подход</h4>
                 <p className="flex lg:justify-center items-center gap-2 text-gray-800">
                   <Check size={20} className="text-green-500 min-w-[20px]" />
-                  <span>Современные исследования в эпигенетике</span>
+                  <span>Современные исследования в науке</span>
                 </p>
               </div>
               <div className="lg:text-center">
