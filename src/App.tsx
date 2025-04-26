@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,7 +13,7 @@ import FAQ from "./pages/FAQ";
 import Articles from "./pages/Articles";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
-import Header from "./components/Header";
+import Header from "./components/header/Header";
 import Footer from "./components/Footer";
 import ConceptionMatrices from "./pages/ConceptionMatrices";
 import Correction from "./pages/Correction";
