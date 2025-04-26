@@ -73,7 +73,7 @@ const Header = () => {
             <NavigationMenuList>
               {navLinks.map((link) => (
                 link.dropdown ? (
-                  <NavigationMenuItem key={link.path}>
+                  <NavigationMenuItem key={link.path} className="relative">
                     <NavigationMenuTrigger 
                       className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         isActive(link.path) ? 'text-primary bg-primary/10' : 'text-gray-700 hover:text-primary hover:bg-primary/5'
@@ -184,7 +184,10 @@ const Header = () => {
                   </Link>
                 )
               ))}
-              <Button onClick={closeMenu} className="mt-4 bg-brand-500 hover:bg-brand-600 text-white" asChild>
+              <Button onClick={() => {
+                closeMenu(); 
+                setIsBookingModalOpen(true);
+              }} className="mt-4 bg-brand-500 hover:bg-brand-600 text-white">
                 Записаться на коррекцию
               </Button>
             </nav>

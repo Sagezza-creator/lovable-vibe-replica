@@ -14,7 +14,7 @@ const HeroSection = () => {
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center pt-16" 
          style={{
-           backgroundImage: "url('/lovable-uploads/9dbfcb2e-0d0d-4aa9-a164-7d6ce2f4b41a.png')",
+           backgroundImage: "url('/lovable-uploads/189d2f8e-4365-4483-a9e6-d5d9fed8c421.png')",
            backgroundPosition: "right",
            backgroundSize: "cover",
            backgroundRepeat: "no-repeat"
