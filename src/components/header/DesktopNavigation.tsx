@@ -21,7 +21,7 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
   return (
     <nav className="hidden md:flex items-center gap-1 lg:gap-2">
       <NavigationMenu>
-        <NavigationMenuList className="relative">
+        <NavigationMenuList className="relative flex items-center gap-1 lg:gap-2">
           {navLinks.map((link) => (
             link.dropdown ? (
               <NavigationMenuItem key={link.path} className="relative">
@@ -33,14 +33,14 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
                   {link.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent 
-                  className="absolute left-0 right-0 mx-auto w-[200px]"
+                  className="absolute w-[200px] bg-white rounded-md shadow-lg z-50 border"
                   style={{
-                    top: 'calc(100% + 8px)',
+                    top: 'calc(100% + 4px)',
                     left: '50%',
                     transform: 'translateX(-50%)'
                   }}
                 >
-                  <ul className="grid gap-2 p-2 bg-white rounded-md shadow-lg">
+                  <ul className="grid gap-1 p-2">
                     {link.dropdown.map((item) => (
                       <li key={item.path}>
                         <NavigationMenuLink asChild>
