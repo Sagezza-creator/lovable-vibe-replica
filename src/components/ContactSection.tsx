@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
@@ -22,34 +21,36 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      const formData = new FormData();
+      const formData = new URLSearchParams();
       formData.append('name', data.name);
       formData.append('contact', data.contact);
-      formData.append('question', data.message);
+      formData.append('message', data.message);
 
       const response = await fetch('https://svobodarazuma.ru/telegram.php', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData.toString(),
       });
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+      const result = await response.json();
+      
+      if (!response.ok || result.status !== 'success') {
+        throw new Error(result.message || 'Ошибка при отправке формы');
       }
       
-      // Show success toast
       toast({
         title: "Сообщение отправлено",
         description: "Ваше сообщение отправлено, с Вами свяжутся в течение 24 часов.",
         variant: "default",
       });
       
-      // Reset form
       reset();
     } catch (error) {
-      // Show error toast
       toast({
         title: "Ошибка отправки",
-        description: "Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже или свяжитесь напрямую.",
+        description: error.message || "Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.",
         variant: "destructive",
       });
     } finally {
@@ -118,13 +119,13 @@ const ContactSection = () => {
                     <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-semibold text-sm">
                       2
                     </div>
-                    <p className="text-gray-600">Проведем короткую бесплатную консультацию для определения проблемы</p>
+                    <p className="text-gray-600">Проведем короткую бесплатную консультацию</p>
                   </li>
                   <li className="flex gap-3">
                     <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-semibold text-sm">
                       3
                     </div>
-                    <p className="text-gray-600">Согласуем время для первого полноценного сеанса</p>
+                    <p className="text-gray-600">Согласуем время для первого сеанса</p>
                   </li>
                 </ol>
               </div>
@@ -150,7 +151,13 @@ const ContactSection = () => {
                 <Label htmlFor="contact">Телефон или Email</Label>
                 <Input
                   id="contact"
-                  {...register("contact", { required: "Контактные данные обязательны" })}
+                  {...register("contact", { 
+                    required: "Контактные данные обязательны",
+                    pattern: {
+                      value: /^(\+?\d{10,15}|\w+@\w+\.\w{2,})$/,
+                      message: "Введите телефон или email"
+                    }
+                  })}
                   className={errors.contact ? "border-red-300" : ""}
                   placeholder="Как с вами связаться?"
                 />
