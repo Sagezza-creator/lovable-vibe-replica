@@ -13,16 +13,6 @@ const HeroSection = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center pt-16 bg-white">
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: "url('/lovable-uploads/05e9afb7-255b-4e5c-993d-1714e948f6b5.png')",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat"
-        }}
-      />
-      
       <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-heading leading-tight">
