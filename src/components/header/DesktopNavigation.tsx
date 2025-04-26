@@ -32,7 +32,7 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
                 >
                   {link.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="left-0"> {/* Выравнивание по левому краю */}
+                <NavigationMenuContent className="left-0 absolute w-[200px]"> {/* Выравнивание по левому краю */}
                   <ul className="grid w-[200px] gap-2 p-2 bg-white">
                     {link.dropdown.map((item) => (
                       <li key={item.path}>
