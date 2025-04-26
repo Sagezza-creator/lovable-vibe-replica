@@ -21,17 +21,12 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      const formData = new URLSearchParams();
-      formData.append('name', data.name);
-      formData.append('contact', data.contact);
-      formData.append('message', data.message);
-
       const response = await fetch('https://svobodarazuma.ru/telegram.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json', // Изменено на JSON
         },
-        body: formData.toString(),
+        body: JSON.stringify(data), // Отправляем как JSON
       });
 
       const result = await response.json();
