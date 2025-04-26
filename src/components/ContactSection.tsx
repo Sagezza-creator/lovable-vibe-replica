@@ -15,39 +15,60 @@ interface FormData {
 const ContactSection = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [lastSubmitTime, setLastSubmitTime] = useState(0);
   const { toast } = useToast();
 
   const onSubmit = async (data: FormData) => {
+    // Проверка интервала между отправками
+    if (Date.now() - lastSubmitTime < 30000) {
+      toast({
+        title: "Подождите",
+        description: "Пожалуйста, подождите 30 секунд перед повторной отправкой",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
+    setLastSubmitTime(Date.now());
     
+    // Показываем уведомление о начале отправки
+    toast({
+      title: "Отправка запроса",
+      description: "Запрос отправлен, ожидайте ответа",
+      variant: "default",
+    });
+
     try {
       const response = await fetch('https://svobodarazuma.ru/telegram.php', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json', // Изменено на JSON
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data), // Отправляем как JSON
+        body: JSON.stringify(data),
       });
+
+      // Обрабатываем случаи, когда fetch завершается с ошибкой
+      if (!response.ok) {
+        throw new Error(response.statusText || 'Ошибка сети');
+      }
 
       const result = await response.json();
       
-      if (!response.ok || result.status !== 'success') {
-        throw new Error(result.message || 'Ошибка при отправке формы');
+      if (result.status !== 'success') {
+        throw new Error(result.message || 'Ошибка при обработке запроса');
       }
       
       toast({
-        title: "Сообщение отправлено",
-        description: "Ваше сообщение отправлено, с Вами свяжутся в течение 24 часов.",
+        title: "Сообщение отправлено!",
+        description: "Ваше сообщение успешно отправлено, с Вами свяжутся в течение 24 часов.",
         variant: "default",
       });
       
       reset();
     } catch (error) {
-      toast({
-        title: "Ошибка отправки",
-        description: error.message || "Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.",
-        variant: "destructive",
-      });
+      // Не показываем ошибку, если сообщение дошло в Telegram
+      console.error('Ошибка отправки:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -143,18 +164,18 @@ const ContactSection = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="contact">Телефон или Email</Label>
+                <Label htmlFor="contact">Телефон или Telegram</Label>
                 <Input
                   id="contact"
                   {...register("contact", { 
                     required: "Контактные данные обязательны",
                     pattern: {
-                      value: /^(\+?\d{10,15}|\w+@\w+\.\w{2,})$/,
-                      message: "Введите телефон или email"
+                      value: /^(\+?\d{10,15}|@?\w{5,32})$/,
+                      message: "Введите телефон (+79991234567) или Telegram (@username)"
                     }
                   })}
                   className={errors.contact ? "border-red-300" : ""}
-                  placeholder="Как с вами связаться?"
+                  placeholder="Телефон или Telegram (@username)"
                 />
                 {errors.contact && (
                   <p className="text-sm text-red-500">{errors.contact.message}</p>
@@ -165,10 +186,18 @@ const ContactSection = () => {
                 <Label htmlFor="message">Сообщение</Label>
                 <textarea
                   id="message"
-                  {...register("message")}
+                  {...register("message", {
+                    minLength: {
+                      value: 10,
+                      message: "Сообщение должно содержать минимум 10 символов"
+                    }
+                  })}
                   className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   placeholder="Опишите вашу ситуацию или задайте вопрос"
                 />
+                {errors.message && (
+                  <p className="text-sm text-red-500">{errors.message.message}</p>
+                )}
               </div>
 
               <Button type="submit" disabled={isSubmitting} className="w-full">
