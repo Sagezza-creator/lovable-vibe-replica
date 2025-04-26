@@ -22,14 +22,24 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Here would be the actual form submission logic
-      // For now, we'll just simulate a delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('contact', data.contact);
+      formData.append('question', data.message);
+
+      const response = await fetch('http://svobodarazuma.great-site.net/telegram.php', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       
       // Show success toast
       toast({
         title: "Сообщение отправлено",
-        description: "Спасибо! Я свяжусь с вами в ближайшее время.",
+        description: "Ваше сообщение отправлено, с Вами свяжутся в течение 24 часов.",
         variant: "default",
       });
       
