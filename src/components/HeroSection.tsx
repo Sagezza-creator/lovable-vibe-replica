@@ -12,16 +12,22 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden brain-pattern flex items-center pt-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-white/90 to-secondary/95"></div>
+    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" 
+         style={{
+           backgroundImage: "url('/lovable-uploads/9dbfcb2e-0d0d-4aa9-a164-7d6ce2f4b41a.png')",
+           backgroundPosition: "right",
+           backgroundSize: "cover",
+           backgroundRepeat: "no-repeat"
+         }}>
+      <div className="absolute inset-0 bg-gradient-to-r from-white/95 to-white/50"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className={`max-w-3xl mx-auto text-center ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
+        <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-heading leading-tight">
             Свобода разума: Решите свои проблемы навсегда
           </h1>
           
-          <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-700 mb-8">
             Уберите подсознательные блоки и живите счастливо с помощью инновационных методов подсознательной перепрограммации
           </p>
           

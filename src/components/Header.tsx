@@ -1,5 +1,4 @@
-
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -14,10 +13,12 @@ import {
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
 import { cn } from '@/lib/utils';
+import BookingModal from './BookingModal';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -66,7 +67,6 @@ const Header = () => {
           <span className="text-xl font-medium">Свобода разума</span>
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1 lg:gap-2">
           <NavigationMenu>
             <NavigationMenuList>
@@ -81,7 +81,7 @@ const Header = () => {
                       {link.name}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className="grid w-[200px] gap-2 p-2">
+                      <ul className="grid w-[200px] gap-2 p-2 bg-white">
                         {link.dropdown.map((item) => (
                           <li key={item.path}>
                             <NavigationMenuLink asChild>
@@ -118,12 +118,14 @@ const Header = () => {
               ))}
             </NavigationMenuList>
           </NavigationMenu>
-          <Button asChild className="ml-2 bg-accent hover:bg-accent/90">
-            <Link to="/contact">Записаться на коррекцию</Link>
+          <Button 
+            onClick={() => setIsBookingModalOpen(true)} 
+            className="ml-2 bg-brand-500 hover:bg-brand-600 text-white"
+          >
+            Записаться на коррекцию
           </Button>
         </nav>
 
-        {/* Mobile Navigation Button */}
         <button className="md:hidden p-2" onClick={handleMenuToggle} aria-label="Меню">
           {isMenuOpen ? (
             <X size={24} className="text-gray-700" />
@@ -132,7 +134,6 @@ const Header = () => {
           )}
         </button>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden fixed inset-0 top-16 z-40 bg-white p-4 animate-fade-in">
             <nav className="flex flex-col gap-2">
@@ -182,12 +183,17 @@ const Header = () => {
                   </Link>
                 )
               ))}
-              <Button onClick={closeMenu} className="mt-4 bg-accent hover:bg-accent/90" asChild>
-                <Link to="/contact">Записаться на коррекцию</Link>
+              <Button onClick={closeMenu} className="mt-4 bg-brand-500 hover:bg-brand-600 text-white" asChild>
+                Записаться на коррекцию
               </Button>
             </nav>
           </div>
         )}
+
+        <BookingModal 
+          open={isBookingModalOpen} 
+          onOpenChange={setIsBookingModalOpen}
+        />
       </div>
     </header>
   );
