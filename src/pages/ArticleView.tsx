@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -105,15 +104,15 @@ const ArticleView = () => {
             {isLoading ? (
               <>
                 <Skeleton className="h-10 w-3/4 mb-4" />
-                <Skeleton className="h-6 w-1/3 mb-8" />
+                <Skeleton className="h-6 w-1/3 mb-4" /> {/* Изменено с mb-8 на mb-4 */}
               </>
             ) : article ? (
               <>
                 <h1 
-                  className="text-3xl md:text-4xl font-bold text-gray-800 mb-4" 
+                  className="text-3xl md:text-4xl font-bold text-gray-800 mb-3" // Изменено с mb-4 на mb-3
                   dangerouslySetInnerHTML={{ __html: article.title }} 
                 />
-                <div className="text-sm text-gray-500 mb-8">
+                <div className="text-sm text-gray-500 mb-6"> {/* Изменено с mb-8 на mb-6 */}
                   {formatDate(article.date)}
                 </div>
               </>
@@ -126,7 +125,7 @@ const ArticleView = () => {
         </div>
       </div>
 
-      <section className="py-12">
+      <section className="py-8"> {/* Изменено с py-12 на py-8 */}
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             {isLoading ? (
