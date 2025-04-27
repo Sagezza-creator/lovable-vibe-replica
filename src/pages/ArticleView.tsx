@@ -125,7 +125,7 @@ const ArticleView = () => {
         </div>
       </div>
 
-      <section className="py-8"> {/* Изменено с py-12 на py-8 */}
+      <section className="py-6"> {/* Изменено с py-12 на py-8 */}
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             {isLoading ? (
