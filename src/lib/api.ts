@@ -1,4 +1,3 @@
-
 // Simple cache implementation for API requests
 const cache: Record<string, { data: any; timestamp: number }> = {};
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
@@ -45,8 +44,8 @@ export async function fetchArticles() {
     return articles.map(article => ({
       id: article.id,
       title: getArticleTitle(article) || 'Без названия',
-      content: article.content || '',
-      excerpt: article.excerpt || getExcerpt(article.content),
+      content: article.content?.rendered || '',
+      excerpt: article.excerpt?.rendered || getExcerpt(article.content?.rendered || ''),
       date: article.datePublished || article.date || '',
       slug: article.slug,
       image: getFeaturedImage(article),
@@ -87,12 +86,12 @@ export async function fetchArticle(slug: string) {
     return {
       id: article.id,
       title: getArticleTitle(article) || 'Без названия',
-      content: article.content || '',
+      content: article.content?.rendered || '',
       date: article.datePublished || article.date || '',
       image: getFeaturedImage(article),
       meta: {
         title: article.meta_title || getArticleTitle(article) || '',
-        description: article.meta_description || article.excerpt || ''
+        description: article.meta_description || article.excerpt?.rendered || ''
       }
     };
   } catch (error) {
@@ -112,11 +111,12 @@ function getFeaturedImage(article: any): string | null {
  * Extract article title from content or title field
  */
 function getArticleTitle(article: any): string {
+  if (!article) return '';
+  
   // Try to get title from the h1.wp-block-post-title as requested
-  if (article.content) {
-    const titleMatch = /<h1\s+class="wp-block-post-title"[^>]*>(.*?)<\/h1>/i.exec(article.content);
+  if (article.content?.rendered) {
+    const titleMatch = /<h1\s+class="wp-block-post-title"[^>]*>(.*?)<\/h1>/i.exec(article.content.rendered);
     if (titleMatch && titleMatch[1]) {
-      // Strip any HTML tags from the title
       return stripHtmlTags(titleMatch[1]);
     }
   }

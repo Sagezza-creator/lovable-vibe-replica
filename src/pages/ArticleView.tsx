@@ -8,6 +8,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import CallToAction from '@/components/CallToAction';
 import { fetchArticle, formatDate } from '@/lib/api';
+import DOMPurify from 'dompurify';
 
 interface ArticleData {
   id: number;
@@ -20,6 +21,16 @@ interface ArticleData {
     description: string;
   };
 }
+
+const sanitizeHtml = (html: string) => {
+  return DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: [
+      'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span',
+      'ul', 'ol', 'li', 'a', 'strong', 'em', 'br', 'hr', 'img'
+    ],
+    ALLOWED_ATTR: ['class', 'href', 'target', 'src', 'alt', 'title']
+  });
+};
 
 const ArticleView = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -128,7 +139,7 @@ const ArticleView = () => {
               <Card className="p-8 shadow-md">
                 <div 
                   className="prose prose-lg max-w-none" 
-                  dangerouslySetInnerHTML={{ __html: article.content }} 
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.content) }} 
                 />
               </Card>
             ) : (
