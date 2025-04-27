@@ -19,7 +19,7 @@ const HeroSection = () => {
           alt="Фоновое изображение"
           className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-none" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
