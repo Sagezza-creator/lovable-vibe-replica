@@ -7,16 +7,18 @@ import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import CallToAction from '@/components/CallToAction';
-import { fetchArticle } from '@/lib/api';
+import { fetchArticle, formatDate } from '@/lib/api';
 
 interface ArticleData {
   id: number;
-  title: { rendered: string };
-  content: { rendered: string };
+  title: string;
+  content: string;
   date: string;
-  excerpt: { rendered: string };
-  meta_title?: string;
-  meta_description?: string;
+  image?: string | null;
+  meta: {
+    title: string;
+    description: string;
+  };
 }
 
 const ArticleView = () => {
@@ -35,19 +37,28 @@ const ArticleView = () => {
       try {
         setIsLoading(true);
         const data = await fetchArticle(slug);
-        setArticle(data);
         
-        // Set SEO meta tags if available
-        if (data.meta_title) {
-          document.title = data.meta_title;
+        if (data) {
+          setArticle(data);
+          
+          // Set SEO meta tags if available
+          if (data.meta.title) {
+            document.title = data.meta.title;
+          } else {
+            document.title = data.title;
+          }
+          
+          // Set meta description if available
+          const metaDescription = document.querySelector('meta[name="description"]');
+          if (metaDescription && data.meta.description) {
+            metaDescription.setAttribute('content', data.meta.description);
+          }
         } else {
-          document.title = data.title.rendered;
-        }
-        
-        // Set meta description if available
-        const metaDescription = document.querySelector('meta[name="description"]');
-        if (metaDescription && data.meta_description) {
-          metaDescription.setAttribute('content', data.meta_description);
+          toast({
+            title: "Статья не найдена",
+            description: "Запрашиваемая статья не найдена или была удалена.",
+            variant: "destructive",
+          });
         }
       } catch (error) {
         console.error('Error fetching article:', error);
@@ -63,15 +74,6 @@ const ArticleView = () => {
 
     loadArticle();
   }, [slug, toast]);
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat('ru-RU', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    }).format(date);
-  };
 
   return (
     <>
@@ -98,7 +100,7 @@ const ArticleView = () => {
               <>
                 <h1 
                   className="text-3xl md:text-4xl font-bold text-gray-800 mb-4" 
-                  dangerouslySetInnerHTML={{ __html: article.title.rendered }} 
+                  dangerouslySetInnerHTML={{ __html: article.title }} 
                 />
                 <div className="text-sm text-gray-500 mb-8">
                   {formatDate(article.date)}
@@ -126,7 +128,7 @@ const ArticleView = () => {
               <Card className="p-8 shadow-md">
                 <div 
                   className="prose prose-lg max-w-none" 
-                  dangerouslySetInnerHTML={{ __html: article.content.rendered }} 
+                  dangerouslySetInnerHTML={{ __html: article.content }} 
                 />
               </Card>
             ) : (

@@ -1,3 +1,4 @@
+
 // Simple cache implementation for API requests
 const cache: Record<string, { data: any; timestamp: number }> = {};
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
@@ -44,7 +45,7 @@ export async function fetchArticles() {
       title: article.title?.rendered || 'Без названия',
       content: article.content?.rendered || '',
       excerpt: article.excerpt?.rendered || getExcerpt(article.content?.rendered),
-      date: formatDate(article.date),
+      date: article.date || '',
       slug: article.slug,
       image: getFeaturedImage(article),
       meta: {
@@ -84,7 +85,7 @@ export async function fetchArticle(slug: string) {
       id: article.id,
       title: article.title?.rendered || 'Без названия',
       content: article.content?.rendered || '',
-      date: formatDate(article.date),
+      date: article.date || '',
       image: getFeaturedImage(article),
       meta: {
         title: article.meta_title || article.title?.rendered || '',
@@ -105,20 +106,34 @@ function getFeaturedImage(article: any): string | null {
 }
 
 /**
- * Formats date to Russian locale
+ * Formats date to Russian locale with error handling
  */
 export function formatDate(dateString: string): string {
-  return new Date(dateString).toLocaleDateString('ru-RU', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
+  if (!dateString) return 'Дата не указана';
+  
+  try {
+    const date = new Date(dateString);
+    // Check if date is valid
+    if (isNaN(date.getTime())) {
+      return 'Дата не указана';
+    }
+    
+    return date.toLocaleDateString('ru-RU', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  } catch (error) {
+    console.error('Date formatting error:', error);
+    return 'Дата не указана';
+  }
 }
 
 /**
  * Creates excerpt from content
  */
 export function getExcerpt(content: string, length: number = 120): string {
+  if (!content) return '';
   const text = stripHtmlTags(content);
   return text.length <= length ? text : `${text.substring(0, length)}...`;
 }
@@ -127,6 +142,12 @@ export function getExcerpt(content: string, length: number = 120): string {
  * Removes HTML tags
  */
 function stripHtmlTags(html: string): string {
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent?.trim() || '';
+  if (!html) return '';
+  try {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent?.trim() || '';
+  } catch (error) {
+    console.error('HTML strip error:', error);
+    return '';
+  }
 }

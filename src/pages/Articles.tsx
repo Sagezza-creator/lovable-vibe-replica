@@ -5,20 +5,25 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Skeleton } from '@/components/ui/skeleton';
 import CallToAction from '@/components/CallToAction';
-import { fetchArticles, getExcerpt, formatDate } from '@/lib/api';
+import { fetchArticles, getExcerpt } from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
 
-interface WordPressArticle {
+interface Article {
   id: number;
-  title: { rendered: string };
-  content: { rendered: string };
-  excerpt: { rendered: string };
+  title: string;
+  content: string;
+  excerpt: string;
   date: string;
   slug: string;
+  image?: string | null;
+  meta: {
+    title: string;
+    description: string;
+  };
 }
 
 const Articles = () => {
-  const [articles, setArticles] = useState<WordPressArticle[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
@@ -45,13 +50,6 @@ const Articles = () => {
 
     loadArticles();
   }, [toast]);
-
-  const getArticleExcerpt = (article: WordPressArticle): string => {
-    if (article.excerpt && article.excerpt.rendered) {
-      return getExcerpt(article.excerpt.rendered);
-    }
-    return getExcerpt(article.content.rendered);
-  };
 
   return (
     <>
@@ -106,15 +104,15 @@ const Articles = () => {
                             Психология
                           </span>
                           <span className="text-xs text-gray-500">
-                            {formatDate(article.date)}
+                            {article.date}
                           </span>
                         </div>
                         <h3 
                           className="text-lg font-semibold mb-2 text-gray-800 line-clamp-2"
-                          dangerouslySetInnerHTML={{ __html: article.title.rendered }}
+                          dangerouslySetInnerHTML={{ __html: article.title }}
                         />
                         <p className="text-gray-600 line-clamp-3 mb-4">
-                          {getArticleExcerpt(article)}
+                          {article.excerpt}
                         </p>
                         <Link 
                           to={`/articles/${article.slug}`} 
