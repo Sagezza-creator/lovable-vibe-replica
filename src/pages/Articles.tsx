@@ -19,7 +19,7 @@ interface Article {
     title: string;
     description: string;
   };
-  focusKeyword: string;
+  focusKeyword: string | null;
 }
 
 const Articles = () => {
@@ -28,14 +28,16 @@ const Articles = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
     
     const loadArticles = async () => {
       try {
         setIsLoading(true);
         const data = await fetchArticles();
-        setArticles(data);
+        setArticles(data.map(article => ({
+          ...article,
+          focusKeyword: article.focusKeyword || null // Гарантируем null вместо пустой строки
+        })));
       } catch (error) {
         console.error('Error fetching articles:', error);
         toast({
@@ -100,13 +102,9 @@ const Articles = () => {
                     <CardContent className="p-0">
                       <div className="p-5 border-b border-gray-100">
                         <div className="flex items-center justify-between mb-3">
-                          {article.focusKeyword ? (
+                          {article.focusKeyword && (
                             <span className="text-xs font-medium px-2 py-1 bg-brand-50 text-brand-600 rounded">
                               {article.focusKeyword}
-                            </span>
-                          ) : (
-                            <span className="text-xs font-medium px-2 py-1 bg-brand-50 text-brand-600 rounded">
-                              Психология
                             </span>
                           )}
                           <span className="text-xs text-gray-500">
