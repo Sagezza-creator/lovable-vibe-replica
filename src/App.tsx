@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +12,7 @@ import Reviews from "./pages/Reviews";
 import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Articles from "./pages/Articles";
+import ArticleView from "./pages/ArticleView";
 import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 import Header from "./components/header/Header";
@@ -38,6 +40,7 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/articles" element={<Articles />} />
+              <Route path="/articles/:slug" element={<ArticleView />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/conception-matrices" element={<ConceptionMatrices />} />
               <Route path="/correction" element={<Correction />} />
