@@ -3,7 +3,7 @@
 const cache: Record<string, { data: any; timestamp: number }> = {};
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
-const API_BASE_URL = 'https://svobodarazuma.ru/blog/wp-json/wp/v2';
+const API_BASE_URL = 'https://svobodarazuma.ru/blog/wp-json/wp/v2/articles';
 
 /**
  * Fetches data with caching
