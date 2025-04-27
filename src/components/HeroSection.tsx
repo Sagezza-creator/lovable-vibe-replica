@@ -27,8 +27,8 @@ const HeroSection = () => {
       {/* Основной контент */}
       <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          {/* Заголовок с тенью для лучшей читаемости */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight drop-shadow-lg">
+          {/* Заголовок с цветом brand-500 */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-500 leading-tight drop-shadow-lg">
             Свобода разума: Решите свои проблемы навсегда
           </h1>
           
