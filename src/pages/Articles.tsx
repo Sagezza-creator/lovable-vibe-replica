@@ -19,7 +19,6 @@ interface Article {
     title: string;
     description: string;
   };
-  focusKeyword: string | null;
 }
 
 const Articles = () => {
@@ -34,10 +33,7 @@ const Articles = () => {
       try {
         setIsLoading(true);
         const data = await fetchArticles();
-        setArticles(data.map(article => ({
-          ...article,
-          focusKeyword: article.focusKeyword || null // Гарантируем null вместо пустой строки
-        })));
+        setArticles(data);
       } catch (error) {
         console.error('Error fetching articles:', error);
         toast({
@@ -77,8 +73,7 @@ const Articles = () => {
                   <Card key={i} className="overflow-hidden border border-gray-100 shadow-sm">
                     <CardContent className="p-0">
                       <div className="p-5 border-b border-gray-100">
-                        <div className="flex items-center justify-between mb-3">
-                          <Skeleton className="h-6 w-24" />
+                        <div className="flex items-center justify-end mb-3">
                           <Skeleton className="h-5 w-20" />
                         </div>
                         <Skeleton className="h-7 w-full mb-2" />
@@ -101,12 +96,7 @@ const Articles = () => {
                   >
                     <CardContent className="p-0">
                       <div className="p-5 border-b border-gray-100">
-                        <div className="flex items-center justify-between mb-3">
-                          {article.focusKeyword && (
-                            <span className="text-xs font-medium px-2 py-1 bg-brand-50 text-brand-600 rounded">
-                              {article.focusKeyword}
-                            </span>
-                          )}
+                        <div className="flex items-center justify-end mb-3">
                           <span className="text-xs text-gray-500">
                             {formatDate(article.date)}
                           </span>
@@ -145,10 +135,7 @@ const Articles = () => {
               <div className="mt-16 p-8 bg-gradient-to-r from-brand-50 to-blue-50 rounded-xl shadow-md">
                 <h2 className="text-2xl font-bold mb-4 text-gray-800">Больше статей скоро</h2>
                 <p className="text-gray-700 mb-4">
-                  В настоящее время мы работаем над наполнением раздела статей. Скоро здесь появится еще больше полезного контента о психологии, эпигенетике и работе с подсознанием.
-                </p>
-                <p className="text-gray-700">
-                  Подпишитесь на обновления, чтобы первыми узнавать о новых материалах, или свяжитесь со мной, если хотите обсудить интересующую вас тему.
+                  В настоящее время мы работаем над наполнением раздела статей. Скоро здесь появится еще больше полезного контента.
                 </p>
               </div>
             )}
