@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
@@ -20,6 +19,7 @@ interface Article {
     title: string;
     description: string;
   };
+  focusKeyword: string;
 }
 
 const Articles = () => {
@@ -100,9 +100,15 @@ const Articles = () => {
                     <CardContent className="p-0">
                       <div className="p-5 border-b border-gray-100">
                         <div className="flex items-center justify-between mb-3">
-                          <span className="text-xs font-medium px-2 py-1 bg-brand-50 text-brand-600 rounded">
-                            Психология
-                          </span>
+                          {article.focusKeyword ? (
+                            <span className="text-xs font-medium px-2 py-1 bg-brand-50 text-brand-600 rounded">
+                              {article.focusKeyword}
+                            </span>
+                          ) : (
+                            <span className="text-xs font-medium px-2 py-1 bg-brand-50 text-brand-600 rounded">
+                              Психология
+                            </span>
+                          )}
                           <span className="text-xs text-gray-500">
                             {formatDate(article.date)}
                           </span>

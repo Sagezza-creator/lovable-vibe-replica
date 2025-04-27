@@ -35,7 +35,8 @@ export async function fetchArticles() {
       'date',
       'slug',
       'featured_media',
-      'datePublished'
+      'datePublished',
+      'yoast_head_json'
     ].join(',');
 
     const url = `${API_BASE_URL}?_fields=${fields}&per_page=100&_embed`;
@@ -49,6 +50,7 @@ export async function fetchArticles() {
       date: article.datePublished || article.date || '',
       slug: article.slug,
       image: getFeaturedImage(article),
+      focusKeyword: extractFocusKeyword(article),
       meta: {
         title: article.meta_title || '',
         description: article.meta_description || ''
@@ -123,6 +125,26 @@ function getArticleTitle(article: any): string {
   
   // Fallback to title.rendered or title
   return article.title?.rendered || article.title || '';
+}
+
+/**
+ * Extracts focus keyword from Yoast metadata
+ */
+function extractFocusKeyword(article: any): string {
+  // Try to get focus keyword from Yoast metadata
+  if (article.yoast_head_json?.focus_keyphrase) {
+    return article.yoast_head_json.focus_keyphrase;
+  }
+
+  // Fallback: Try to extract from HTML content
+  if (article.content?.rendered) {
+    const focusKeywordMatch = /<span\s+class="wpseo-focus-keyword"[^>]*>(.*?)<\/span>/i.exec(article.content.rendered);
+    if (focusKeywordMatch && focusKeywordMatch[1]) {
+      return stripHtmlTags(focusKeywordMatch[1]);
+    }
+  }
+
+  return '';
 }
 
 /**
