@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Skeleton } from '@/components/ui/skeleton';
 import CallToAction from '@/components/CallToAction';
-import { fetchArticles, getExcerpt } from '@/lib/api';
+import { fetchArticles, formatDate } from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
 
 interface Article {
@@ -104,13 +104,15 @@ const Articles = () => {
                             Психология
                           </span>
                           <span className="text-xs text-gray-500">
-                            {article.date}
+                            {formatDate(article.date)}
                           </span>
                         </div>
-                        <h3 
-                          className="text-lg font-semibold mb-2 text-gray-800 line-clamp-2"
-                          dangerouslySetInnerHTML={{ __html: article.title }}
-                        />
+                        <Link to={`/articles/${article.slug}`}>
+                          <h3 
+                            className="text-lg font-semibold mb-2 text-gray-800 line-clamp-2 hover:text-brand-600"
+                            dangerouslySetInnerHTML={{ __html: article.title }}
+                          />
+                        </Link>
                         <p className="text-gray-600 line-clamp-3 mb-4">
                           {article.excerpt}
                         </p>
