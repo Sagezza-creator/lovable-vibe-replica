@@ -112,7 +112,7 @@ const ArticleView = () => {
                   className="text-3xl md:text-4xl font-bold text-gray-800 mb-3" // Изменено с mb-4 на mb-3
                   dangerouslySetInnerHTML={{ __html: article.title }} 
                 />
-                <div className="text-sm text-gray-500 mb-0"> {/* Изменено с mb-8 на mb-6 */}
+                <div className="text-sm text-gray-500 mb-1"> {/* Изменено с mb-8 на mb-6 */}
                   {formatDate(article.date)}
                 </div>
               </>
