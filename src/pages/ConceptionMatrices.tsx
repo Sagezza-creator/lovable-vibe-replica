@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -107,12 +106,6 @@ const ConceptionMatrices = () => {
                   <p className="text-gray-600 text-sm">Делает более эффективной работу с последующими коррекциями</p>
                 </div>
               </div>
-            </div>
-
-            <div className="flex justify-center">
-              <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-                <Link to="/contact">Записаться на коррекцию матриц зачатия</Link>
-              </Button>
             </div>
           </div>
         </div>
