@@ -26,7 +26,7 @@ const Correction = () => {
         </div>
       </div>
 
-      <section className="pt-16 pb-8">
+      <section className="pt-16 pb-4">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8 items-center mb-12">
