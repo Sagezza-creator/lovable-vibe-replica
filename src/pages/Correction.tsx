@@ -13,7 +13,7 @@ const Correction = () => {
 
   return (
     <>
-      <div className="pt-32 pb-2 bg-gradient-to-b from-secondary to-white">
+      <div className="pt-32 pb-16 bg-gradient-to-b from-secondary to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
@@ -26,7 +26,7 @@ const Correction = () => {
         </div>
       </div>
 
-      <section className="py-16">
+      <section className="pt-16 pb-8">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8 items-center mb-12">
