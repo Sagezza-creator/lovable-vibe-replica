@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Link as ScrollLink } from 'react-scroll';
 
 const CallToAction = () => {
   return (
@@ -14,6 +15,23 @@ const CallToAction = () => {
           <p className="text-lg text-gray-700 mb-8">
             Сделайте первый шаг к свободе разума и новой жизни без старых проблем и ограничений.
           </p>
+          
+          {/* New scroll button */}
+          <button 
+            onClick={() => {
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="h-12 px-8 mb-6 mx-auto text-white font-medium rounded-full
+                     bg-gradient-to-r from-blue-500 to-cyan-400
+                     hover:scale-105 hover:shadow-lg active:scale-95
+                     transition-all duration-200 ease-in-out"
+          >
+            Записаться на нейрокоррекцию
+          </button>
+          
           <Button asChild size="lg" className="group bg-accent hover:bg-accent/90">
             <Link to="/contact">
               Записаться на коррекцию
