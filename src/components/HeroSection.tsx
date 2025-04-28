@@ -27,13 +27,13 @@ const HeroSection = () => {
       {/* Основной контент */}
       <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          {/* Заголовок с цветом brand-500 */}
+          {/* Заголовок */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-500 leading-tight drop-shadow-lg">
             Свобода разума: Решите свои проблемы навсегда
           </h1>
           
-          {/* Подзаголовок с тенью */}
-          <p className="text-lg md:text-xl text-gray-100 mb-8 drop-shadow-md">
+          {/* Подзаголовок - изменен цвет на gray-700 */}
+          <p className="text-lg md:text-xl text-gray-700 mb-8">
             Устраните подсознательные барьеры и живите в гармонии с современными методами трансформации сознания
           </p>
           
@@ -45,7 +45,8 @@ const HeroSection = () => {
                 <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white/10 shadow-lg">
+            {/* Кнопка - изменен цвет текста и границы на gray-700 */}
+            <Button asChild size="lg" variant="outline" className="text-gray-700 border-gray-700 hover:bg-gray-100 shadow-lg">
               <Link to="/approach">Узнать больше о методе</Link>
             </Button>
           </div>
