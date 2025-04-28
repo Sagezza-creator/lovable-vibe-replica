@@ -1,7 +1,5 @@
-
 import { useEffect } from 'react';
 import { Separator } from '@/components/ui/separator';
-import { User } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
 
 const About = () => {
@@ -32,8 +30,12 @@ const About = () => {
               <div className="md:w-1/3">
                 <div className="relative w-64 h-64 mx-auto">
                   <div className="w-full h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 p-1">
-                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <User size={100} className="text-gray-300" />
+                    <div className="w-full h-full rounded-full bg-white overflow-hidden">
+                      <img 
+                        src="https://svobodarazuma.ru/Images/Avatar-photo.png" 
+                        alt="Александр Никифоров"
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
                 </div>
