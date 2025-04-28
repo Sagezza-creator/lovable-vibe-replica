@@ -122,7 +122,7 @@ const ComparisonSection = () => {
               <div className="lg:text-center">
                 <h4 className="lg:hidden font-semibold text-gray-600 mb-2">Традиционная психология</h4>
                 <p className="flex lg:justify-center items-center gap-2 text-gray-800">
-                  <Check size={20} className="text-green-500 min-w-[20px]" />
+                <X size={20} className="text-red-400 min-w-[20px]" />
                   <span>Классические психологические теории</span>
                 </p>
               </div>
