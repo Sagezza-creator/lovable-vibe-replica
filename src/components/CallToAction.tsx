@@ -16,21 +16,18 @@ const CallToAction = () => {
             Сделайте первый шаг к свободе разума и новой жизни без старых проблем и ограничений.
           </p>
           
-          {/* New scroll button */}
-          <button 
-            onClick={() => {
-              const element = document.getElementById('contact');
-              if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="h-12 px-8 mb-6 mx-auto text-white font-medium rounded-full
-                     bg-gradient-to-r from-blue-500 to-cyan-400
-                     hover:scale-105 hover:shadow-lg active:scale-95
-                     transition-all duration-200 ease-in-out"
-          >
-            Записаться на нейрокоррекцию
-          </button>
+          <div className="flex justify-center mb-6">
+            <Link to="/contact">
+              <button 
+                className="h-12 px-8 text-white font-medium rounded-full
+                         bg-gradient-to-r from-blue-500 to-cyan-400
+                         hover:scale-105 hover:shadow-lg active:scale-95
+                         transition-all duration-200 ease-in-out"
+              >
+                Записаться на нейрокоррекцию
+              </button>
+            </Link>
+          </div>
           
           <Button asChild size="lg" className="group bg-accent hover:bg-accent/90">
             <Link to="/contact">
