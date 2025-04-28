@@ -5,7 +5,7 @@ import { Link as ScrollLink } from 'react-scroll';
 
 const CallToAction = () => {
   return (
-    <section className="py-10 pb-8 bg-gradient-to-br from-secondary to-white">
+    <section className="py-10 pb-4 bg-gradient-to-br from-secondary to-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center flex flex-col h-full">
           <div>
