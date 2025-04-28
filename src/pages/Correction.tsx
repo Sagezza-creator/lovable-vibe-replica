@@ -13,7 +13,7 @@ const Correction = () => {
 
   return (
     <>
-      <div className="pt-32 pb-8 bg-gradient-to-b from-secondary to-white">
+      <div className="pt-32 pb-2 bg-gradient-to-b from-secondary to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
