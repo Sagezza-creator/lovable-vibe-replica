@@ -1,6 +1,4 @@
-
 import { useEffect, useState, useRef } from 'react';
-import { User } from 'lucide-react';
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,8 +31,12 @@ const AboutSection = () => {
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
             <div className="relative">
               <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full mx-auto bg-gradient-to-r from-blue-500 to-cyan-400 p-1">
-                <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                  <User size={100} className="text-gray-300" />
+                <div className="w-full h-full rounded-full bg-white overflow-hidden">
+                  <img 
+                    src="https://svobodarazuma.ru/Images/Avatar-photo.png" 
+                    alt="Александр Никифоров"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
               <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 bg-white rounded-full p-4 shadow-lg">
