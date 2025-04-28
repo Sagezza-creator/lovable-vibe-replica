@@ -27,9 +27,9 @@ const HeroSection = () => {
       {/* Основной контент */}
       <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          {/* Заголовок с градиентом */}
+          {/* Заголовок с тем же градиентом, что и "Какие проблемы я решаю" */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+            <span className="gradient-heading drop-shadow-lg">
               Свобода разума: Решите свои проблемы навсегда
             </span>
           </h1>
