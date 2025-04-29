@@ -33,7 +33,7 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
                 >
                   {link.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="left-0 right-auto">
+                <NavigationMenuContent className="left-1/2 -translate-x-1/2">
                   <ul className="grid w-[200px] gap-2 p-2 bg-white">
                     {link.dropdown.map((item) => (
                       <li key={item.path}>
