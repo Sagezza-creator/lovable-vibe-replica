@@ -49,7 +49,7 @@ const Header = () => {
           <img 
             src="https://svobodarazuma.ru/Images/Logo.png" 
             alt="Логотип Свобода разума" 
-            className="h-11 w-11 object-contain"
+            className="h-12 w-12 object-contain"
           />
           <span className="text-xl font-medium">Свобода разума</span>
         </Link>
