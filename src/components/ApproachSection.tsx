@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
@@ -99,6 +98,11 @@ const ApproachSection = () => {
                 Узнайте подробнее о том, как нейрокоррекции помогает перепрограммировать нейронные связи и устранять негативные подсознательные программы.
               </p>
             </div>
+            <img 
+              src="https://svobodarazuma.ru/Images/Aboutmethod.png" 
+              alt="Научная основа метода нейрокоррекции"
+              className="w-24 h-24 md:w-32 md:h-32 object-contain opacity-90 hidden md:block"
+            />
             <Button asChild size="lg" className="whitespace-nowrap">
               <Link to="/approach">Подробнее о методе</Link>
             </Button>
