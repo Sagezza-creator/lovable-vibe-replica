@@ -31,7 +31,11 @@ const ConceptionMatrices = () => {
             <div className="flex flex-col md:flex-row gap-8 items-center mb-12">
               <div className="md:w-1/3 flex justify-center">
                 <div className="w-40 h-40 rounded-full bg-lavender-50 flex items-center justify-center">
-                  <Layers size={80} className="text-lavender-300" />
+                  <img 
+                    src="https://svobodarazuma.ru/Images/Matrix.jpg" 
+                    alt="Матрицы зачатия" 
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
               </div>
               <div className="md:w-2/3">
