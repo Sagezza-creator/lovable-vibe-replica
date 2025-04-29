@@ -100,8 +100,8 @@ const ApproachSection = () => {
             </div>
             <img 
               src="https://svobodarazuma.ru/Images/Aboutmethod.png" 
-              alt="Научная основа метода нейрокоррекции"
-              className="w-24 h-24 md:w-32 md:h-32 object-contain opacity-90 hidden md:block"
+              alt="Научная основа метода"
+              className="w-24 h-24 object-contain hidden md:block"
             />
             <Button asChild size="lg" className="whitespace-nowrap">
               <Link to="/approach">Подробнее о методе</Link>
