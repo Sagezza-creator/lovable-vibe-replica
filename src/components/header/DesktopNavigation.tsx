@@ -33,7 +33,7 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
                 >
                   {link.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent alignOffset={-10}>
+                <NavigationMenuContent align="start" sideOffset={5}>
                   <ul className="grid w-[200px] gap-2 p-2 bg-white">
                     {link.dropdown.map((item) => (
                       <li key={item.path}>
