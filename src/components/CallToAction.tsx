@@ -5,8 +5,15 @@ import { Link as ScrollLink } from 'react-scroll';
 
 const CallToAction = () => {
   return (
-    <section className="py-10 pb-1 bg-gradient-to-br from-secondary to-white">
-      <div className="container mx-auto px-4">
+    <section className="py-10 pb-1 bg-gradient-to-br from-secondary to-white relative">
+      {/* Добавленное изображение */}
+      <img 
+        src="https://svobodarazuma.ru/Images/Chains.png" 
+        alt="Освобождение от ограничений"
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-20"
+      />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center flex flex-col h-full">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-brand-500">
@@ -30,13 +37,6 @@ const CallToAction = () => {
                 </button>
               </Link>
             </div>
-            
-            <Button asChild size="lg" className="group bg-accent hover:bg-accent/90 text-lg py-6 px-8">
-              <Link to="/contact">
-                Записаться на коррекцию
-                <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
           </div>
         </div>
       </div>
