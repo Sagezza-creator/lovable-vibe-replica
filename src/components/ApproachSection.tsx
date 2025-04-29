@@ -91,21 +91,24 @@ const ApproachSection = () => {
         </div>
 
         <div className="bg-gradient-to-r from-brand-50 to-cyan-50 rounded-xl p-8 md:p-10 shadow-md">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
-            <div className="max-w-lg">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex-1 max-w-lg">
               <h3 className="text-2xl font-bold mb-4 text-gray-800">Хотите узнать больше о научной основе метода?</h3>
-              <p className="text-gray-700 mb-6 md:mb-0">
+              <p className="text-gray-700">
                 Узнайте подробнее о том, как нейрокоррекции помогает перепрограммировать нейронные связи и устранять негативные подсознательные программы.
               </p>
             </div>
-            <div className="flex-shrink-0 mx-4 hidden md:block">
+            
+            <div className="mx-4 flex-shrink-0 hidden md:flex items-center justify-center">
               <img 
                 src="https://svobodarazuma.ru/Images/Aboutmethod.png" 
                 alt="Научная основа метода"
                 className="h-24 object-contain"
+                style={{ maxWidth: '150px' }}
               />
             </div>
-            <Button asChild size="lg" className="whitespace-nowrap">
+            
+            <Button asChild size="lg" className="whitespace-nowrap flex-shrink-0">
               <Link to="/approach">Подробнее о методе</Link>
             </Button>
           </div>
