@@ -50,7 +50,7 @@ const FAQSection = () => {
         style={{
           backgroundImage: "url('https://svobodarazuma.ru/Images/FAQmain.png')",
           backgroundSize: '100% auto', // Растягиваем только по ширине
-          backgroundPosition: 'center', // Центрируем изображение
+          backgroundPosition: 'top center', // Прикрепляем к верхнему краю и центрируем по горизонтали
           backgroundRepeat: 'no-repeat',
           transform: 'translateZ(0)'
         }}
