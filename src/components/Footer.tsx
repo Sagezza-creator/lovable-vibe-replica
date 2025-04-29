@@ -29,6 +29,10 @@ const Footer = () => {
                 <MessageSquare size={18} />
                 @Nikor_ad
               </a>
+              <a href="https://t.me/SVOBODA_RAZUMA_BLOG" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+                <MessageSquare size={18} />
+                Блог в Telegram
+              </a>
             </div>
           </div>
 
