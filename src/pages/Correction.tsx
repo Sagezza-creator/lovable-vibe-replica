@@ -33,7 +33,7 @@ const Correction = () => {
                 <img 
                   src="https://svobodarazuma.ru/Images/Correction.jpg" 
                   alt="Коррекция" 
-                  className="w-56 h-56 rounded-lg object-cover"
+                  className="w-full rounded-lg"
                 />
               </div>
               <div className="md:w-2/3">
