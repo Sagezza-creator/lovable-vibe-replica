@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
@@ -27,25 +26,32 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
             link.dropdown ? (
               <NavigationMenuItem key={link.path} className="relative">
                 <NavigationMenuTrigger 
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive(link.path) ? 'text-primary bg-primary/10' : 'text-gray-700 hover:text-primary hover:bg-primary/5'
-                  }`}
+                  className={cn(
+                    "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                    isActive(link.path) 
+                      ? 'text-primary bg-primary/10' 
+                      : 'text-gray-700 hover:text-primary hover:bg-primary/5',
+                    "data-[state=open]:bg-primary/10" // Добавлено для открытого состояния
+                  )}
                 >
                   {link.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[200px] gap-2 p-2 bg-white">
+                <NavigationMenuContent className="rounded-md border shadow-sm">
+                  <ul className="grid w-[200px] gap-1 p-1">
                     {link.dropdown.map((item) => (
                       <li key={item.path}>
                         <NavigationMenuLink asChild>
                           <Link
                             to={item.path}
                             className={cn(
-                              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                              isActive(item.path) ? 'bg-accent/50 text-primary' : 'text-gray-700'
+                              "block select-none rounded-md p-2 text-sm no-underline outline-none transition-colors",
+                              "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                              isActive(item.path) 
+                                ? 'bg-accent/50 text-primary font-medium' 
+                                : 'text-gray-700'
                             )}
                           >
-                            <div className="text-sm font-medium">{item.name}</div>
+                            {item.name}
                           </Link>
                         </NavigationMenuLink>
                       </li>
@@ -57,11 +63,12 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
               <NavigationMenuItem key={link.path}>
                 <Link
                   to={link.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={cn(
+                    "px-3 py-2 rounded-md text-sm font-medium transition-colors",
                     isActive(link.path)
                       ? 'text-primary bg-primary/10'
                       : 'text-gray-700 hover:text-primary hover:bg-primary/5'
-                  }`}
+                  )}
                 >
                   {link.name}
                 </Link>
@@ -72,7 +79,8 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
       </NavigationMenu>
       <Button 
         onClick={onBookingClick} 
-        className="ml-2 bg-brand-500 hover:bg-brand-600 text-white"
+        className="ml-2 bg-brand-500 hover:bg-brand-600 text-white shadow-sm"
+        size="sm"
       >
         Записаться на коррекцию
       </Button>
