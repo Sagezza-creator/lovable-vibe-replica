@@ -98,6 +98,13 @@ const ApproachSection = () => {
                 Узнайте подробнее о том, как нейрокоррекции помогает перепрограммировать нейронные связи и устранять негативные подсознательные программы.
               </p>
             </div>
+            <div className="flex-shrink-0 mx-4 hidden md:block">
+              <img 
+                src="https://svobodarazuma.ru/Images/Aboutmethod.png" 
+                alt="Научная основа метода"
+                className="h-24 object-contain"
+              />
+            </div>
             <Button asChild size="lg" className="whitespace-nowrap">
               <Link to="/approach">Подробнее о методе</Link>
             </Button>
