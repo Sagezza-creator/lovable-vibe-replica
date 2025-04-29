@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -31,9 +30,11 @@ const Correction = () => {
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8 items-center mb-12">
               <div className="md:w-1/3 flex justify-center">
-                <div className="w-40 h-40 rounded-full bg-yellow-50 flex items-center justify-center">
-                  <Wand size={80} className="text-yellow-500" />
-                </div>
+                <img 
+                  src="https://svobodarazuma.ru/Images/Correction.jpg" 
+                  alt="Коррекция" 
+                  className="w-56 h-56 rounded-lg object-cover"
+                />
               </div>
               <div className="md:w-2/3">
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-800">
