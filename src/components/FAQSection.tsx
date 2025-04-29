@@ -43,61 +43,53 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden">
-      {/* Фоновое изображение с fixed позиционированием */}
+    <section className="py-20 relative"> {/* Убрал bg-white */}
+      {/* Фоновое изображение */}
       <div 
-        className="fixed inset-0 z-0 w-full h-full"
+        className="absolute inset-0 z-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('https://svobodarazuma.ru/Images/FAQmain.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       ></div>
 
-      {/* Затемнение фона для лучшей читаемости */}
-      <div className="fixed inset-0 z-0 bg-black bg-opacity-20"></div>
-
       {/* Основной контент */}
-      <div className="relative z-10 py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
-              Часто задаваемые вопросы
-            </h2>
-            <p className="text-lg text-gray-700">
-              Ответы на самые распространенные вопросы о моем подходе
-            </p>
-          </div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
+            Часто задаваемые вопросы
+          </h2>
+          <p className="text-lg text-gray-700">
+            Ответы на самые распространенные вопросы о моем подходе
+          </p>
+        </div>
 
-          {/* Блок с вопросами */}
-          <div className="max-w-3xl mx-auto bg-white rounded-lg p-6 shadow-sm">
-            {faqs.map((faq) => (
-              <div 
-                key={faq.id} 
-                className="border-b border-gray-200 last:border-0"
+        {/* Блок с вопросами (оставил белый фон только здесь) */}
+        <div className="max-w-3xl mx-auto bg-white rounded-lg p-6 shadow-sm">
+          {faqs.map((faq) => (
+            <div 
+              key={faq.id} 
+              className="border-b border-gray-200 last:border-0"
+            >
+              <button
+                className="py-5 w-full flex justify-between items-center text-left"
+                onClick={() => toggleItem(faq.id)}
               >
-                <button
-                  className="py-5 w-full flex justify-between items-center text-left"
-                  onClick={() => toggleItem(faq.id)}
-                >
-                  <h3 className="text-lg font-medium text-gray-800">{faq.question}</h3>
-                  {openItem === faq.id ? 
-                    <ChevronUp size={20} className="text-brand-500" /> : 
-                    <ChevronDown size={20} className="text-gray-400" />
-                  }
-                </button>
-                
-                <div 
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openItem === faq.id ? "max-h-96 pb-5" : "max-h-0"
-                  }`}
-                >
-                  <p className="text-gray-600">{faq.answer}</p>
-                </div>
+                <h3 className="text-lg font-medium text-gray-800">{faq.question}</h3>
+                {openItem === faq.id ? 
+                  <ChevronUp size={20} className="text-brand-500" /> : 
+                  <ChevronDown size={20} className="text-gray-400" />
+                }
+              </button>
+              
+              <div 
+                className={`overflow-hidden transition-all duration-300 ${
+                  openItem === faq.id ? "max-h-96 pb-5" : "max-h-0"
+                }`}
+              >
+                <p className="text-gray-600">{faq.answer}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
