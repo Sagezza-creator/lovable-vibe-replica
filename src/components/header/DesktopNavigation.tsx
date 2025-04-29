@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
@@ -33,8 +32,8 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
                 >
                   {link.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[200px] gap-2 p-2 bg-white">
+                <NavigationMenuContent className="absolute left-0 top-full w-[220px]">
+                  <ul className="grid gap-2 p-4 bg-white shadow-lg rounded-md">
                     {link.dropdown.map((item) => (
                       <li key={item.path}>
                         <NavigationMenuLink asChild>
