@@ -1,7 +1,5 @@
-
 import { Link } from 'react-router-dom';
 import { Phone, MessageSquare } from 'lucide-react';
-import Logo from './Logo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +10,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Logo size={32} />
+              <img 
+                src="https://svobodarazuma.ru/Images/Logo.png" 
+                alt="Логотип Свобода разума" 
+                className="h-12 w-12 object-contain"  // размер соответствует оригинальному Logo size={32}
+              />
               <span className="text-lg font-medium">Свобода разума</span>
             </div>
             <p className="text-gray-600 mb-4">
