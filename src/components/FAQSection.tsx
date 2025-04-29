@@ -43,12 +43,13 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-20 relative"> {/* Убрал bg-white */}
+    <section className="py-20 relative overflow-hidden">
       {/* Фоновое изображение */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('https://svobodarazuma.ru/Images/FAQmain.png')",
+          transform: 'translateZ(0)' // Оптимизация для браузеров
         }}
       ></div>
 
@@ -63,7 +64,7 @@ const FAQSection = () => {
           </p>
         </div>
 
-        {/* Блок с вопросами (оставил белый фон только здесь) */}
+        {/* Блок с вопросами */}
         <div className="max-w-3xl mx-auto bg-white rounded-lg p-6 shadow-sm">
           {faqs.map((faq) => (
             <div 
@@ -71,8 +72,10 @@ const FAQSection = () => {
               className="border-b border-gray-200 last:border-0"
             >
               <button
-                className="py-5 w-full flex justify-between items-center text-left"
+                className="py-5 w-full flex justify-between items-center text-left focus:outline-none"
                 onClick={() => toggleItem(faq.id)}
+                aria-expanded={openItem === faq.id}
+                aria-controls={`faq-answer-${faq.id}`}
               >
                 <h3 className="text-lg font-medium text-gray-800">{faq.question}</h3>
                 {openItem === faq.id ? 
@@ -82,9 +85,11 @@ const FAQSection = () => {
               </button>
               
               <div 
+                id={`faq-answer-${faq.id}`}
                 className={`overflow-hidden transition-all duration-300 ${
                   openItem === faq.id ? "max-h-96 pb-5" : "max-h-0"
                 }`}
+                aria-hidden={openItem !== faq.id}
               >
                 <p className="text-gray-600">{faq.answer}</p>
               </div>
