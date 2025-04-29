@@ -91,7 +91,7 @@ const ApproachSection = () => {
         </div>
 
         <div className="bg-gradient-to-r from-brand-50 to-cyan-50 rounded-xl p-8 md:p-10 shadow-md">
-          <div className="flex flex-col md:flex-row items-stretch">
+          <div className="flex flex-col md:flex-row items-center">
             <div className="flex-1 max-w-lg">
               <h3 className="text-2xl font-bold mb-4 text-gray-800">Хотите узнать больше о научной основе метода?</h3>
               <p className="text-gray-700">
@@ -99,15 +99,15 @@ const ApproachSection = () => {
               </p>
             </div>
             
-            <div className="mx-4 self-stretch flex">
+            <div className="mx-4 h-[calc(100%-32px)] flex items-center">
               <img 
                 src="https://svobodarazuma.ru/Images/Aboutmethod.png" 
                 alt="Научная основа метода"
-                className="h-full w-auto object-cover"
+                className="h-full w-auto object-contain"
               />
             </div>
             
-            <Button asChild size="lg" className="whitespace-nowrap self-center">
+            <Button asChild size="lg" className="whitespace-nowrap">
               <Link to="/approach">Подробнее о методе</Link>
             </Button>
           </div>
