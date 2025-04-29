@@ -43,16 +43,16 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-20 relative min-h-[800px]"> {/* Фиксированная высота */}
-      {/* Фоновое изображение (fixed) */}
+    <section className="py-20 relative"> {/* Убрал bg-white */}
+      {/* Фоновое изображение */}
       <div 
-        className="fixed inset-0 -z-10 bg-cover bg-center"
+        className="absolute inset-0 z-0 bg-cover bg-center"
         style={{
           backgroundImage: "url('https://svobodarazuma.ru/Images/FAQmain.png')",
         }}
       ></div>
 
-      {/* Основной контент (прокручивается независимо от фона) */}
+      {/* Основной контент */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
@@ -63,7 +63,7 @@ const FAQSection = () => {
           </p>
         </div>
 
-        {/* Блок с вопросами */}
+        {/* Блок с вопросами (оставил белый фон только здесь) */}
         <div className="max-w-3xl mx-auto bg-white rounded-lg p-6 shadow-sm">
           {faqs.map((faq) => (
             <div 
