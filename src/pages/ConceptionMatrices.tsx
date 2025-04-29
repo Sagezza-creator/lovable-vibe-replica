@@ -30,7 +30,7 @@ const ConceptionMatrices = () => {
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8 items-center mb-12">
               <div className="md:w-1/3 flex justify-center">
-                <div className="w-48 h-48 rounded-full bg-lavender-50 flex items-center justify-center">
+                <div className="w-56 h-56 rounded-full bg-lavender-50 flex items-center justify-center">
                   <img 
                     src="https://svobodarazuma.ru/Images/Matrix.jpg" 
                     alt="Матрицы зачатия" 
