@@ -43,36 +43,41 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      {/* Фоновое изображение */}
-      <div 
-        className="absolute inset-0 z-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('https://svobodarazuma.ru/Images/FAQmain.png')",
-          transform: 'translateZ(0)' // Оптимизация для браузеров
-        }}
-      ></div>
+    <section className="relative py-20">
+      {/* Контейнер для фона с фиксированной высотой */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: "url('https://svobodarazuma.ru/Images/FAQmain.png')",
+            backgroundAttachment: 'local', // Фиксируем только внутри контейнера
+            willChange: 'transform', // Оптимизация анимации
+          }}
+        />
+        {/* Затемнение фона для лучшей читаемости */}
+        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+      </div>
 
       {/* Основной контент */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Часто задаваемые вопросы
           </h2>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-100">
             Ответы на самые распространенные вопросы о моем подходе
           </p>
         </div>
 
         {/* Блок с вопросами */}
-        <div className="max-w-3xl mx-auto bg-white rounded-lg p-6 shadow-sm">
+        <div className="max-w-3xl mx-auto bg-white rounded-lg p-6 shadow-lg">
           {faqs.map((faq) => (
             <div 
               key={faq.id} 
-              className="border-b border-gray-200 last:border-0"
+              className="border-b border-gray-200 last:border-0 transition-colors"
             >
               <button
-                className="py-5 w-full flex justify-between items-center text-left focus:outline-none"
+                className="py-5 w-full flex justify-between items-center text-left focus:outline-none hover:text-brand-500 transition-colors"
                 onClick={() => toggleItem(faq.id)}
                 aria-expanded={openItem === faq.id}
                 aria-controls={`faq-answer-${faq.id}`}
