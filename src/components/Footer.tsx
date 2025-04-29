@@ -13,7 +13,7 @@ const Footer = () => {
               <img 
                 src="https://svobodarazuma.ru/Images/Logo.png" 
                 alt="Логотип Свобода разума" 
-                className="h-13 w-13 object-contain"  // размер соответствует оригинальному Logo size={32}
+                className="h-12 w-12 object-contain"  // размер соответствует оригинальному Logo size={32}
               />
               <span className="text-lg font-medium">Свобода разума</span>
             </div>
