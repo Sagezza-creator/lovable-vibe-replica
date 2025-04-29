@@ -52,14 +52,11 @@ const FAQSection = () => {
           backgroundSize: "100% auto",
           backgroundPosition: "top center",
           backgroundRepeat: "no-repeat",
-          height: "auto", // Высота определяется изображением
-          minHeight: "100px" // Минимальная высота на случай маленького изображения
+          height: "auto",
+          minHeight: "100px"
         }}
       ></div>
 
-      {/* Затемнение фона для лучшей читаемости (тоже абсолютное) */}
-      <div className="absolute inset-0 bg-white bg-opacity-90 z-1"></div>
-      
       {/* Основной контент (относительное позиционирование) */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
