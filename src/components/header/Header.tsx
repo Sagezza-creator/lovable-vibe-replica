@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import Logo from '../Logo';
 import DesktopNavigation from './DesktopNavigation';
 import MobileMenu from './MobileMenu';
 import BookingModal from '../BookingModal';
@@ -47,7 +46,11 @@ const Header = () => {
     <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 shadow-md backdrop-blur-sm' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
-          <Logo size={40} />
+          <img 
+            src="https://svobodarazuma.ru/Images/Logo.png" 
+            alt="Логотип Свобода разума" 
+            className="h-10 w-10 object-contain"
+          />
           <span className="text-xl font-medium">Свобода разума</span>
         </Link>
 
