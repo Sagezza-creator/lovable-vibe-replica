@@ -20,6 +20,7 @@ import Footer from "./components/Footer";
 import ConceptionMatrices from "./pages/ConceptionMatrices";
 import Correction from "./pages/Correction";
 
+// Create a client
 const queryClient = new QueryClient();
 
 const App = () => (
