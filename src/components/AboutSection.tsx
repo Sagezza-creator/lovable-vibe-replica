@@ -47,8 +47,8 @@ const AboutSection = () => {
               </div>
               <div className="absolute bottom-0 left-0 transform -translate-x-1/4 translate-y-1/4 bg-white rounded-full p-4 shadow-lg">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent-50 flex items-center justify-center">
-                  <p className="font-bold text-accent-600 text-lg sm:text-xl">500+</p>
-                  <p className="text-xs text-accent-800">клиентов</p>
+                  <p className="font-bold text-accent-600 text-lg sm:text-xl">1000+</p>
+                  <p className="text-xs text-accent-800">часов коррекций</p>
                 </div>
               </div>
             </div>
@@ -63,7 +63,7 @@ const AboutSection = () => {
             </h3>
             <div className="space-y-4 text-gray-600">
               <p>
-                Я специалист в области психологической помощи с опытом более 2 лет. За это время я помог более 500 клиентам обрести свободу от подсознательных блоков и начать жить полной жизнью.
+                Я специалист в области психологической помощи с опытом более 2 лет. За это время я провел более 1000 часов нейрокоррекций, которые помогли людями обрести свободу от подсознательных блоков и начать жить полной жизнью.
               </p>
               <p>
               Я работаю с подсознанием, опираясь на новейшие научные достижения в эпигенетике, нейропластичности и нейрохимии. Мой подход устраняет негативные подсознательные программы, освобождает от накопленного стресса и открывает путь к гармонии без поверхностного снятия симптомов.

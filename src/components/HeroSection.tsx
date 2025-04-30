@@ -55,8 +55,8 @@ const HeroSection = () => {
           {/* Статистика */}
           <div className="mt-16 flex flex-col md:flex-row justify-start gap-6 md:gap-12 stagger-animation">
             <div className={`bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg opacity-0 animate-fade-up`}>
-              <p className="text-brand-500 font-semibold text-3xl mb-1">500+</p>
-              <p className="text-gray-700">довольных клиентов</p>
+              <p className="text-brand-500 font-semibold text-3xl mb-1">1000+</p>
+              <p className="text-gray-700">часов коррекций</p>
             </div>
             <div className={`bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-lg opacity-0 animate-fade-up`}>
               <p className="text-brand-500 font-semibold text-3xl mb-1">2+</p>
