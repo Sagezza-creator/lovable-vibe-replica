@@ -17,7 +17,7 @@ const About = () => {
               Обо мне
             </h1>
             <p className="text-lg md:text-xl text-gray-700">
-              Мой путь к помощи людям через эпигенетический подход
+            Мой путь к исцелению через работу с подсознанием
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@ const About = () => {
                   Александр Никифоров
                 </h2>
                 <p className="text-lg text-gray-600 mb-4">
-                  Специалист в области психологической помощи с использованием эпигенетического подхода
+                Специалист по нейрокоррекции деструктивных программ подсознания
                 </p>
                 <div className="flex gap-4">
                   <div className="text-center">
@@ -54,8 +54,8 @@ const About = () => {
                     <p className="text-sm text-gray-600">Лет опыта</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-3xl font-bold text-brand-600">500+</p>
-                    <p className="text-sm text-gray-600">Клиентов</p>
+                    <p className="text-3xl font-bold text-brand-600">1000+</p>
+                    <p className="text-sm text-gray-600">Часов коррекций</p>
                   </div>
                   <div className="text-center">
                     <p className="text-3xl font-bold text-brand-600">95%</p>
