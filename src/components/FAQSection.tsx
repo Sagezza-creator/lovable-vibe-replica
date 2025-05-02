@@ -1,5 +1,8 @@
+
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 interface FAQ {
   id: number;
@@ -37,16 +40,23 @@ const faqs: FAQ[] = [
 
 const FAQSection = () => {
   const [openItem, setOpenItem] = useState<number | null>(0);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2
+  });
 
   const toggleItem = (id: number) => {
     setOpenItem(openItem === id ? null : id);
   };
 
   return (
-    <section className="py-20 relative overflow-hidden">
-      {/* Фоновое изображение */}
-      <div 
+    <section ref={ref} className="py-20 relative overflow-hidden">
+      {/* Фоновое изображение с анимацией */}
+      <motion.div 
         className="absolute inset-0 z-0"
+        initial={{ opacity: 0.5 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0.5 }}
+        transition={{ duration: 1 }}
         style={{
           backgroundImage: "url('https://svobodarazuma.ru/Images/FAQmain.png')",
           backgroundSize: '100% auto', // Растягиваем только по ширине
@@ -54,51 +64,99 @@ const FAQSection = () => {
           backgroundRepeat: 'no-repeat',
           transform: 'translateZ(0)'
         }}
-      ></div>
+      ></motion.div>
 
       {/* Основной контент */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <motion.div 
+          className="max-w-3xl mx-auto text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
             Часто задаваемые вопросы
           </h2>
           <p className="text-lg text-gray-700">
             Ответы на самые распространенные вопросы о моем подходе
           </p>
-        </div>
+        </motion.div>
 
         {/* Блок с вопросами */}
-        <div className="max-w-3xl mx-auto bg-white rounded-lg p-6 shadow-sm">
-          {faqs.map((faq) => (
-            <div 
+        <motion.div 
+          className="max-w-3xl mx-auto bg-white rounded-lg p-6 shadow-sm"
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          {faqs.map((faq, index) => (
+            <motion.div 
               key={faq.id} 
               className="border-b border-gray-200 last:border-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
             >
-              <button
+              <motion.button
                 className="py-5 w-full flex justify-between items-center text-left focus:outline-none"
                 onClick={() => toggleItem(faq.id)}
                 aria-expanded={openItem === faq.id}
                 aria-controls={`faq-answer-${faq.id}`}
+                whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
+                transition={{ duration: 0.2 }}
               >
-                <h3 className="text-lg font-medium text-gray-800">{faq.question}</h3>
+                <motion.h3 
+                  className="text-lg font-medium text-gray-800"
+                  initial={false}
+                  animate={{ 
+                    color: openItem === faq.id ? "#2E86C1" : "#4A4A4A" 
+                  }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {faq.question}
+                </motion.h3>
                 {openItem === faq.id ? 
-                  <ChevronUp size={20} className="text-brand-500" /> : 
-                  <ChevronDown size={20} className="text-gray-400" />
+                  <motion.div
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 180 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronUp size={20} className="text-brand-500" />
+                  </motion.div> : 
+                  <motion.div
+                    initial={{ rotate: 180 }}
+                    animate={{ rotate: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ChevronDown size={20} className="text-gray-400" />
+                  </motion.div>
                 }
-              </button>
+              </motion.button>
               
-              <div 
-                id={`faq-answer-${faq.id}`}
-                className={`overflow-hidden transition-all duration-300 ${
-                  openItem === faq.id ? "max-h-96 pb-5" : "max-h-0"
-                }`}
-                aria-hidden={openItem !== faq.id}
-              >
-                <p className="text-gray-600">{faq.answer}</p>
-              </div>
-            </div>
+              <AnimatePresence initial={false}>
+                {openItem === faq.id && (
+                  <motion.div
+                    key={`answer-${faq.id}`}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <motion.p 
+                      className="text-gray-600 pb-5"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.2 }}
+                    >
+                      {faq.answer}
+                    </motion.p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

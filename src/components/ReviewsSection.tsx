@@ -1,7 +1,9 @@
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 interface Review {
   id: number;
@@ -62,38 +64,22 @@ const reviews: Review[] = [
 ];
 
 const ReviewsSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const totalReviews = reviews.length;
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
+    if (!inView) return;
+    
     const interval = setInterval(() => {
       setActiveIndex((current) => (current + 1) % totalReviews);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [totalReviews]);
+  }, [totalReviews, inView]);
 
   const goToReview = (index: number) => {
     setActiveIndex(index);
@@ -103,73 +89,110 @@ const ReviewsSection = () => {
     return Array(count)
       .fill(0)
       .map((_, i) => (
-        <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 * i, duration: 0.3 }}
+        >
+          <Star size={16} className="fill-yellow-400 text-yellow-400" />
+        </motion.div>
       ));
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <motion.div 
+          className="max-w-3xl mx-auto text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.7 }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
             Отзывы
           </h2>
           <p className="text-lg text-gray-700">
             Истории людей, которые изменили свою жизнь с помощью моего подхода
           </p>
-        </div>
+        </motion.div>
 
         <div className="max-w-4xl mx-auto relative">
-          <div className={`transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="overflow-hidden relative">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="overflow-hidden relative"
+          >
+            <AnimatePresence initial={false} mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
               >
-                {reviews.map((review) => (
-                  <div key={review.id} className="w-full flex-shrink-0">
-                    <Card className="border-0 shadow-lg bg-white">
-                      <CardContent className="p-8">
-                        <div className="flex items-center gap-1 mb-4">
-                          {renderStars(review.stars)}
-                        </div>
+                <Card className="border-0 shadow-lg bg-white">
+                  <CardContent className="p-8">
+                    <div className="flex items-center gap-1 mb-4">
+                      {renderStars(reviews[activeIndex].stars)}
+                    </div>
 
-                        <blockquote className="mb-6">
-                          <p className="text-xl italic text-gray-700 mb-4">
-                            "Я {review.sessions > 1 ? `всего за ${review.sessions} сеанса` : `всего за ${review.sessions} сеанс`} избавилась от {review.problem}. {review.solution}"
-                          </p>
-                        </blockquote>
+                    <motion.blockquote 
+                      className="mb-6"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3, duration: 0.5 }}
+                    >
+                      <p className="text-xl italic text-gray-700 mb-4">
+                        "Я {reviews[activeIndex].sessions > 1 ? `всего за ${reviews[activeIndex].sessions} сеанса` : `всего за ${reviews[activeIndex].sessions} сеанс`} избавилась от {reviews[activeIndex].problem}. {reviews[activeIndex].solution}"
+                      </p>
+                    </motion.blockquote>
 
-                        <div className="flex items-center gap-4">
-                          <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 flex items-center justify-center text-white font-bold">
-                            {review.name.charAt(0)}
-                          </div>
-                          <div>
-                            <p className="font-medium text-gray-800">
-                              {review.name}, {review.age} {review.age % 10 === 1 && review.age !== 11 ? "год" : (review.age % 10 >= 2 && review.age % 10 <= 4 && (review.age < 10 || review.age > 20) ? "года" : "лет")}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
-              </div>
-            </div>
+                    <motion.div 
+                      className="flex items-center gap-4"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
+                    >
+                      <motion.div 
+                        className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 flex items-center justify-center text-white font-bold"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        {reviews[activeIndex].name.charAt(0)}
+                      </motion.div>
+                      <div>
+                        <p className="font-medium text-gray-800">
+                          {reviews[activeIndex].name}, {reviews[activeIndex].age} {reviews[activeIndex].age % 10 === 1 && reviews[activeIndex].age !== 11 ? "год" : (reviews[activeIndex].age % 10 >= 2 && reviews[activeIndex].age % 10 <= 4 && (reviews[activeIndex].age < 10 || reviews[activeIndex].age > 20) ? "года" : "лет")}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </AnimatePresence>
 
-            <div className="flex justify-center mt-6 gap-2">
+            <motion.div 
+              className="flex justify-center mt-6 gap-2"
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+            >
               {reviews.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   className={`h-2 rounded-full transition-all ${
                     activeIndex === index ? "w-8 bg-brand-500" : "w-2 bg-gray-300"
                   }`}
                   onClick={() => goToReview(index)}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                   aria-label={`Показать отзыв ${index + 1}`}
-                ></button>
+                ></motion.button>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
