@@ -1,52 +1,18 @@
-
-import { useEffect, useState, useRef } from 'react';
+import { useEffect } from 'react';
 import { Separator } from '@/components/ui/separator';
 import CallToAction from '@/components/CallToAction';
 
 const About = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const pageRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
-    
-    // Set page visible with animation delay
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, []);
-  
-  useEffect(() => {
-    // Активация анимации при прокрутке для секций
-    const sections = document.querySelectorAll('.section-reveal');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-        }
-      });
-    }, { threshold: 0.15 });
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-
-    return () => {
-      sections.forEach(section => {
-        observer.unobserve(section);
-      });
-    };
   }, []);
 
   return (
-    <div ref={pageRef} className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+    <>
       <div className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4">
-          <div className={`max-w-3xl mx-auto text-center ${isVisible ? 'animate-gentle-fade-up' : 'opacity-0'}`}>
+          <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
               Обо мне
             </h1>
@@ -60,15 +26,15 @@ const About = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-12 items-center mb-12 section-reveal">
+            <div className="flex flex-col md:flex-row gap-12 items-center mb-12">
               <div className="md:w-1/3">
                 <div className="relative w-64 h-64 mx-auto">
-                  <div className="w-full h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 p-1 animate-pulse-soft">
+                  <div className="w-full h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 p-1">
                     <div className="w-full h-full rounded-full bg-white overflow-hidden">
                       <img 
                         src="https://svobodarazuma.ru/Images/Avatar-photo.png" 
                         alt="Александр Никифоров"
-                        className="w-full h-full object-cover hover-glow"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   </div>
@@ -82,16 +48,16 @@ const About = () => {
                 <p className="text-lg text-gray-600 mb-4">
                 Специалист по нейрокоррекции деструктивных программ подсознания
                 </p>
-                <div className="flex gap-4 stagger-animation">
-                  <div className="text-center hover-lift">
+                <div className="flex gap-4">
+                  <div className="text-center">
                     <p className="text-3xl font-bold text-brand-600">2+</p>
                     <p className="text-sm text-gray-600">Лет опыта</p>
                   </div>
-                  <div className="text-center hover-lift">
+                  <div className="text-center">
                     <p className="text-3xl font-bold text-brand-600">1000+</p>
                     <p className="text-sm text-gray-600">Часов коррекций</p>
                   </div>
-                  <div className="text-center hover-lift">
+                  <div className="text-center">
                     <p className="text-3xl font-bold text-brand-600">95%</p>
                     <p className="text-sm text-gray-600">Успешных результатов</p>
                   </div>
@@ -101,7 +67,7 @@ const About = () => {
 
             <Separator className="my-12" />
 
-            <div className="prose max-w-none section-reveal">
+            <div className="prose max-w-none">
               <h3 className="text-2xl font-semibold mb-4 text-gray-800">Мой путь</h3>
               <p className="mb-4 text-gray-600">
               Я долго искал ответ, почему реакции людей на одинаковые события так различны, пока не углубился в работу с подсознанием, опираясь на открытия эпигенетики, нейропластичности и нейрохимии. Я увидел, как традиционные методы психологической помощи часто работают только с симптомами, а не с корнем проблемы, что приводит к временному облегчению, но не к полному исцелению.
@@ -121,7 +87,7 @@ const About = () => {
               </p>
 
               <h3 className="text-2xl font-semibold my-6 text-gray-800">Мои ценности</h3>
-              <ul className="list-disc pl-6 space-y-2 mb-6 text-gray-600 stagger-animation">
+              <ul className="list-disc pl-6 space-y-2 mb-6 text-gray-600">
                 <li><strong>Эффективность</strong> — я ценю ваше время и стремлюсь к максимально быстрым и стойким результатам</li>
                 <li><strong>Индивидуальный подход</strong> — каждый человек уникален, и я адаптирую свой метод под ваши конкретные потребности</li>
                 <li><strong>Безопасность</strong> — все техники, которые я использую, абсолютно безопасны и научно обоснованы</li>
@@ -138,7 +104,7 @@ const About = () => {
       </section>
 
       <CallToAction />
-    </div>
+    </>
   );
 };
 
