@@ -1,18 +1,28 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import ContactSection from '@/components/ContactSection';
 
 const Contact = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const pageRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
+    
+    // Set page visible with animation delay
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <>
+    <div ref={pageRef} className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <div className="pt-32 pb-16 bg-gradient-to-b from-secondary to-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className={`max-w-3xl mx-auto text-center ${isVisible ? 'animate-gentle-fade-up' : 'opacity-0'}`}>
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
               Контакты
             </h1>
@@ -25,13 +35,13 @@ const Contact = () => {
 
       <ContactSection />
 
-      <section className="py-16 bg-secondary">
+      <section className="py-16 bg-secondary section-reveal">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl shadow-md p-8">
+            <div className="bg-white rounded-xl shadow-md p-8 hover-lift">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Часто задаваемые вопросы о коррекциях</h2>
               
-              <div className="space-y-6">
+              <div className="space-y-6 stagger-animation">
                 <div>
                   <h3 className="text-lg font-medium mb-2 text-gray-800">Как проходят коррекции?</h3>
                   <p className="text-gray-600">
@@ -64,7 +74,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

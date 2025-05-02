@@ -12,9 +12,19 @@ import MatricesSection from '@/components/MatricesSection';
 import CorrectionSection from '@/components/CorrectionSection';
 
 const Home = () => {
+  const [pageVisible, setPageVisible] = useState(false);
+  const pageRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
+    
+    // Set page visible with animation delay
+    const timer = setTimeout(() => {
+      setPageVisible(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -41,7 +51,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div ref={pageRef} className={`transition-opacity duration-700 ${pageVisible ? 'opacity-100' : 'opacity-0'}`}>
       <HeroSection />
       <div className="section-reveal">
         <ProblemsSection />
@@ -70,7 +80,7 @@ const Home = () => {
       <div className="section-reveal">
         <CallToAction />
       </div>
-    </>
+    </div>
   );
 };
 

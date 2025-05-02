@@ -48,7 +48,7 @@ const CallToAction = () => {
           isVisible ? 'animate-gentle-fade-up' : 'opacity-0'
         }`}>
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-brand-500">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-brand-500 animate-pulse-soft">
               Готовы освободиться от подсознательных ограничений?
             </h2>
             <p className="text-lg text-gray-700 mb-8">
@@ -64,7 +64,7 @@ const CallToAction = () => {
                   className="h-12 px-8 text-white font-medium rounded-full
                            bg-gradient-to-r from-blue-500 to-cyan-400
                            hover:scale-105 hover:shadow-lg active:scale-95
-                           transition-all duration-200 ease-in-out button-animated"
+                           transition-all duration-200 ease-in-out button-animated ripple-effect"
                 >
                   Записаться на нейрокоррекцию
                 </button>
