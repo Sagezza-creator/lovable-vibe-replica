@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import ProblemsSection from '@/components/ProblemsSection';
 import ApproachSection from '@/components/ApproachSection';
@@ -17,63 +17,19 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    // Активация анимации при прокрутке для секций
-    const sections = document.querySelectorAll('.section-reveal');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-        }
-      });
-    }, { 
-      threshold: 0.15,
-      rootMargin: '0px' // Убираем отступ, чтобы уменьшить "прыжки"
-    });
-
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-
-    return () => {
-      sections.forEach(section => {
-        observer.unobserve(section);
-      });
-    };
-  }, []);
-
   return (
-    <div className="overflow-hidden"> {/* Добавляем контейнер с overflow-hidden */}
+    <>
       <HeroSection />
-      <div className="section-reveal section-container">
-        <ProblemsSection />
-      </div>
-      <div className="section-reveal section-container">
-        <ApproachSection />
-      </div>
-      <div className="section-reveal section-container">
-        <MatricesSection />
-      </div>
-      <div className="section-reveal section-container">
-        <CorrectionSection />
-      </div>
-      <div className="section-reveal section-container">
-        <ComparisonSection />
-      </div>
-      <div className="section-reveal section-container">
-        <AboutSection />
-      </div>
-      <div className="section-reveal section-container">
-        <ReviewsSection />
-      </div>
-      <div className="section-reveal section-container">
-        <FAQSection />
-      </div>
-      <div className="section-reveal section-container">
-        <CallToAction />
-      </div>
-    </div>
+      <ProblemsSection />
+      <ApproachSection />
+      <MatricesSection />
+      <CorrectionSection />
+      <ComparisonSection />
+      <AboutSection />
+      <ReviewsSection />
+      <FAQSection />
+      <CallToAction />
+    </>
   );
 };
 
