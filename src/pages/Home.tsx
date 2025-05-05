@@ -1,5 +1,4 @@
-
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import ProblemsSection from '@/components/ProblemsSection';
 import ApproachSection from '@/components/ApproachSection';
@@ -18,16 +17,21 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    // Активация анимации при прокрутке для секций
     const sections = document.querySelectorAll('.section-reveal');
     
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
+          // Используем requestAnimationFrame для smoother анимации
+          requestAnimationFrame(() => {
+            entry.target.classList.add('is-revealed');
+          });
         }
       });
-    }, { threshold: 0.15 });
+    }, { 
+      threshold: 0.3, // Увеличенный threshold для более плавного появления
+      rootMargin: '0px 0px -50px 0px' // Небольшой отрицательный margin для раннего срабатывания
+    });
 
     sections.forEach(section => {
       observer.observe(section);
@@ -70,6 +74,34 @@ const Home = () => {
       <div className="section-reveal">
         <CallToAction />
       </div>
+
+      {/* Глобальные стили для анимаций */}
+      <style jsx global>{`
+        .section-reveal {
+          will-change: transform, opacity;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .section-reveal.is-revealed {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Гарантируем, что секции будут занимать место даже когда невидимы */
+        .section-reveal {
+          min-height: 1px;
+        }
+
+        /* Оптимизация для браузеров */
+        @media (prefers-reduced-motion: reduce) {
+          .section-reveal {
+            transition: none !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
     </>
   );
 };
