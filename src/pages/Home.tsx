@@ -27,7 +27,10 @@ const Home = () => {
           entry.target.classList.add('is-revealed');
         }
       });
-    }, { threshold: 0.15 });
+    }, { 
+      threshold: 0.15,
+      rootMargin: '0px' // Убираем отступ, чтобы уменьшить "прыжки"
+    });
 
     sections.forEach(section => {
       observer.observe(section);
@@ -41,36 +44,36 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="overflow-hidden"> {/* Добавляем контейнер с overflow-hidden */}
       <HeroSection />
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <ProblemsSection />
       </div>
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <ApproachSection />
       </div>
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <MatricesSection />
       </div>
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <CorrectionSection />
       </div>
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <ComparisonSection />
       </div>
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <AboutSection />
       </div>
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <ReviewsSection />
       </div>
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <FAQSection />
       </div>
-      <div className="section-reveal">
+      <div className="section-reveal section-container">
         <CallToAction />
       </div>
-    </>
+    </div>
   );
 };
 
