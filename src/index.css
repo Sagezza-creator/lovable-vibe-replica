@@ -157,6 +157,7 @@
 .section-container {
   position: relative;
   will-change: transform, opacity; /* Оптимизация для GPU */
+  z-index: 1; /* Добавляем базовый z-index для корректного наложения */
 }
 
 .section-reveal {
