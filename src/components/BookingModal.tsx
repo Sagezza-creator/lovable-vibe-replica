@@ -119,7 +119,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
                 required: "Контактные данные обязательны",
                 pattern: {
                   value: /^(\+?\d{10,15}|@?\w{5,32})$/,
-                  message: "Введите телефон (+79991234567) или Telegram (@username)"
+                  message: "Введите телефон (+%%%%%%%%%%) или Telegram (@username)"
                 }
               })}
               className={errors.contact ? "border-red-300" : ""}
