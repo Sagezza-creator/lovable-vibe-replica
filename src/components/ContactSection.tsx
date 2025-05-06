@@ -106,7 +106,7 @@ const ContactSection = () => {
                   </a>
                   
                   <a 
-                    href="" 
+                    href="https://t.me/Nikor_ad" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
@@ -116,7 +116,7 @@ const ContactSection = () => {
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Telegram</p>
-                      <p className="text-gray-800 font-medium"></p>
+                      <p className="text-gray-800 font-medium">@Nikor_ad</p>
                     </div>
                   </a>
                 </div>
