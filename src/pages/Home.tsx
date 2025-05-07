@@ -1,10 +1,10 @@
 
 import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
+import AboutSection from '@/components/AboutSection';
 import ProblemsSection from '@/components/ProblemsSection';
 import ApproachSection from '@/components/ApproachSection';
 import ComparisonSection from '@/components/ComparisonSection';
-import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import FAQSection from '@/components/FAQSection';
 import CallToAction from '@/components/CallToAction';
@@ -20,12 +20,12 @@ const Home = () => {
   return (
     <>
       <HeroSection />
+      <AboutSection />
       <ProblemsSection />
       <ApproachSection />
       <MatricesSection />
       <CorrectionSection />
       <ComparisonSection />
-      <AboutSection />
       <ReviewsSection />
       <FAQSection />
       <CallToAction />
