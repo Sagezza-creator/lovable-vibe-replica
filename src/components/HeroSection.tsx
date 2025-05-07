@@ -43,12 +43,12 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <Button asChild size="lg" className="bg-brand-500 hover:bg-brand-600 group shadow-lg">
               <Link to="/contact">
-                Связаться со мной
+                Начните уже сейчас
                 <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="text-gray-700 border-gray-700 hover:bg-gray-100 shadow-lg">
-              <Link to="/approach">Узнать больше о методе</Link>
+              <Link to="/approach">Как это работает?</Link>
             </Button>
           </div>
           
