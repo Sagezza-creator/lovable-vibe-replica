@@ -25,9 +25,9 @@ const Footer = () => {
                 <Phone size={18} />
                 +7 931 996 7590
               </a>
-              <a href="https://t.me/Nikor_ad" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+              <a href="https://t.me/SVOBODA_RAZUMA_BLOG" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
                 <MessageSquare size={18} />
-                @Nikor_ad
+                @SVOBODA_RAZUMA_BLOG
               </a>
               <a href="https://t.me/SVOBODA_RAZUMA_BLOG" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
                 <MessageSquare size={18} />
