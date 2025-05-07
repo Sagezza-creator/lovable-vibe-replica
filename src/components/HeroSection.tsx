@@ -47,7 +47,7 @@ const HeroSection = () => {
                 <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-gray-700 border-gray-700 hover:bg-gray-100 shadow-lg">
+            <Button asChild size="lg" variant="outline" className="text-gray-700 border-brand-700 hover:bg-gray-100 shadow-lg">
               <Link to="/approach">Как это работает?</Link>
             </Button>
           </div>
