@@ -41,7 +41,7 @@ const Footer = () => {
             <nav className="flex flex-col gap-2">
               <Link to="/" className="text-gray-600 hover:text-brand-500 transition-colors">Главная</Link>
               <Link to="/about" className="text-gray-600 hover:text-brand-500 transition-colors">Обо мне</Link>
-              <Link to="/approach" className="text-gray-600 hover:text-brand-500 transition-colors">Как я работаю</Link>
+              <Link to="/approach" className="text-gray-600 hover:text-brand-500 transition-colors">Как это работает?</Link>
               <Link to="/conception-matrices" className="text-gray-600 hover:text-brand-500 transition-colors">Матрицы зачатия</Link>
               <Link to="/correction" className="text-gray-600 hover:text-brand-500 transition-colors">Коррекция</Link>
               <Link to="/problems" className="text-gray-600 hover:text-brand-500 transition-colors">Какие проблемы решаю</Link>

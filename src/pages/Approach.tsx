@@ -15,7 +15,7 @@ const Approach = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
-              Как я работаю
+              Как это работает?
             </h1>
             <p className="text-lg md:text-xl text-gray-700">
               Научные основы моего подхода и методология работы

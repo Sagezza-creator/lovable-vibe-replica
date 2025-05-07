@@ -10,7 +10,7 @@ const navLinks: NavLink[] = [
   { name: 'Главная', path: '/' },
   { name: 'Обо мне', path: '/about' },
   { 
-    name: 'Как я работаю', 
+    name: 'Как это работает?', 
     path: '/approach',
     dropdown: [
       { name: 'Метод', path: '/approach' },
