@@ -30,7 +30,7 @@ const HeroSection = () => {
           {/* Заголовок с тем же градиентом, что и "Какие проблемы я решаю" */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             <span className="gradient-heading drop-shadow-lg">
-              Свобода разума: Решите свои проблемы навсегда
+              Свобода разума: Откройте путь к гармонии
             </span>
           </h1>
           
