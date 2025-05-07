@@ -25,8 +25,23 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4">
+    <section 
+      ref={sectionRef} 
+      className="relative py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden"
+    >
+      {/* Фоновое изображение */}
+      <div 
+        className="absolute top-0 left-0 w-full h-full"
+        style={{
+          backgroundImage: "url('https://svobodarazuma.ru/Images/aboutfont.png')",
+          backgroundSize: "100% auto",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.1 // Можно регулировать прозрачность
+        }}
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
             <div className="relative">
