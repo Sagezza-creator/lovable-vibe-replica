@@ -37,7 +37,7 @@ const AboutSection = () => {
           backgroundSize: "100% auto",
           backgroundPosition: "top center",
           backgroundRepeat: "no-repeat",
-          opacity: 0.0 // Можно регулировать прозрачность
+          opacity: 1 // Можно регулировать прозрачность
         }}
       />
 
