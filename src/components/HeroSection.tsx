@@ -18,7 +18,7 @@ const HeroSection = () => {
       {/* Фоновое изображение */}
       <div className="absolute inset-0 z-1">
         <img
-          src="https://svobodarazuma.ru/Images/main-banner.png"
+          src="https://svobodarazuma.ru/Images/main-banner.jpg"
           alt="Фоновое изображение"
           className="w-full h-full object-cover object-center"
         />
