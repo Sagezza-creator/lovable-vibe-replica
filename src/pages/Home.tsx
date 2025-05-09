@@ -15,31 +15,21 @@ const Home = () => {
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
-    
-    // Добавляем класс для плавности прокрутки
-    document.documentElement.style.scrollBehavior = 'smooth';
-    
-    return () => {
-      // Удаляем плавность при размонтировании компонента
-      document.documentElement.style.scrollBehavior = '';
-    };
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
+    <>
       <HeroSection />
       <AboutSection />
-      <div className="relative z-30 bg-white">
-        <ProblemsSection />
-        <ApproachSection />
-        <MatricesSection />
-        <CorrectionSection />
-        <ComparisonSection />
-        <ReviewsSection />
-        <FAQSection />
-        <CallToAction />
-      </div>
-    </div>
+      <ProblemsSection />
+      <ApproachSection />
+      <MatricesSection />
+      <CorrectionSection />
+      <ComparisonSection />
+      <ReviewsSection />
+      <FAQSection />
+      <CallToAction />
+    </>
   );
 };
 

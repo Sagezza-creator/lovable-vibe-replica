@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,6 @@ import { ArrowRight } from 'lucide-react';
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scale, setScale] = useState(1);
-  const [translateY, setTranslateY] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,14 +16,11 @@ const HeroSection = () => {
         const scrollPosition = window.scrollY;
         const heroHeight = heroRef.current.offsetHeight;
         
-        // Эффект скейла изображения при скролле
+        // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
+        // И увеличиваем максимальный scale до 1.15 (15% увеличение)
         const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress * 0.30; // 30% увеличение
+        const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
         setScale(newScale);
-
-        // Эффект медленного движения героической секции вверх при скролле
-        // Движение будет на 40% скорости скролла (параллакс эффект)
-        setTranslateY(scrollPosition * 0.4);
       }
     };
 
@@ -34,14 +29,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div 
-      className="min-h-screen relative overflow-hidden flex items-center pt-16 will-change-transform" 
-      ref={heroRef}
-      style={{
-        transform: `translateY(-${translateY}px)`,
-        transition: 'transform 0.1s ease-out'
-      }}
-    >
+    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" ref={heroRef}>
       {/* Белый фон как подложка */}
       <div className="absolute inset-0 bg-white z-0"></div>
       
@@ -50,7 +38,7 @@ const HeroSection = () => {
         <img
           src="https://svobodarazuma.ru/Images/main-banner.png"
           alt="Фоновое изображение"
-          className="w-full h-full object-cover object-center transition-transform duration-300 ease-out will-change-transform"
+          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out will-change-transform"
           style={{ 
             transform: `scale(${scale})`,
             transformOrigin: 'center center'
