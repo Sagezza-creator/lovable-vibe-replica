@@ -29,12 +29,15 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
-            <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden">
+            <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: '16 / 9' }}>
               <video
                 poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 className="w-full h-full object-cover"
-                controls={false}
-              />
+                controls
+              >
+                <source src="https://videos.pexels.com/video-files/855584/855584-hd_1920_1080_24fps.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center cursor-pointer">
                   <svg className="w-8 h-8 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
