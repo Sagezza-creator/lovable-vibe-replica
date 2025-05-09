@@ -1,39 +1,72 @@
-import { useEffect, useState, useRef } from 'react';
+
+import { useEffect, useState, useRef, MutableRefObject } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  sectionRef: MutableRefObject<HTMLDivElement | null>;
+  aboutSectionRef: MutableRefObject<HTMLDivElement | null>;
+}
+
+const HeroSection = ({ sectionRef, aboutSectionRef }: HeroSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [scale, setScale] = useState(1);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
 
     const handleScroll = () => {
-      if (heroRef.current) {
+      if (heroRef.current && sectionRef.current && aboutSectionRef.current) {
         const scrollPosition = window.scrollY;
-        const heroHeight = heroRef.current.offsetHeight;
+        const heroHeight = sectionRef.current.offsetHeight;
+        const viewportHeight = window.innerHeight;
         
-        // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
-        // И увеличиваем максимальный scale до 1.15 (15% увеличение)
-        const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
+        // Calculate scale effect (original functionality)
+        const scaleProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
+        const newScale = 1 + scaleProgress * 0.30;
         setScale(newScale);
+        
+        // Calculate scroll progress for parallax effect
+        // This creates a value between 0 and 1 as we scroll through the hero section
+        const progress = Math.min(Math.max(scrollPosition / (heroHeight - viewportHeight * 0.5), 0), 1);
+        setScrollProgress(progress);
       }
     };
 
+    // Initial calculation
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [sectionRef, aboutSectionRef]);
+
+  // Calculate transform and opacity based on scroll progress
+  const opacity = 1 - scrollProgress * 0.5; // From 1 to 0.5
+  const translateY = scrollProgress * -20; // From 0 to -20px
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" ref={heroRef}>
-      {/* Белый фон как подложка */}
+    <div 
+      className="min-h-screen relative overflow-hidden flex items-center pt-16 transition-all duration-300 ease-out" 
+      ref={heroRef}
+      style={{
+        opacity,
+        transform: `translateY(${translateY}px)`,
+        transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+      }}
+    >
+      {/* White background as base */}
       <div className="absolute inset-0 bg-white z-0"></div>
       
-      {/* Фоновое изображение с более продолжительным скейлом */}
+      {/* Background overlay for darkening effect */}
+      <div 
+        className="absolute inset-0 bg-gray-900 z-1 transition-opacity duration-300 ease-out" 
+        style={{ opacity: scrollProgress * 0.2 }}
+      ></div>
+      
+      {/* Background image with scale effect */}
       <div className="absolute inset-0 z-1 overflow-hidden">
         <img
           src="https://svobodarazuma.ru/Images/main-banner.png"
@@ -46,7 +79,7 @@ const HeroSection = () => {
         />
       </div>
 
-      {/* Основной контент */}
+      {/* Main content */}
       <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">

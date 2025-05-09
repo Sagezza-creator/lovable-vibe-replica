@@ -68,3 +68,13 @@
 .animate-float {
   animation: float 5s ease-in-out infinite;
 }
+
+/* Custom easing for section transitions */
+.ease-custom-out {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* For performance optimization */
+.will-change-transform {
+  will-change: transform;
+}
