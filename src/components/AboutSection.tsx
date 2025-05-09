@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -29,26 +29,17 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
-            <div className="relative">
-              <div className="w-64 h-64 sm:w-80 sm:h-80 rounded-full mx-auto bg-gradient-to-r from-blue-500 to-cyan-400 p-1">
-                <div className="w-full h-full rounded-full bg-white overflow-hidden">
-                  <img 
-                    src="https://svobodarazuma.ru/Images/Avatar-photo.png" 
-                    alt="Александр Никифоров"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-              <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4 bg-white rounded-full p-4 shadow-lg">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-brand-50 flex items-center justify-center">
-                  <p className="font-bold text-brand-600 text-lg sm:text-xl">2+</p>
-                  <p className="text-xs text-brand-800">года опыта</p>
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 transform -translate-x-1/4 translate-y-1/4 bg-white rounded-full p-4 shadow-lg">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-accent-50 flex items-center justify-center">
-                  <p className="font-bold text-accent-600 text-lg sm:text-xl">1000+</p>
-                  <p className="text-xs text-accent-800">часов коррекций</p>
+            <div className="relative w-full h-64 sm:h-80 lg:h-96 bg-gray-200 rounded-lg overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                alt="Video cover"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center cursor-pointer">
+                  <svg className="w-8 h-8 text-brand-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l13.5-7.94a1.5 1.5 0 000-2.538l-13.5-7.94z" />
+                  </svg>
                 </div>
               </div>
             </div>
@@ -66,7 +57,7 @@ const AboutSection = () => {
                 Я специалист в области психологической помощи с опытом более 2 лет. За это время я провел более 1000 часов нейрокоррекций, которые помогли людями обрести свободу от подсознательных блоков и начать жить полной жизнью.
               </p>
               <p>
-              Я работаю с подсознанием, опираясь на новейшие научные достижения в эпигенетике, нейропластичности и нейрохимии. Мой подход устраняет негативные подсознательные программы, освобождает от накопленного стресса и открывает путь к гармонии без поверхностного снятия симптомов.
+                Я работаю с подсознанием, опираясь на новейшие научные достижения в эпигенетике, нейропластичности и нейрохимии. Мой подход устраняет негативные подсознательные программы, освобождает от накопленного стресса и открывает путь к гармонии без поверхностного снятия симптомов.
               </p>
               <p>
                 Я верю, что каждый человек заслуживает жить без внутренних барьеров и ограничений. Моя миссия — помочь вам высвободить свой истинный потенциал и построить счастливую жизнь без ограничений, которые накладывает подсознание.
