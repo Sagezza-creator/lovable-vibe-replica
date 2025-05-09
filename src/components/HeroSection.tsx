@@ -6,7 +6,6 @@ import { ArrowRight } from 'lucide-react';
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scale, setScale] = useState(1);
-  const [translateY, setTranslateY] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,15 +16,11 @@ const HeroSection = () => {
         const scrollPosition = window.scrollY;
         const heroHeight = heroRef.current.offsetHeight;
         
-        // Эффект масштабирования (оставляем как было)
-        const scaleProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scaleProgress * 0.30;
+        // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
+        // И увеличиваем максимальный scale до 1.15 (15% увеличение)
+        const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
+        const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
         setScale(newScale);
-
-        // Эффект подъема вверх (новый)
-        const translateProgress = Math.min(scrollPosition / heroHeight, 1);
-        const newTranslateY = translateProgress * 100; // Поднимаем на 100% высоты секции
-        setTranslateY(newTranslateY);
       }
     };
 
@@ -34,19 +29,11 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div 
-      className="min-h-screen relative overflow-hidden flex items-center pt-16" 
-      ref={heroRef}
-      style={{
-        transform: `translateY(-${translateY}%)`,
-        transition: 'transform 0.5s ease-out',
-        willChange: 'transform'
-      }}
-    >
+    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" ref={heroRef}>
       {/* Белый фон как подложка */}
       <div className="absolute inset-0 bg-white z-0"></div>
       
-      {/* Фоновое изображение с эффектом масштабирования */}
+      {/* Фоновое изображение с более продолжительным скейлом */}
       <div className="absolute inset-0 z-1 overflow-hidden">
         <img
           src="https://svobodarazuma.ru/Images/main-banner.png"

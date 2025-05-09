@@ -2,20 +2,17 @@ import { useEffect, useState, useRef } from 'react';
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          window.addEventListener('scroll', handleScroll);
-          return () => window.removeEventListener('scroll', handleScroll);
+          observer.disconnect();
         }
       },
-      { threshold: 0 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -24,50 +21,12 @@ const AboutSection = () => {
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  const handleScroll = () => {
-    if (!sectionRef.current || !contentRef.current) return;
-    
-    const sectionRect = sectionRef.current.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    const scrollY = window.scrollY;
-    const sectionTop = sectionRect.top + scrollY;
-    const sectionHeight = sectionRect.height;
-    
-    // Прогресс скролла от 0 до 1
-    const progress = Math.min(Math.max((scrollY - sectionTop + windowHeight) / (windowHeight * 0.8), 0), 1);
-    setScrollProgress(progress);
-    
-    // Эффект наплывания
-    const translateY = (1 - progress) * 100;
-    const opacity = progress * 1.5;
-    contentRef.current.style.transform = `translateY(${Math.min(translateY, 100)}%)`;
-    contentRef.current.style.opacity = `${Math.min(opacity, 1)}`;
-  };
-
   return (
-    <section 
-      ref={sectionRef} 
-      className="relative z-10 bg-white"
-      style={{ 
-        marginTop: '-100vh',
-        paddingTop: '100vh',
-        paddingBottom: '5rem'
-      }}
-    >
-      <div 
-        ref={contentRef}
-        className="container mx-auto px-4"
-        style={{
-          transform: 'translateY(100%)',
-          opacity: 0,
-          transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
-          willChange: 'transform, opacity'
-        }}
-      >
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
             <div className="relative">
