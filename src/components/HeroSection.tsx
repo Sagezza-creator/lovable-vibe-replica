@@ -19,7 +19,7 @@ const HeroSection = () => {
         // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
         // И увеличиваем максимальный scale до 1.15 (15% увеличение)
         const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress * 0.15; // 0.15 = 15% увеличение
+        const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
         setScale(newScale);
       }
     };
