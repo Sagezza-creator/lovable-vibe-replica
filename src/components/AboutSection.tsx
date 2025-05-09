@@ -29,11 +29,11 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
-            <div className="relative w-full h-64 sm:h-80 lg:h-96 bg-gray-200 rounded-lg overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Video cover"
+            <div className="relative w-full h-64 sm:h-80 lg:h-96 rounded-lg overflow-hidden">
+              <video
+                poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 className="w-full h-full object-cover"
+                controls={false}
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center cursor-pointer">
@@ -54,7 +54,7 @@ const AboutSection = () => {
             </h3>
             <div className="space-y-4 text-gray-600">
               <p>
-                Я специалист в области психологической помощи с опытом более 2 лет. За это время я провел более 1000 часов нейрокоррекций, которые помогли людями обрести свободу от подсознательных блоков и начать жить полной жизнью.
+                Я специалист в области психологической помощи с опытом более 2 лет. За это время я провел более 1000 часов нейрокоррекций, которые помогли людям обрести свободу от подсознательных блоков и начать жить полной жизнью.
               </p>
               <p>
                 Я работаю с подсознанием, опираясь на новейшие научные достижения в эпигенетике, нейропластичности и нейрохимии. Мой подход устраняет негативные подсознательные программы, освобождает от накопленного стресса и открывает путь к гармонии без поверхностного снятия симптомов.
