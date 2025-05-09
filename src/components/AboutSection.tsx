@@ -28,8 +28,8 @@ const AboutSection = () => {
     <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
-          <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
-            <div className="relative w-full rounded-lg overflow-hidden" style={{ aspectRatio: '16 / 9' }}>
+          <div className={`lg:w-1/2 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
+            <div className="relative w-full rounded-lg overflow-hidden shadow-lg border border-gray-200" style={{ aspectRatio: '16 / 9' }}>
               <video
                 poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 className="w-full h-full object-cover"
@@ -48,7 +48,7 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className={`lg:w-3/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[50px]'}`}>
+          <div className={`lg:w-1/2 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[50px]'}`}>
             <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
               Обо мне
             </h2>
