@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -16,10 +17,8 @@ const HeroSection = () => {
         const scrollPosition = window.scrollY;
         const heroHeight = heroRef.current.offsetHeight;
         
-        // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
-        // И увеличиваем максимальный scale до 1.15 (15% увеличение)
         const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
+        const newScale = 1 + scrollProgress * 0.30;
         setScale(newScale);
       }
     };
@@ -41,7 +40,8 @@ const HeroSection = () => {
           className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out will-change-transform"
           style={{ 
             transform: `scale(${scale})`,
-            transformOrigin: 'center center'
+            transformOrigin: 'center center',
+            backfaceVisibility: 'hidden'
           }}
         />
       </div>
