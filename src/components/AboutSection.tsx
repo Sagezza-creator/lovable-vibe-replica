@@ -28,6 +28,7 @@ const AboutSection = () => {
     <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
+          {/* Left: Video */}
           <div className={`lg:w-1/2 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
             <div className="relative w-full rounded-lg overflow-hidden shadow-lg border border-gray-200" style={{ aspectRatio: '16 / 9' }}>
               <video
@@ -48,37 +49,17 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className={`lg:w-1/2 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[50px]'}`}>
-            <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
-              Обо мне
-            </h2>
-            <h3 className="text-xl font-medium text-gray-800 mb-4">
-              Александр Никифоров
-            </h3>
-            <div className="space-y-4 text-gray-600">
-              <p>
-                Я специалист в области психологической помощи с опытом более 2 лет. За это время я провел более 1000 часов нейрокоррекций, которые помогли людям обрести свободу от подсознательных блоков и начать жить полной жизнью.
+          {/* Vertical Divider */}
+          <div className="hidden lg:block w-px h-64 bg-gray-300"></div>
+
+          {/* Right: Quote */}
+          <div className={`lg:w-1/2 transition-all duration-700 flex items-center justify-center ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[50px]'}`}>
+            <div className="text-center">
+              <p className="text-3xl md:text-4xl font-bold text-gray-800 relative">
+                <span className="text-brand-600 text-5xl absolute -left-8 -top-4">“</span>
+                Переключи автопилот: живи осознанно
+                <span className="text-brand-600 text-5xl absolute -right-8 -bottom-4">”</span>
               </p>
-              <p>
-                Я работаю с подсознанием, опираясь на новейшие научные достижения в эпигенетике, нейропластичности и нейрохимии. Мой подход устраняет негативные подсознательные программы, освобождает от накопленного стресса и открывает путь к гармонии без поверхностного снятия симптомов.
-              </p>
-              <p>
-                Я верю, что каждый человек заслуживает жить без внутренних барьеров и ограничений. Моя миссия — помочь вам высвободить свой истинный потенциал и построить счастливую жизнь без ограничений, которые накладывает подсознание.
-              </p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <div className="px-4 py-2 bg-brand-50 text-brand-700 rounded-full text-sm font-medium">
-                Психология
-              </div>
-              <div className="px-4 py-2 bg-brand-50 text-brand-700 rounded-full text-sm font-medium">
-                Работа с подсознанием
-              </div>
-              <div className="px-4 py-2 bg-brand-50 text-brand-700 rounded-full text-sm font-medium">
-                Устранение блоков
-              </div>
-              <div className="px-4 py-2 bg-brand-50 text-brand-700 rounded-full text-sm font-medium">
-                Поведенческие паттерны
-              </div>
             </div>
           </div>
         </div>
