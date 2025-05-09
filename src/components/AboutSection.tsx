@@ -35,7 +35,7 @@ const AboutSection = () => {
                 className="w-full h-full object-cover"
                 controls
               >
-                <source src="https://videos.pexels.com/video-files/855584/855584-hd_1920_1080_24fps.mp4" type="video/mp4" />
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
               <div className="absolute inset-0 flex items-center justify-center">
