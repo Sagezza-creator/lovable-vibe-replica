@@ -87,7 +87,7 @@ const HeroSection = () => {
       {/* Волна-разделитель */}
       <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none rotate-180">
         <svg
-          className="w-full h-[120px]"
+          className="w-full h-[100px]"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
