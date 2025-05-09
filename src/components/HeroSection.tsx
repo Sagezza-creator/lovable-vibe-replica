@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -7,7 +6,6 @@ import { ArrowRight } from 'lucide-react';
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scale, setScale] = useState(1);
-  const [translateY, setTranslateY] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,14 +16,11 @@ const HeroSection = () => {
         const scrollPosition = window.scrollY;
         const heroHeight = heroRef.current.offsetHeight;
         
-        // Scale effect (existing)
+        // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
+        // И увеличиваем максимальный scale до 1.15 (15% увеличение)
         const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress * 0.30;
+        const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
         setScale(newScale);
-        
-        // New translate effect (moving up at half speed)
-        // Using negative value to move up, and dividing by 2 to make it slower
-        setTranslateY(-scrollPosition / 2);
       }
     };
 
@@ -34,15 +29,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div 
-      className="min-h-screen relative overflow-hidden flex items-center pt-16 z-10" 
-      ref={heroRef}
-      style={{
-        transform: `translateY(${translateY}px)`,
-        transition: 'transform 0.1s ease-out',
-        willChange: 'transform'
-      }}
-    >
+    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" ref={heroRef}>
       {/* Белый фон как подложка */}
       <div className="absolute inset-0 bg-white z-0"></div>
       
