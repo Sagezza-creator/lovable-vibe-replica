@@ -5,44 +5,27 @@ import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [scale, setScale] = useState(1);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
-
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const scrollPosition = window.scrollY;
-        const heroHeight = heroRef.current.offsetHeight;
-        
-        // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
-        // И увеличиваем максимальный scale до 1.15 (15% увеличение)
-        const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
-        setScale(newScale);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" ref={heroRef}>
+    <div 
+      className="min-h-screen relative overflow-hidden flex items-center pt-16 sticky top-0 z-0" 
+      ref={heroRef}
+      style={{ willChange: 'transform' }}
+    >
       {/* Белый фон как подложка */}
       <div className="absolute inset-0 bg-white z-0"></div>
       
-      {/* Фоновое изображение с более продолжительным скейлом */}
+      {/* Фоновое изображение */}
       <div className="absolute inset-0 z-1 overflow-hidden">
         <img
           src="https://svobodarazuma.ru/Images/main-banner.png"
           alt="Фоновое изображение"
-          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out will-change-transform"
-          style={{ 
-            transform: `scale(${scale})`,
-            transformOrigin: 'center center'
-          }}
+          className="w-full h-full object-cover object-center"
         />
       </div>
 
