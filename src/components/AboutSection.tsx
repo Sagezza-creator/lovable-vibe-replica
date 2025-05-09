@@ -1,23 +1,15 @@
+import { useEffect, useState, useRef } from 'react';
 
-import { useEffect, useState, useRef, MutableRefObject } from 'react';
-
-interface AboutSectionProps {
-  sectionRef: MutableRefObject<HTMLDivElement | null>;
-  heroSectionRef: MutableRefObject<HTMLDivElement | null>;
-}
-
-const AboutSection = ({ sectionRef, heroSectionRef }: AboutSectionProps) => {
+const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Set up intersection observer to trigger animations
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Don't disconnect - we need continuous observation for scroll effects
+          observer.disconnect();
         }
       },
       { threshold: 0.1 }
@@ -27,56 +19,14 @@ const AboutSection = ({ sectionRef, heroSectionRef }: AboutSectionProps) => {
       observer.observe(sectionRef.current);
     }
 
-    // Handle scroll animation
-    const handleScroll = () => {
-      if (sectionRef.current && heroSectionRef.current) {
-        const heroRect = heroSectionRef.current.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        
-        // Calculate how far the hero section is from the viewport top
-        // Normalize to a value between 0 and 1
-        let progress = 1 - (heroRect.bottom / (viewportHeight * 1.2));
-        progress = Math.min(Math.max(progress, 0), 1);
-        
-        setScrollProgress(progress);
-      }
-    };
-    
-    // Initial calculation
-    handleScroll();
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
     };
-  }, [sectionRef, heroSectionRef]);
-
-  // Calculate transform and opacity based on scroll progress
-  const initialTranslateY = 100;
-  const initialScale = 0.98;
-  
-  const translateY = initialTranslateY * (1 - scrollProgress);
-  const scale = initialScale + (1 - initialScale) * scrollProgress;
-  const opacity = 0.5 + 0.5 * scrollProgress;
+  }, []);
 
   return (
-    <section 
-      className="py-20 bg-gradient-to-b from-white to-gray-50 relative"
-      style={{
-        marginTop: '-5vh', // Overlap with hero section
-      }}
-    >
-      <div 
-        className="container mx-auto px-4 transition-all duration-300 ease-out"
-        style={{
-          transform: `translateY(${translateY}px) scale(${scale})`,
-          opacity,
-          transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-        }}
-        ref={contentRef}
-      >
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
             <div className="relative">
