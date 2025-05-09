@@ -6,7 +6,6 @@ import { ArrowRight } from 'lucide-react';
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scale, setScale] = useState(1);
-  const [overlayProgress, setOverlayProgress] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,14 +16,11 @@ const HeroSection = () => {
         const scrollPosition = window.scrollY;
         const heroHeight = heroRef.current.offsetHeight;
         
-        // Эффект масштабирования фона
+        // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
+        // И увеличиваем максимальный scale до 1.15 (15% увеличение)
         const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress * 0.30;
+        const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
         setScale(newScale);
-
-        // Прогресс для эффекта наплыва (0-1)
-        const overlayProgress = Math.min(scrollPosition / (heroHeight * 0.8), 1);
-        setOverlayProgress(overlayProgress);
       }
     };
 
@@ -37,7 +33,7 @@ const HeroSection = () => {
       {/* Белый фон как подложка */}
       <div className="absolute inset-0 bg-white z-0"></div>
       
-      {/* Фоновое изображение с эффектом параллакса */}
+      {/* Фоновое изображение с более продолжительным скейлом */}
       <div className="absolute inset-0 z-1 overflow-hidden">
         <img
           src="https://svobodarazuma.ru/Images/main-banner.png"
@@ -50,20 +46,8 @@ const HeroSection = () => {
         />
       </div>
 
-      {/* Затемнение при скролле */}
-      <div 
-        className="absolute inset-0 bg-black z-2 transition-opacity duration-500"
-        style={{ opacity: overlayProgress * 0.3 }}
-      ></div>
-
-      {/* Основной контент с эффектом "ухода" */}
-      <div 
-        className="container mx-auto px-4 relative z-10 transition-transform duration-700 ease-out"
-        style={{ 
-          transform: `translateY(${-overlayProgress * 40}px)`,
-          opacity: 1 - overlayProgress * 0.5
-        }}
-      >
+      {/* Основной контент */}
+      <div className="container mx-auto px-4 relative z-10">
         <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             <span className="gradient-heading drop-shadow-lg">

@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -10,46 +9,23 @@ const AboutSection = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.disconnect();
         }
       },
-      { threshold: 0 }
+      { threshold: 0.1 }
     );
-
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const progress = Math.min(Math.max(-rect.top / window.innerHeight, 0), 1);
-        setScrollProgress(progress);
-      }
-    };
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
-      window.addEventListener('scroll', handleScroll, { passive: true });
     }
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Параметры анимации
-  const translateY = -50 + scrollProgress * 100;
-  const scale = 0.95 + scrollProgress * 0.05;
-  const opacity = 0.5 + scrollProgress * 0.5;
-
   return (
-    <section 
-      ref={sectionRef} 
-      className="py-20 bg-gradient-to-b from-white to-gray-50 relative z-10"
-      style={{
-        transform: `translateY(${translateY}px) scale(${scale})`,
-        opacity: opacity,
-        transformOrigin: 'top center',
-        transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease-out'
-      }}
-    >
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
