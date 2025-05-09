@@ -5,27 +5,57 @@ import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [scale, setScale] = useState(1);
+  const [translateY, setTranslateY] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
+
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const scrollPosition = window.scrollY;
+        const heroHeight = heroRef.current.offsetHeight;
+        
+        // Эффект масштабирования (оставляем как было)
+        const scaleProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
+        const newScale = 1 + scaleProgress * 0.30;
+        setScale(newScale);
+
+        // Эффект подъема вверх (новый)
+        const translateProgress = Math.min(scrollPosition / heroHeight, 1);
+        const newTranslateY = translateProgress * 100; // Поднимаем на 100% высоты секции
+        setTranslateY(newTranslateY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div 
-      className="min-h-screen relative overflow-hidden flex items-center pt-16 sticky top-0 z-0" 
+      className="min-h-screen relative overflow-hidden flex items-center pt-16" 
       ref={heroRef}
-      style={{ willChange: 'transform' }}
+      style={{
+        transform: `translateY(-${translateY}%)`,
+        transition: 'transform 0.5s ease-out',
+        willChange: 'transform'
+      }}
     >
       {/* Белый фон как подложка */}
       <div className="absolute inset-0 bg-white z-0"></div>
       
-      {/* Фоновое изображение */}
+      {/* Фоновое изображение с эффектом масштабирования */}
       <div className="absolute inset-0 z-1 overflow-hidden">
         <img
           src="https://svobodarazuma.ru/Images/main-banner.png"
           alt="Фоновое изображение"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out will-change-transform"
+          style={{ 
+            transform: `scale(${scale})`,
+            transformOrigin: 'center center'
+          }}
         />
       </div>
 

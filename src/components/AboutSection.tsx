@@ -4,23 +4,18 @@ const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-        // Не отключаем observer, так как будем отслеживать скролл
-        // observer.disconnect();
-        window.addEventListener('scroll', handleScroll);
-        handleScroll(); // Инициализация
-        return () => window.removeEventListener('scroll', handleScroll);
-      } else {
-        window.removeEventListener('scroll', handleScroll);
-      }
-    },
-    { threshold: 0 }
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }
+      },
+      { threshold: 0 }
     );
 
     if (sectionRef.current) {
@@ -34,7 +29,7 @@ const AboutSection = () => {
   }, []);
 
   const handleScroll = () => {
-    if (!sectionRef.current || !containerRef.current) return;
+    if (!sectionRef.current || !contentRef.current) return;
     
     const sectionRect = sectionRef.current.getBoundingClientRect();
     const windowHeight = window.innerHeight;
@@ -42,17 +37,15 @@ const AboutSection = () => {
     const sectionTop = sectionRect.top + scrollY;
     const sectionHeight = sectionRect.height;
     
-    // Прогресс скролла от 0 до 1, когда секция проходит через экран
-    const progress = Math.min(Math.max((scrollY - sectionTop + windowHeight) / (windowHeight + sectionHeight), 0), 1);
+    // Прогресс скролла от 0 до 1
+    const progress = Math.min(Math.max((scrollY - sectionTop + windowHeight) / (windowHeight * 0.8), 0), 1);
     setScrollProgress(progress);
     
-    // Параллакс эффект для контента
-    if (containerRef.current) {
-      const translateY = progress * 100; // Меняем направление на положительное
-      const opacity = progress * 1.5; // Ускоряем появление
-      containerRef.current.style.transform = `translateY(${Math.min(translateY, 100)}%)`;
-      containerRef.current.style.opacity = `${Math.min(opacity, 1)}`;
-    }
+    // Эффект наплывания
+    const translateY = (1 - progress) * 100;
+    const opacity = progress * 1.5;
+    contentRef.current.style.transform = `translateY(${Math.min(translateY, 100)}%)`;
+    contentRef.current.style.opacity = `${Math.min(opacity, 1)}`;
   };
 
   return (
@@ -66,10 +59,10 @@ const AboutSection = () => {
       }}
     >
       <div 
-        ref={containerRef}
+        ref={contentRef}
         className="container mx-auto px-4"
         style={{
-          transform: 'translateY(30%)',
+          transform: 'translateY(100%)',
           opacity: 0,
           transition: 'transform 0.5s ease-out, opacity 0.5s ease-out',
           willChange: 'transform, opacity'
