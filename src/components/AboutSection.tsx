@@ -26,7 +26,7 @@ const AboutSection = () => {
 
   return (
     <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 md:px-8 lg:px-10">
         <div className="flex flex-col items-center gap-12">
 
           {/* Цитата */}
@@ -44,7 +44,7 @@ const AboutSection = () => {
 
           {/* Видео */}
           <div
-            className={`w-full max-w-4xl transition-all duration-700 ${
+            className={`w-full max-w-5xl transition-all duration-700 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
