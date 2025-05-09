@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -17,7 +16,7 @@ const HeroSection = () => {
         const scrollPosition = window.scrollY;
         const heroHeight = heroRef.current.offsetHeight;
         
-        // Увеличиваем делитель для более продолжительного эффекта
+        // Увеличиваем делитель (heroHeight * 2.5) для более продолжительного эффекта
         // И увеличиваем максимальный scale до 1.15 (15% увеличение)
         const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
         const newScale = 1 + scrollProgress * 0.30; // 0.15 = 15% увеличение
@@ -30,7 +29,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="h-screen relative overflow-hidden flex items-center pt-16" ref={heroRef}>
+    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" ref={heroRef}>
       {/* Белый фон как подложка */}
       <div className="absolute inset-0 bg-white z-0"></div>
       

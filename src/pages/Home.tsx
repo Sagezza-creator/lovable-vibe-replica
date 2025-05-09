@@ -18,20 +18,18 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
+    <>
       <HeroSection />
-      <div className="relative z-10">
-        <AboutSection />
-        <ProblemsSection />
-        <ApproachSection />
-        <MatricesSection />
-        <CorrectionSection />
-        <ComparisonSection />
-        <ReviewsSection />
-        <FAQSection />
-        <CallToAction />
-      </div>
-    </div>
+      <AboutSection />
+      <ProblemsSection />
+      <ApproachSection />
+      <MatricesSection />
+      <CorrectionSection />
+      <ComparisonSection />
+      <ReviewsSection />
+      <FAQSection />
+      <CallToAction />
+    </>
   );
 };
 

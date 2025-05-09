@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 
 const AboutSection = () => {
@@ -26,11 +25,8 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section 
-      ref={sectionRef} 
-      className="py-20 bg-white relative z-20 rounded-t-[3rem] sm:rounded-t-[4rem] md:rounded-t-[5rem] shadow-xl -mt-24 md:-mt-28"
-    >
-      <div className="container mx-auto px-4 pt-10">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className={`lg:w-2/5 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0 translate-x-[-50px]'}`}>
             <div className="relative">
