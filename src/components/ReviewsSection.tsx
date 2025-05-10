@@ -162,7 +162,7 @@ const ReviewsSection = () => {
                     <div className="relative">
                       {/* Эффект тени */}
                       <div className="absolute inset-0 rounded-xl shadow-2xl opacity-20 pointer-events-none"></div>
-                      <Card className="border-0 shadow-lg bg-white relative z-10 hover:shadow-xl transition-shadow duration-300">
+                      <Card className="border-0 shadow-lg bg-gradient-to-r from-brand-50 to-cyan-50 relative z-10 hover:shadow-xl transition-shadow duration-300">
                         <CardContent className="p-8">
                           <div className="flex items-center gap-1 mb-4">
                             {renderStars(review.stars)}
