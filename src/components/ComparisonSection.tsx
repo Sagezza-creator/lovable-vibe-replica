@@ -149,7 +149,7 @@ const ComparisonSection = () => {
               </div>
 
               {/* Мой подход */}
-              <div className="flex justify-center items-center bg-brand-50 rounded-lg py-4 px-6 h-full min-w-[220px]">
+              <div className="flex justify-center items-center bg-brand-50 rounded-lg py-4 px-6 h-full min-w-[220px] max-w-[320px] flex-grow">
                 <div className="flex items-center justify-center space-x-2">
                   {row.myApproachIcon}
                   <p className="text-brand-700">{row.myApproach}</p>
@@ -157,7 +157,7 @@ const ComparisonSection = () => {
               </div>
 
               {/* Традиционная психология */}
-              <div className="flex justify-center items-center bg-gray-100 rounded-lg py-4 px-6 h-full min-w-[220px]">
+              <div className="flex justify-center items-center bg-gray-100 rounded-lg py-4 px-6 h-full min-w-[220px] max-w-[320px] flex-grow">
                 <div className="flex items-center justify-center space-x-2">
                   {row.traditionalIcon}
                   <p className="text-gray-700">{row.traditional}</p>
