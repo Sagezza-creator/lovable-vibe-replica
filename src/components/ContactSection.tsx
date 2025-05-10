@@ -220,7 +220,7 @@ const ContactSection = () => {
         {`
           .qr-code-auto {
             height: auto;
-            max-height: 80%;
+            max-height: 60%;
             width: auto;
             object-fit: contain;
           }
