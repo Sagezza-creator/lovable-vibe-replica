@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
+// Определяем интерфейс и данные
 interface Problem {
   id: number;
   title: string;
@@ -43,17 +44,36 @@ const problems: Problem[] = [
 const ProblemsSection = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
-  // Функция для расчета задержки в зависимости от позиции карточки
+  // Функция для расчета задержки
   const getDelay = (index: number) => {
-    // Для первой строки: 0.4, 0.5, 0.6
-    // Для второй строки: 0.7, 0.8, 0.9
     return 0.4 + (Math.floor(index / 3) * 0.3) + (index % 3) * 0.1;
   };
 
   return (
     <section className="py-20">
+      {/* Добавляем стили для анимации прямо в компонент */}
+      <style jsx>{`
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-up {
+          animation: fadeUp 0.6s forwards;
+        }
+      `}</style>
+
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16 opacity-0 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+        {/* Заголовок с задержкой 0.2s */}
+        <div 
+          className="text-center max-w-3xl mx-auto mb-16 opacity-0 animate-fade-up"
+          style={{ animationDelay: '0.2s' }}
+        >
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
             Какие проблемы я решаю
           </h2>
@@ -62,6 +82,7 @@ const ProblemsSection = () => {
           </p>
         </div>
 
+        {/* Карточки с индивидуальными задержками */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {problems.map((problem, index) => (
             <Card 
@@ -71,7 +92,6 @@ const ProblemsSection = () => {
               }`}
               style={{ 
                 animationDelay: `${getDelay(index)}s`,
-                animationFillMode: 'forwards'
               }}
               onMouseEnter={() => setActiveCard(problem.id)}
               onMouseLeave={() => setActiveCard(null)}
