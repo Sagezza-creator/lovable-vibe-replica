@@ -19,7 +19,7 @@ const ComparisonSection = () => {
       },
       {
         threshold: 0.05,
-        rootMargin: '0px 0px -20% 0px'
+        rootMargin: '0px 0px -10% 0px'
       }
     );
 
