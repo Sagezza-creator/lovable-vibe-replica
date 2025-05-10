@@ -148,13 +148,13 @@ const ComparisonSection = () => {
                 <h4 className="font-semibold text-lg">{row.title}</h4>
               </div>
               <div className="flex justify-center items-center bg-brand-50 rounded-lg py-4 px-6 h-full w-full">
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center w-full h-full">
                   {row.myApproachIcon}
                   <p className="text-brand-700">{row.myApproach}</p>
                 </div>
               </div>
               <div className="flex justify-center items-center bg-gray-100 rounded-lg py-4 px-6 h-full w-full">
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center w-full h-full">
                   {row.traditionalIcon}
                   <p className="text-gray-700">{row.traditional}</p>
                 </div>
