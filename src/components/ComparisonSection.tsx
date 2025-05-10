@@ -40,29 +40,21 @@ const ComparisonSection = () => {
       title: 'Глубина воздействия',
       myApproach: 'Работа с корневыми причинами в подсознании',
       traditional: 'Работа в основном с симптомами на уровне сознания',
-      myApproachIcon: <Check className="inline-block text-green-500 w-6 h-6 mr-2" />,
-      traditionalIcon: <X className="inline-block text-red-500 w-6 h-6 mr-2" />,
     },
     {
       title: 'Стойкость результата',
       myApproach: 'Постоянное устранение проблем без возврата',
       traditional: 'Проблемы могут возвращаться при стрессе',
-      myApproachIcon: <Check className="inline-block text-green-500 w-6 h-6 mr-2" />,
-      traditionalIcon: <X className="inline-block text-red-500 w-6 h-6 mr-2" />,
     },
     {
       title: 'Скорость достижения результата',
       myApproach: 'Видимые изменения за 1–3 коррекции',
       traditional: 'Может потребоваться месяцы или годы',
-      myApproachIcon: <Check className="inline-block text-green-500 w-6 h-6 mr-2" />,
-      traditionalIcon: <X className="inline-block text-red-500 w-6 h-6 mr-2" />,
     },
     {
       title: 'Основа метода',
       myApproach: 'Современные исследования в науке',
       traditional: 'Классические психологические теории',
-      myApproachIcon: <Check className="inline-block text-green-500 w-6 h-6 mr-2" />,
-      traditionalIcon: <X className="inline-block text-red-500 w-6 h-6 mr-2" />,
     },
   ];
 
@@ -96,10 +88,10 @@ const ComparisonSection = () => {
             animationDelay: 'var(--delay)',
           } as React.CSSProperties}
         >
-          <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             Сравнение подходов
           </h2>
-          <p className="text-lg text-gray-700">
+          <p className="text-gray-600 text-lg">
             Узнайте, чем отличается мой подход от традиционной психологии
           </p>
         </div>
@@ -137,7 +129,7 @@ const ComparisonSection = () => {
             <div
               key={index}
               ref={(el) => (elementsRef.current[2 + index] = el)}
-              className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start mb-6 animate-on-scroll"
+              className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-6 animate-on-scroll"
               style={{
                 '--delay': `${getDelay(index)}s`,
                 opacity: 0,
@@ -147,17 +139,11 @@ const ComparisonSection = () => {
               <div className="text-center">
                 <h4 className="font-semibold text-lg">{row.title}</h4>
               </div>
-              <div className="flex justify-center items-center bg-brand-50 rounded-lg py-4 px-6 h-full w-full">
-                <div className="flex items-center justify-center w-full h-full">
-                  {row.myApproachIcon}
-                  <p className="text-brand-700">{row.myApproach}</p>
-                </div>
+              <div className="flex justify-center items-center bg-brand-50 rounded-lg py-4 px-6 h-full">
+                <p className="text-brand-700">{row.myApproach}</p>
               </div>
-              <div className="flex justify-center items-center bg-gray-100 rounded-lg py-4 px-6 h-full w-full">
-                <div className="flex items-center justify-center w-full h-full">
-                  {row.traditionalIcon}
-                  <p className="text-gray-700">{row.traditional}</p>
-                </div>
+              <div className="flex justify-center items-center bg-gray-100 rounded-lg py-4 px-6 h-full">
+                <p className="text-gray-700">{row.traditional}</p>
               </div>
             </div>
           ))}
