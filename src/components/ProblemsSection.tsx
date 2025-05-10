@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -44,13 +45,13 @@ const ProblemsSection = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   return (
-    <section className="py-20">
+    <section className="py-20 bg-transparent">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
             Какие проблемы я решаю
           </h2>
-          <p className="text-lg text-gray-700">
+          <p className="text-lg text-gray-700 text-shadow">
             Чувствуете, что застряли в одной и той же ситуации? Я помогу найти и устранить причину на уровне подсознания.
           </p>
         </div>
@@ -59,7 +60,7 @@ const ProblemsSection = () => {
           {problems.map((problem) => (
             <Card 
               key={problem.id} 
-              className={`border-0 shadow-md opacity-0 animate-fade-up overflow-hidden transition-all duration-300 hover:shadow-lg ${activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'}`}
+              className={`border-0 shadow-md opacity-0 animate-fade-up overflow-hidden transition-all duration-300 hover:shadow-lg bg-white/90 backdrop-blur-sm ${activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'}`}
               onMouseEnter={() => setActiveCard(problem.id)}
               onMouseLeave={() => setActiveCard(null)}
             >
