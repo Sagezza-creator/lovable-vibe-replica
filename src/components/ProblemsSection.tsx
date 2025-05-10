@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -60,7 +59,7 @@ const ProblemsSection = () => {
           {problems.map((problem) => (
             <Card 
               key={problem.id} 
-              className={`border-0 shadow-md opacity-0 animate-fade-up overflow-hidden transition-all duration-300 hover:shadow-lg bg-white/90 backdrop-blur-sm ${activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'}`}
+              className={`border-0 shadow-md opacity-0 animate-fade-up overflow-hidden transition-all duration-300 hover:shadow-lg ${activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'}`}
               onMouseEnter={() => setActiveCard(problem.id)}
               onMouseLeave={() => setActiveCard(null)}
             >
