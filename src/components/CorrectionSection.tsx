@@ -29,7 +29,8 @@ const CorrectionSection = () => {
   return (
     <section ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto">
+        {/* Увеличил max-w-3xl до max-w-4xl для более широкого контейнера */}
+        <div className="max-w-4xl mx-auto">
           {/* Заголовок по центру */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
@@ -40,9 +41,10 @@ const CorrectionSection = () => {
             </p>
           </div>
 
+          {/* Изменил соотношение ширины: текст 60%, изображение 40% */}
           <div className="flex flex-col md:flex-row gap-8 items-stretch">
-            {/* Текст в левой половине - выровнен по центру */}
-            <div className="md:w-1/4 flex flex-col justify-center">
+            {/* Текст - увеличен до 60% ширины */}
+            <div className="md:w-[60%] flex flex-col justify-center">
               <div className={`space-y-6 text-gray-700 transition-all duration-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}>
@@ -71,9 +73,9 @@ const CorrectionSection = () => {
               </div>
             </div>
 
-            {/* Изображение в правой половине */}
-            <div className="md:w-1/2 flex items-center">
-              <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-500 w-full ${
+            {/* Изображение - уменьшено до 40% и выровнено по правому краю */}
+            <div className="md:w-[40%] flex items-center justify-end">
+              <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-500 w-full max-w-[400px] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ animationDelay: '0.2s' }}>
                 <img 
