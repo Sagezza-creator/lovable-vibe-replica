@@ -70,6 +70,10 @@ const ContactSection = () => {
     }
   };
 
+  const handleImageError = () => {
+    console.error('Не удалось загрузить QR-код по пути /Images/QRbot.jpg');
+  };
+
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -114,7 +118,8 @@ const ContactSection = () => {
               <img 
                 src="https://svobodarazuma.ru/Images/QRbot.jpg" 
                 alt="QR-код для Telegram чат-бота" 
-                className="mt-4 w-40 h-40"
+                className="mt-4 qr-code-auto"
+                onError={handleImageError}
               />
             </div>
           </div>
@@ -211,6 +216,16 @@ const ContactSection = () => {
           </div>
         </div>
       </div>
+      <style>
+        {`
+          .qr-code-auto {
+            height: auto;
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+          }
+        `}
+      </style>
     </section>
   );
 };
