@@ -1,28 +1,52 @@
-import { useState, useEffect, useRef } from 'react';
+
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const CorrectionSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
+    // Create a timeline for animations
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "top 30%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    // Add animations to the timeline
+    tl.fromTo(titleRef.current, 
+      { y: 40, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }, 0
+    )
+    .fromTo(imageRef.current, 
+      { x: 40, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 0.7, ease: "power2.out" }, 0.2
+    )
+    .fromTo(textRef.current, 
+      { x: -40, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 0.7, ease: "power2.out" }, 0.4
+    )
+    .fromTo(buttonRef.current, 
+      { y: 20, opacity: 0 }, 
+      { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }, 0.6
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    // Clean up the ScrollTrigger when component unmounts
     return () => {
-      observer.disconnect();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
     };
   }, []);
 
@@ -30,10 +54,8 @@ const CorrectionSection = () => {
     <section ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="mx-auto">
-          {/* Заголовок по центру с анимацией снизу вверх */}
-          <div className={`text-center mb-16 transition-all duration-700 ease-out ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`} style={{ transitionDelay: '0.2s' }}>
+          {/* Заголовок по центру */}
+          <div ref={titleRef} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
               Нейрокоррекция
             </h2>
@@ -44,11 +66,9 @@ const CorrectionSection = () => {
 
           {/* Распределение контента по всей ширине */}
           <div className="flex flex-col md:flex-row gap-8 items-stretch">
-            {/* Текст - анимация слева направо */}
+            {/* Текст */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className={`space-y-6 text-gray-700 transition-all duration-700 ease-out ${
-                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-              }`} style={{ transitionDelay: '0.6s' }}>
+              <div ref={textRef} className="space-y-6 text-gray-700">
                 <p>
                   Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
                 </p>
@@ -61,9 +81,7 @@ const CorrectionSection = () => {
               </div>
 
               {/* Кнопка - выровнена по правому краю текстового блока */}
-              <div className={`mt-8 flex justify-end transition-all duration-700 ease-out ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`} style={{ transitionDelay: '0.8s' }}>
+              <div ref={buttonRef} className="mt-8 flex justify-end">
                 <Button asChild variant="outline" className="group border-yellow-300 text-yellow-700 hover:bg-yellow-50">
                   <Link to="/correction">
                     Узнать больше о коррекции
@@ -76,11 +94,9 @@ const CorrectionSection = () => {
               </div>
             </div>
 
-            {/* Изображение - анимация справа налево */}
+            {/* Изображение */}
             <div className="md:w-[400px] flex items-center justify-end">
-              <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-700 ease-out w-full ${
-                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-              }`} style={{ transitionDelay: '0.4s' }}>
+              <div ref={imageRef} className="rounded-lg overflow-hidden shadow-md w-full">
                 <img 
                   src="https://svobodarazuma.ru/Images/correction.jpg" 
                   alt="Нейрокоррекция" 
