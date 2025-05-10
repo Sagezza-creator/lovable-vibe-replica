@@ -30,7 +30,7 @@ const Home = () => {
         
         // Apply parallax effect only within the allowed range
         if (relativeScroll >= 0 && relativeScroll <= maxParallaxScroll) {
-          parallaxRef.current.style.transform = `translateY(${relativeScroll * 0.25}px)`;
+          parallaxRef.current.style.transform = `translateY(${relativeScroll * 0.15}px)`;
         }
         
         // Fix the background position after reaching FAQ section
