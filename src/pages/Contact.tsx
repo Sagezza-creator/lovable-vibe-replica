@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import ContactSection from '@/components/ContactSection';
-import { FaTelegramPlane } from 'react-icons/fa';
 
 const Contact = () => {
   useEffect(() => {
@@ -41,7 +40,7 @@ const Contact = () => {
               Связаться со мной
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8">
-              Оставьте заявку или напишите в Telegram, чтобы начать путь к свободе разума
+              Напишите в Telegram или оставьте заявку, чтобы начать путь к свободе разума
             </p>
           </div>
         </div>
@@ -51,10 +50,10 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
             <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-6">Контакты</h2>
+              <h2 className="text-2xl font-bold text-gray-800 mb-6">Как связаться</h2>
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <FaTelegramPlane className="text-blue-500 text-2xl mr-3" />
+                  <span className="text-blue-500 text-2xl mr-3">✈️</span>
                   <a
                     href="https://t.me/Intelligence_client_bot"
                     target="_blank"
@@ -65,7 +64,7 @@ const Contact = () => {
                   </a>
                 </div>
                 <div className="flex items-center">
-                  <FaTelegramPlane className="text-blue-500 text-2xl mr-3" />
+                  <span className="text-blue-500 text-2xl mr-3">✈️</span>
                   <a
                     href="https://t.me/SVOBODA_RAZUMA_BLOG"
                     target="_blank"
