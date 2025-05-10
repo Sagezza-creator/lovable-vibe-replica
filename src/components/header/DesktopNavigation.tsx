@@ -5,6 +5,7 @@ import {
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from '@/lib/utils';
@@ -13,11 +14,10 @@ import { NavLink } from './types';
 interface DesktopNavigationProps {
   navLinks: NavLink[];
   isActive: (path: string) => boolean;
-  isScrolled: boolean;
   onBookingClick: () => void;
 }
 
-const DesktopNavigation = ({ navLinks, isActive, isScrolled, onBookingClick }: DesktopNavigationProps) => {
+const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNavigationProps) => {
   return (
     <nav className="hidden md:flex items-center gap-1 lg:gap-2">
       <NavigationMenu>
@@ -27,9 +27,7 @@ const DesktopNavigation = ({ navLinks, isActive, isScrolled, onBookingClick }: D
               <NavigationMenuItem key={link.path} className="relative">
                 <NavigationMenuTrigger 
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isActive(link.path)
-                      ? 'text-primary bg-primary/10'
-                      : 'text-gray-700 hover:text-primary bg-transparent hover:bg-primary/5'
+                    isActive(link.path) ? 'text-primary bg-primary/10' : 'text-gray-700 hover:text-primary hover:bg-primary/5'
                   }`}
                 >
                   {link.name}
@@ -61,9 +59,7 @@ const DesktopNavigation = ({ navLinks, isActive, isScrolled, onBookingClick }: D
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive(link.path)
                       ? 'text-primary bg-primary/10'
-                      : isScrolled
-                        ? 'text-gray-700 hover:text-primary hover:bg-primary/5'
-                        : 'text-gray-700 hover:text-primary bg-transparent hover:bg-primary/5'
+                      : 'text-gray-700 hover:text-primary hover:bg-primary/5'
                   }`}
                 >
                   {link.name}
