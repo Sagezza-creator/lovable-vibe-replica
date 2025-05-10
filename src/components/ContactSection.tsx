@@ -219,7 +219,7 @@ const ContactSection = () => {
       <style>
         {`
           .qr-code-auto {
-            height: auto;
+            height: 80%;
             max-height: 60%;
             width: auto;
             object-fit: contain;
