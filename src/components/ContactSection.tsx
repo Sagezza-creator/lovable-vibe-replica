@@ -114,7 +114,7 @@ const ContactSection = () => {
               <img 
                 src="https://svobodarazuma.ru/Images/QRbot.jpg" 
                 alt="QR-код для Telegram чат-бота" 
-                className="mt-4 w-32 h-32"
+                className="mt-4 w-50 h-50"
               />
             </div>
           </div>
