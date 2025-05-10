@@ -35,7 +35,7 @@ const Home = () => {
         
         // Fix the background position after reaching FAQ section
         if (relativeScroll > maxParallaxScroll) {
-          parallaxRef.current.style.transform = `translateY(${maxParallaxScroll * 0.25}px)`;
+          parallaxRef.current.style.transform = `translateY(${maxParallaxScroll * 0.15}px)`;
         }
       }
     };
