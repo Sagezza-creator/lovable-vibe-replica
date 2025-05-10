@@ -30,7 +30,7 @@ const CorrectionSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-lavender-50 to-white">
+    <section ref={sectionRef} className="py-20 bg-transparent">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
