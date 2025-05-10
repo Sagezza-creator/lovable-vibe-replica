@@ -75,6 +75,11 @@ const ComparisonSection = () => {
           animation: fadeUp 0.6s both;
           animation-play-state: paused;
         }
+        .icon-container {
+          display: flex;
+          align-items: center;
+          min-height: 60px; /* Гарантирует одинаковую высоту */
+        }
       `}</style>
 
       <div className="container mx-auto px-4">
@@ -115,4 +120,44 @@ const ComparisonSection = () => {
                 </h3>
               </div>
             </div>
-            <div className="hidden
+            <div className="hidden lg:block text-center">
+              <div className="bg-gray-100 rounded-t-lg py-4 px-6">
+                <h3 className="font-bold text-xl text-gray-600">
+                  Традиционная психология
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          {/* Строки сравнения */}
+          {comparisonRows.map((row, index) => (
+            <div
+              key={index}
+              ref={(el) => (elementsRef.current[2 + index] = el)}
+              className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-6 animate-on-scroll"
+              style={{
+                '--delay': `${getDelay(index)}s`,
+                opacity: 0,
+                animationDelay: 'var(--delay)',
+              } as React.CSSProperties}
+            >
+              <div className="text-center">
+                <h4 className="font-semibold text-lg">{row.title}</h4>
+              </div>
+              <div className="icon-container bg-brand-50 rounded-lg py-4 px-6">
+                <Check className="w-6 h-6 text-brand-600 mr-3 flex-shrink-0" aria-hidden="true" />
+                <p className="text-brand-700">{row.myApproach}</p>
+              </div>
+              <div className="icon-container bg-gray-100 rounded-lg py-4 px-6">
+                <X className="w-6 h-6 text-gray-600 mr-3 flex-shrink-0" aria-hidden="true" />
+                <p className="text-gray-700">{row.traditional}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ComparisonSection;
