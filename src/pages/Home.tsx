@@ -30,12 +30,12 @@ const Home = () => {
         
         // Apply parallax effect only within the allowed range
         if (relativeScroll >= 0 && relativeScroll <= maxParallaxScroll) {
-          parallaxRef.current.style.transform = `translateY(${relativeScroll * 0.15}px)`;
+          parallaxRef.current.style.transform = `translateY(${relativeScroll * 0.25}px)`;
         }
         
         // Fix the background position after reaching FAQ section
         if (relativeScroll > maxParallaxScroll) {
-          parallaxRef.current.style.transform = `translateY(${maxParallaxScroll * 0.15}px)`;
+          parallaxRef.current.style.transform = `translateY(${maxParallaxScroll * 0.25}px)`;
         }
       }
     };
@@ -53,7 +53,7 @@ const Home = () => {
         {/* Parallax background image */}
         <div 
           ref={parallaxRef}
-          className="absolute inset-0 w-full h-[120%] z-0 pointer-events-none"
+          className="absolute inset-0 w-full h-[200%] z-0 pointer-events-none"
           style={{
             backgroundImage: "url('https://svobodarazuma.ru/Images/Font%20main%20screen.jpg')",
             backgroundSize: 'cover',
