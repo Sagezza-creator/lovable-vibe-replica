@@ -29,7 +29,7 @@ const CorrectionSection = () => {
   return (
     <section ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           {/* Заголовок по центру */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
