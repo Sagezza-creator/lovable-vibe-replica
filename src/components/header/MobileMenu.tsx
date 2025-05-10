@@ -24,7 +24,7 @@ const MobileMenu = ({ navLinks, isActive, onClose, onBookingClick }: MobileMenuP
                 className={`p-3 rounded-md text-center text-base font-medium ${
                   isActive(link.path)
                     ? 'text-primary bg-primary/10'
-                    : 'text-gray-700 hover:text-primary hover:bg-primary/5'
+                    : 'text-gray-700 hover:text-primary bg-transparent hover:bg-primary/5'
                 }`}
               >
                 {link.name}
