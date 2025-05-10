@@ -1,17 +1,21 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [scale, setScale] = useState(1);
+  const [counters, setCounters] = useState({
+    hours: 0,
+    years: 0,
+    success: 0
+  });
   const heroRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const observer = useRef<IntersectionObserver>();
 
+  // Анимация масштабирования фона при скролле
   useEffect(() => {
-    setIsVisible(true);
-
     const handleScroll = () => {
       if (heroRef.current) {
         const scrollPosition = window.scrollY;
@@ -24,6 +28,51 @@ const HeroSection = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Анимация счетчиков при появлении в viewport
+  useEffect(() => {
+    if (!statsRef.current) return;
+
+    const startCounterAnimation = () => {
+      const duration = 2000; // 2 секунды
+      const startTime = Date.now();
+      const targetValues = { hours: 1000, years: 2, success: 95 };
+
+      const animate = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        setCounters({
+          hours: Math.floor(progress * targetValues.hours),
+          years: Math.floor(progress * targetValues.years),
+          success: Math.floor(progress * targetValues.success)
+        });
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      animate();
+    };
+
+    observer.current = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startCounterAnimation();
+          observer.current?.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.current.observe(statsRef.current);
+
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
   }, []);
 
   return (
@@ -46,39 +95,47 @@ const HeroSection = () => {
 
       {/* Контент */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className={`max-w-2xl ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            <span className="gradient-heading drop-shadow-lg">
+        <div className="max-w-2xl">
+          {/* Заголовок с анимацией */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
+            <span className="gradient-heading drop-shadow-lg inline-block">
               Свобода разума: Откройте путь к гармонии
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-gray-700 mb-8">
+
+          {/* Подзаголовок с анимацией и задержкой */}
+          <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in-up animation-delay-100">
             Избавьтесь от внутренних барьеров и живите свободно
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="bg-brand-500 hover:bg-brand-600 group shadow-lg">
+          {/* Кнопки с анимацией и задержкой */}
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-200">
+            <Button asChild size="lg" className="bg-brand-500 hover:bg-brand-600 group shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <Link to="/contact">
                 Начните уже сейчас
                 <ArrowRight size={18} className="ml-1 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="text-gray-700 border-brand-700 hover:bg-gray-100 shadow-lg">
+            <Button asChild size="lg" variant="outline" className="text-gray-700 border-brand-700 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <Link to="/approach">Как это работает?</Link>
             </Button>
           </div>
 
-          <div className="mt-16 flex flex-col md:flex-row justify-start gap-6 md:gap-12 stagger-animation">
-            <div className={`bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg opacity-0 animate-fade-up`}>
-              <p className="text-brand-500 font-semibold text-3xl mb-1">1000+</p>
+          {/* Статистика с анимацией появления */}
+          <div 
+            className="mt-16 flex flex-col md:flex-row justify-start gap-6 md:gap-12" 
+            ref={statsRef}
+          >
+            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg stat-item animate-fade-in-up animation-delay-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <p className="text-brand-500 font-semibold text-3xl mb-1">{counters.hours}+</p>
               <p className="text-gray-700">часов коррекций</p>
             </div>
-            <div className={`bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg opacity-0 animate-fade-up`}>
-              <p className="text-brand-500 font-semibold text-3xl mb-1">2+</p>
+            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg stat-item animate-fade-in-up animation-delay-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <p className="text-brand-500 font-semibold text-3xl mb-1">{counters.years}+</p>
               <p className="text-gray-700">года опыта</p>
             </div>
-            <div className={`bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg opacity-0 animate-fade-up`}>
-              <p className="text-brand-500 font-semibold text-3xl mb-1">95%</p>
+            <div className="bg-white/50 backdrop-blur-sm p-6 rounded-lg shadow-lg stat-item animate-fade-in-up animation-delay-500 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <p className="text-brand-500 font-semibold text-3xl mb-1">{counters.success}%</p>
               <p className="text-gray-700">успешных результатов</p>
             </div>
           </div>
