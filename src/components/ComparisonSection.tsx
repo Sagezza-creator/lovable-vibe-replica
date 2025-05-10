@@ -1,9 +1,8 @@
-
 import { Check, X } from 'lucide-react';
 
 const ComparisonSection = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
@@ -17,7 +16,7 @@ const ComparisonSection = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
             <div className="col-span-1">
-              {/* Empty first column on desktop */}
+              {/* Пустая колонка для десктопа */}
             </div>
             <div className="hidden lg:block text-center">
               <div className="bg-brand-50 rounded-t-lg py-4 px-6">
@@ -31,16 +30,16 @@ const ComparisonSection = () => {
             </div>
           </div>
           
-          {/* Mobile headers */}
+          {/* Заголовки для мобильных */}
           <div className="lg:hidden grid grid-cols-3 gap-4 mb-6">
             <div className="col-span-3">
               <h3 className="font-semibold text-lg text-gray-800 mb-2">Сравнение подходов</h3>
             </div>
           </div>
 
-          {/* Comparison rows */}
+          {/* Строки сравнения */}
           <div className="space-y-6">
-            {/* Row 1 */}
+            {/* Строка 1 */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
               <div className="font-medium text-gray-800">
                 <h4 className="lg:hidden font-bold text-lg mb-4">Глубина воздействия</h4>
@@ -62,7 +61,7 @@ const ComparisonSection = () => {
               </div>
             </div>
             
-            {/* Row 2 */}
+            {/* Строка 2 */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-white rounded-lg border">
               <div className="font-medium text-gray-800">
                 <h4 className="lg:hidden font-bold text-lg mb-4">Стойкость результата</h4>
@@ -84,7 +83,7 @@ const ComparisonSection = () => {
               </div>
             </div>
             
-            {/* Row 3 */}
+            {/* Строка 3 */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
               <div className="font-medium text-gray-800">
                 <h4 className="lg:hidden font-bold text-lg mb-4">Скорость достижения результата</h4>
@@ -106,7 +105,7 @@ const ComparisonSection = () => {
               </div>
             </div>
             
-            {/* Row 4 */}
+            {/* Строка 4 */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-white rounded-lg border">
               <div className="font-medium text-gray-800">
                 <h4 className="lg:hidden font-bold text-lg mb-4">Основа метода</h4>
@@ -122,7 +121,7 @@ const ComparisonSection = () => {
               <div className="lg:text-center">
                 <h4 className="lg:hidden font-semibold text-gray-600 mb-2">Традиционная психология</h4>
                 <p className="flex lg:justify-center items-center gap-2 text-gray-800">
-                <X size={20} className="text-red-400 min-w-[20px]" />
+                  <X size={20} className="text-red-400 min-w-[20px]" />
                   <span>Классические психологические теории</span>
                 </p>
               </div>
