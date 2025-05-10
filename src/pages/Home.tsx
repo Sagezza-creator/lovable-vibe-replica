@@ -67,8 +67,8 @@ const Home = () => {
           <AboutSection />
           <ProblemsSection />
           <ApproachSection />
-          <MatricesSection />
           <CorrectionSection />
+          <MatricesSection />
           <ComparisonSection />
           <ReviewsSection />
         </div>
