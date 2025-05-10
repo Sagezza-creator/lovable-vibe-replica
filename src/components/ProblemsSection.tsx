@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
-// Определяем интерфейс и данные
 interface Problem {
   id: number;
   title: string;
@@ -43,15 +42,44 @@ const problems: Problem[] = [
 
 const ProblemsSection = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [visibleElements, setVisibleElements] = useState<number[]>([]);
+  const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Функция для расчета задержки
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = Number(entry.target.getAttribute('data-id'));
+          
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => [...prev, id]);
+          } else {
+            setVisibleElements((prev) => prev.filter((item) => item !== id));
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+
+    elementsRef.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      elementsRef.current.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
   const getDelay = (index: number) => {
     return 0.4 + (Math.floor(index / 3) * 0.3) + (index % 3) * 0.1;
   };
 
   return (
     <section className="py-20">
-      {/* Добавляем стили для анимации прямо в компонент */}
       <style jsx>{`
         @keyframes fadeUp {
           from {
@@ -69,9 +97,13 @@ const ProblemsSection = () => {
       `}</style>
 
       <div className="container mx-auto px-4">
-        {/* Заголовок с задержкой 0.2s */}
-        <div 
-          className="text-center max-w-3xl mx-auto mb-16 opacity-0 animate-fade-up"
+        {/* Заголовок */}
+        <div
+          ref={(el) => (elementsRef.current[0] = el)}
+          data-id={0}
+          className={`text-center max-w-3xl mx-auto mb-16 transition-opacity ${
+            visibleElements.includes(0) ? 'opacity-100 animate-fade-up' : 'opacity-0'
+          }`}
           style={{ animationDelay: '0.2s' }}
         >
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
@@ -82,26 +114,35 @@ const ProblemsSection = () => {
           </p>
         </div>
 
-        {/* Карточки с индивидуальными задержками */}
+        {/* Карточки */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {problems.map((problem, index) => (
-            <Card 
-              key={problem.id} 
-              className={`border-0 shadow-md opacity-0 animate-fade-up overflow-hidden transition-all duration-300 hover:shadow-lg ${
-                activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'
-              }`}
-              style={{ 
-                animationDelay: `${getDelay(index)}s`,
-              }}
-              onMouseEnter={() => setActiveCard(problem.id)}
-              onMouseLeave={() => setActiveCard(null)}
-            >
-              <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-3 text-gray-800">{problem.title}</h3>
-                <p className="text-gray-600">{problem.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+          {problems.map((problem, index) => {
+            const elementId = index + 1; // Начинаем с 1, так как 0 уже занят заголовком
+            return (
+              <Card
+                key={problem.id}
+                ref={(el) => (elementsRef.current[elementId] = el)}
+                data-id={elementId}
+                className={`border-0 shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg ${
+                  activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'
+                } ${
+                  visibleElements.includes(elementId)
+                    ? 'opacity-100 animate-fade-up'
+                    : 'opacity-0'
+                }`}
+                style={{
+                  animationDelay: `${getDelay(index)}s`,
+                }}
+                onMouseEnter={() => setActiveCard(problem.id)}
+                onMouseLeave={() => setActiveCard(null)}
+              >
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">{problem.title}</h3>
+                  <p className="text-gray-600">{problem.description}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>
