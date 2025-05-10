@@ -1,5 +1,4 @@
-
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProblemsSection from '@/components/ProblemsSection';
@@ -15,18 +14,30 @@ const Home = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const faqRef = useRef<HTMLDivElement>(null);
+  const [contentHeight, setContentHeight] = useState(0);
 
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
 
+    const updateContentHeight = () => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight);
+      }
+    };
+
+    // Initial calculation
+    updateContentHeight();
+
+    // Update on window resize (optional)
+    window.addEventListener('resize', updateContentHeight);
+    
     const handleScroll = () => {
       if (parallaxRef.current && contentRef.current && faqRef.current) {
         const scrollPosition = window.scrollY;
         const aboutSectionOffset = contentRef.current.offsetTop;
         const faqSectionOffset = faqRef.current.offsetTop;
         
-        // Only apply parallax effect when scrolling through the relevant sections
         if (scrollPosition >= aboutSectionOffset && scrollPosition <= faqSectionOffset) {
           const relativeScroll = scrollPosition - aboutSectionOffset;
           parallaxRef.current.style.transform = `translateY(${relativeScroll * 0.25}px)`;
@@ -35,8 +46,18 @@ const Home = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('resize', updateContentHeight);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
+  useEffect(() => {
+    if (parallaxRef.current && contentHeight > 0) {
+      parallaxRef.current.style.height = `${contentHeight}px`;
+    }
+  }, [contentHeight]);
 
   return (
     <>
@@ -47,17 +68,18 @@ const Home = () => {
         {/* Parallax background image */}
         <div 
           ref={parallaxRef}
-          className="absolute inset-0 w-full h-[500vh] z-0 pointer-events-none"
+          className="absolute inset-0 w-full z-0 pointer-events-none bg-fixed"
           style={{
             backgroundImage: "url('https://svobodarazuma.ru/Images/Font%20main%20screen.jpg')",
             backgroundSize: 'cover',
             backgroundPosition: 'center top',
-            top: 0,
+            backgroundRepeat: 'no-repeat',
+            transition: 'height 0.3s ease-out' // Smooth height changes
           }}
         ></div>
         
         {/* Content sections that use the background */}
-        <div ref={contentRef} className="relative z-10">
+        <div ref={contentRef} className="relative z-10 pb-20"> {/* Added padding-bottom for footer */}
           <AboutSection />
           <ProblemsSection />
           <ApproachSection />
