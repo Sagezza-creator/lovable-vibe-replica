@@ -42,24 +42,25 @@ const problems: Problem[] = [
 
 const ProblemsSection = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const [visibleElements, setVisibleElements] = useState<number[]>([]);
   const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const id = Number(entry.target.getAttribute('data-id'));
-          
+          const element = entry.target as HTMLElement;
           if (entry.isIntersecting) {
-            setVisibleElements((prev) => [...prev, id]);
+            element.style.animationPlayState = 'running';
           } else {
-            setVisibleElements((prev) => prev.filter((item) => item !== id));
+            // Сбрасываем анимацию только если нужно полное исчезновение
+            // element.style.animationPlayState = 'paused';
+            // element.style.opacity = '0';
           }
         });
       },
       {
         threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
       }
     );
 
@@ -91,8 +92,9 @@ const ProblemsSection = () => {
             transform: translateY(0);
           }
         }
-        .animate-fade-up {
-          animation: fadeUp 0.6s forwards;
+        .animate-on-scroll {
+          animation: fadeUp 0.6s both;
+          animation-play-state: paused;
         }
       `}</style>
 
@@ -100,11 +102,11 @@ const ProblemsSection = () => {
         {/* Заголовок */}
         <div
           ref={(el) => (elementsRef.current[0] = el)}
-          data-id={0}
-          className={`text-center max-w-3xl mx-auto mb-16 transition-opacity ${
-            visibleElements.includes(0) ? 'opacity-100 animate-fade-up' : 'opacity-0'
-          }`}
-          style={{ animationDelay: '0.2s' }}
+          className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll"
+          style={{
+            animationDelay: '0.2s',
+            opacity: 0 // Начальное состояние
+          } as React.CSSProperties}
         >
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
             Какие проблемы я решаю
@@ -116,33 +118,26 @@ const ProblemsSection = () => {
 
         {/* Карточки */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {problems.map((problem, index) => {
-            const elementId = index + 1; // Начинаем с 1, так как 0 уже занят заголовком
-            return (
-              <Card
-                key={problem.id}
-                ref={(el) => (elementsRef.current[elementId] = el)}
-                data-id={elementId}
-                className={`border-0 shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg ${
-                  activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'
-                } ${
-                  visibleElements.includes(elementId)
-                    ? 'opacity-100 animate-fade-up'
-                    : 'opacity-0'
-                }`}
-                style={{
-                  animationDelay: `${getDelay(index)}s`,
-                }}
-                onMouseEnter={() => setActiveCard(problem.id)}
-                onMouseLeave={() => setActiveCard(null)}
-              >
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-800">{problem.title}</h3>
-                  <p className="text-gray-600">{problem.description}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {problems.map((problem, index) => (
+            <Card
+              key={problem.id}
+              ref={(el) => (elementsRef.current[index + 1] = el)}
+              className={`border-0 shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg animate-on-scroll ${
+                activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'
+              }`}
+              style={{
+                animationDelay: `${getDelay(index)}s`,
+                opacity: 0 // Начальное состояние
+              } as React.CSSProperties}
+              onMouseEnter={() => setActiveCard(problem.id)}
+              onMouseLeave={() => setActiveCard(null)}
+            >
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">{problem.title}</h3>
+                <p className="text-gray-600">{problem.description}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
