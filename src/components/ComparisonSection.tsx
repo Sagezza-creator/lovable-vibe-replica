@@ -78,7 +78,6 @@ const ComparisonSection = () => {
         .icon-container {
           display: flex;
           align-items: center;
-          min-height: 60px; /* Гарантирует одинаковую высоту */
         }
       `}</style>
 
@@ -101,7 +100,7 @@ const ComparisonSection = () => {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Заголовки таблицы */}
           <div
             ref={(el) => (elementsRef.current[1] = el)}
@@ -144,12 +143,12 @@ const ComparisonSection = () => {
               <div className="text-center">
                 <h4 className="font-semibold text-lg">{row.title}</h4>
               </div>
-              <div className="icon-container bg-brand-50 rounded-lg py-4 px-6">
+              <div className="icon-container bg-brand-50 rounded-lg py-4 px-8">
                 <Check className="w-6 h-6 text-brand-600 mr-3 flex-shrink-0" aria-hidden="true" />
                 <p className="text-brand-700">{row.myApproach}</p>
               </div>
-              <div className="icon-container bg-gray-100 rounded-lg py-4 px-6">
-                <X className="w-6 h-6 text-gray-600 mr-3 flex-shrink-0" aria-hidden="true" />
+              <div className="icon-container bg-gray-100 rounded-lg py-4 px-8">
+                <X className="w-6 h-6 text-red-300 mr-3 flex-shrink-0" aria-hidden="true" />
                 <p className="text-gray-700">{row.traditional}</p>
               </div>
             </div>
