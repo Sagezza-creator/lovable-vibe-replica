@@ -48,7 +48,7 @@ const CorrectionSection = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className={`space-y-6 text-gray-700 transition-all duration-700 ease-out ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-              }`} style={{ transitionDelay: '0,6s' }}>
+              }`} style={{ transitionDelay: '0.4s' }}>
                 <p>
                   Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
                 </p>
@@ -80,7 +80,7 @@ const CorrectionSection = () => {
             <div className="md:w-[400px] flex items-center justify-end">
               <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-700 ease-out w-full ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-              }`} style={{ transitionDelay: '1s' }}>
+              }`} style={{ transitionDelay: '0.6s' }}>
                 <img 
                   src="https://svobodarazuma.ru/Images/correction.jpg" 
                   alt="Нейрокоррекция" 
