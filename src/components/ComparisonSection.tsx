@@ -92,10 +92,10 @@ const ComparisonSection = () => {
             animationDelay: 'var(--delay)',
           } as React.CSSProperties}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+          <h2 className="ttext-3xl md:text-4xl font-bold gradient-heading mb-6">
             Сравнение подходов
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-lg text-gray-700">
             Узнайте, чем отличается мой подход от традиционной психологии
           </p>
         </div>
