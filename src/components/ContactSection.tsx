@@ -80,7 +80,7 @@ const ContactSection = () => {
         <div className="flex flex-col md:flex-row gap-12 max-w-4xl mx-auto min-h-full">
           <div className="flex-1 flex flex-col justify-between">
             <div>
-              <h2 className="text-lg md:text-xl text-gray-700 font-semibold mb-6">
+              <h2 className="text-lg md:text-xl text-gray-700 font-semibold mb-6 text-center">
                 Как связаться
               </h2>
               <div className="space-y-4">
@@ -114,11 +114,11 @@ const ContactSection = () => {
                   </div>
                 </a>
               </div>
-              <p className="mt-6 text-gray-600">Отсканируйте QR-код для перехода в чат-бот:</p>
+              <p className="mt-6 text-gray-600 text-center">Отсканируйте QR-код для перехода в чат-бот:</p>
               <img 
                 src="https://svobodarazuma.ru/Images/QRbot.jpg" 
                 alt="QR-код для Telegram чат-бота" 
-                className="mt-4 qr-code-auto"
+                className="mt-4 qr-code-auto mx-auto"
                 onError={handleImageError}
               />
             </div>
@@ -126,7 +126,9 @@ const ContactSection = () => {
 
           <div className="flex-1 flex flex-col justify-center">
             <div>
-              <h2 className="text-xl font-semibold mb-6 text-gray-800">Оставить заявку</h2>
+              <h2 className="text-xl font-semibold mb-6 text-gray-800 text-center">
+                Оставить заявку
+              </h2>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 p-6 bg-gray-50 rounded-lg shadow-sm">
                 <div className="space-y-2">
                   <Label htmlFor="name">Ваше имя</Label>
