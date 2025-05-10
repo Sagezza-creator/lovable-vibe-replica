@@ -29,10 +29,11 @@ const CorrectionSection = () => {
   return (
     <section ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        {/* Убрал max-w-3xl чтобы контент занимал всю ширину контейнера */}
         <div className="mx-auto">
-          {/* Заголовок по центру */}
-          <div className="text-center mb-16">
+          {/* Заголовок по центру с анимацией снизу вверх */}
+          <div className={`text-center mb-16 transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`} style={{ transitionDelay: '0.1s' }}>
             <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
               Нейрокоррекция
             </h2>
@@ -43,11 +44,11 @@ const CorrectionSection = () => {
 
           {/* Распределение контента по всей ширине */}
           <div className="flex flex-col md:flex-row gap-8 items-stretch">
-            {/* Текст - занимает доступное пространство */}
+            {/* Текст - анимация слева направо */}
             <div className="flex-1 flex flex-col justify-center">
-              <div className={`space-y-6 text-gray-700 transition-all duration-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}>
+              <div className={`space-y-6 text-gray-700 transition-all duration-700 ease-out ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+              }`} style={{ transitionDelay: '0.3s' }}>
                 <p>
                   Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
                 </p>
@@ -59,8 +60,10 @@ const CorrectionSection = () => {
                 </p>
               </div>
 
-              {/* Кнопка */}
-              <div className={`mt-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
+              {/* Кнопка - анимация слева направо */}
+              <div className={`mt-8 transition-all duration-700 ease-out ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+              }`} style={{ transitionDelay: '0.5s' }}>
                 <Button asChild variant="outline" className="group border-yellow-300 text-yellow-700 hover:bg-yellow-50">
                   <Link to="/correction">
                     Узнать больше о коррекции
@@ -73,11 +76,11 @@ const CorrectionSection = () => {
               </div>
             </div>
 
-            {/* Изображение - фиксированной ширины, прижато к правому краю */}
+            {/* Изображение - анимация справа налево */}
             <div className="md:w-[400px] flex items-center justify-end">
-              <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-500 w-full ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`} style={{ animationDelay: '0.2s' }}>
+              <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-700 ease-out w-full ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+              }`} style={{ transitionDelay: '0.4s' }}>
                 <img 
                   src="https://svobodarazuma.ru/Images/correction.jpg" 
                   alt="Нейрокоррекция" 
