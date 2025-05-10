@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -17,7 +16,6 @@ const Home = () => {
   const faqRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
@@ -26,10 +24,18 @@ const Home = () => {
         const aboutSectionOffset = contentRef.current.offsetTop;
         const faqSectionOffset = faqRef.current.offsetTop;
         
-        // Only apply parallax effect when scrolling through the relevant sections
-        if (scrollPosition >= aboutSectionOffset && scrollPosition <= faqSectionOffset) {
-          const relativeScroll = scrollPosition - aboutSectionOffset;
+        // Calculate maximum scroll position where parallax should stop
+        const maxParallaxScroll = faqSectionOffset - aboutSectionOffset;
+        const relativeScroll = scrollPosition - aboutSectionOffset;
+        
+        // Apply parallax effect only within the allowed range
+        if (relativeScroll >= 0 && relativeScroll <= maxParallaxScroll) {
           parallaxRef.current.style.transform = `translateY(${relativeScroll * 0.25}px)`;
+        }
+        
+        // Fix the background position after reaching FAQ section
+        if (relativeScroll > maxParallaxScroll) {
+          parallaxRef.current.style.transform = `translateY(${maxParallaxScroll * 0.25}px)`;
         }
       }
     };
@@ -43,11 +49,11 @@ const Home = () => {
       <HeroSection />
       
       {/* Background image container */}
-      <div className="relative">
+      <div className="relative overflow-hidden">
         {/* Parallax background image */}
         <div 
           ref={parallaxRef}
-          className="absolute inset-0 w-full h-[520vh] z-0 pointer-events-none"
+          className="absolute inset-0 w-full h-[120%] z-0 pointer-events-none"
           style={{
             backgroundImage: "url('https://svobodarazuma.ru/Images/Font%20main%20screen.jpg')",
             backgroundSize: 'cover',
