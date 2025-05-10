@@ -77,8 +77,8 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto" style={{ minHeight: '100%', alignItems: 'stretch' }}>
-          <div className="flex flex-col justify-between">
+        <div className="flex flex-col md:flex-row gap-12 max-w-4xl mx-auto min-h-full">
+          <div className="flex-1 flex flex-col justify-between">
             <div>
               <h2 className="text-lg md:text-xl text-gray-700 font-semibold mb-6">
                 Как связаться
@@ -124,7 +124,7 @@ const ContactSection = () => {
             </div>
           </div>
 
-          <div className="flex flex-col justify-center">
+          <div className="flex-1 flex flex-col justify-center">
             <div>
               <h2 className="text-xl font-semibold mb-6 text-gray-800">Оставить заявку</h2>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 p-6 bg-gray-50 rounded-lg shadow-sm">
@@ -219,9 +219,10 @@ const ContactSection = () => {
       <style>
         {`
           .qr-code-auto {
-            height: 80%;
-            max-height: 60%;
+            height: auto;
+            max-height: 200px;
             width: auto;
+            max-width: 100%;
             object-fit: contain;
           }
         `}
