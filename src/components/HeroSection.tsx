@@ -10,8 +10,10 @@ const HeroSection = () => {
     years: 0,
     success: 0
   });
+  const [imgLoaded, setImgLoaded] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   const observer = useRef<IntersectionObserver>();
 
   // Анимация масштабирования фона при скролле
@@ -35,7 +37,7 @@ const HeroSection = () => {
     if (!statsRef.current) return;
 
     const startCounterAnimation = () => {
-      const duration = 2000; // 2 секунды
+      const duration = 2000;
       const startTime = Date.now();
       const targetValues = { hours: 1000, years: 2, success: 95 };
 
@@ -75,40 +77,49 @@ const HeroSection = () => {
     };
   }, []);
 
+  // Проверка загрузки изображения
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setImgLoaded(true);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen relative overflow-hidden flex items-center pt-16 z-20" ref={heroRef}>
       {/* Белый фон */}
       <div className="absolute inset-0 bg-white z-0" />
 
-      {/* Фоновое изображение */}
+      {/* Фоновое изображение с анимацией появления */}
       <div className="absolute inset-0 z-1 overflow-hidden">
         <img
+          ref={imgRef}
           src="https://svobodarazuma.ru/Images/main-banner.png"
           alt="Фоновое изображение"
-          className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out will-change-transform"
+          className={`w-full h-full object-cover object-center transition-all duration-1000 ease-out will-change-transform ${
+            imgLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
           style={{ 
             transform: `scale(${scale})`,
-            transformOrigin: 'center center'
+            transformOrigin: 'center center',
+            transitionProperty: 'opacity, transform' // Явное указание свойств для анимации
           }}
+          onLoad={() => setImgLoaded(true)}
         />
       </div>
 
       {/* Контент */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl">
-          {/* Заголовок с анимацией */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
             <span className="gradient-heading drop-shadow-lg inline-block">
               Свобода разума: Откройте путь к гармонии
             </span>
           </h1>
 
-          {/* Подзаголовок с анимацией и задержкой */}
           <p className="text-lg md:text-xl text-gray-700 mb-8 animate-fade-in-up animation-delay-100">
             Избавьтесь от внутренних барьеров и живите свободно
           </p>
 
-          {/* Кнопки с анимацией и задержкой */}
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-200">
             <Button asChild size="lg" className="bg-brand-500 hover:bg-brand-600 group shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <Link to="/contact">
@@ -121,7 +132,6 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Статистика с анимацией появления */}
           <div 
             className="mt-16 flex flex-col md:flex-row justify-start gap-6 md:gap-12" 
             ref={statsRef}
