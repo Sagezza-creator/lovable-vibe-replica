@@ -42,7 +42,7 @@ const problems: Problem[] = [
 
 const ProblemsSection = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const elementsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const elementsRef = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -50,28 +50,25 @@ const ProblemsSection = () => {
         entries.forEach((entry) => {
           const element = entry.target as HTMLElement;
           if (entry.isIntersecting) {
-            element.style.animationPlayState = 'running';
-          } else {
-            // Сбрасываем анимацию только если нужно полное исчезновение
-            // element.style.animationPlayState = 'paused';
-            // element.style.opacity = '0';
+            // Запускаем анимацию только один раз
+            if (!element.dataset.animated) {
+              element.style.animationPlayState = 'running';
+              element.dataset.animated = 'true';
+            }
           }
         });
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px' // Увеличил отступ для более плавного появления
       }
     );
 
-    elementsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
+    const currentElements = elementsRef.current;
+    currentElements.forEach((el) => el && observer.observe(el));
 
     return () => {
-      elementsRef.current.forEach((el) => {
-        if (el) observer.unobserve(el);
-      });
+      currentElements.forEach((el) => el && observer.unobserve(el));
     };
   }, []);
 
@@ -104,8 +101,9 @@ const ProblemsSection = () => {
           ref={(el) => (elementsRef.current[0] = el)}
           className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll"
           style={{
-            animationDelay: '0.2s',
-            opacity: 0 // Начальное состояние
+            '--delay': '0.2s',
+            opacity: 0,
+            animationDelay: 'var(--delay)'
           } as React.CSSProperties}
         >
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
@@ -126,8 +124,9 @@ const ProblemsSection = () => {
                 activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'
               }`}
               style={{
-                animationDelay: `${getDelay(index)}s`,
-                opacity: 0 // Начальное состояние
+                '--delay': `${getDelay(index)}s`,
+                opacity: 0,
+                animationDelay: 'var(--delay)'
               } as React.CSSProperties}
               onMouseEnter={() => setActiveCard(problem.id)}
               onMouseLeave={() => setActiveCard(null)}
