@@ -60,7 +60,7 @@ const ProblemsSection = () => {
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px' // Увеличил отступ для более плавного появления
+        rootMargin: '0px 0px -50px 0px' // Увеличил отступ для более плавного появления
       }
     );
 
