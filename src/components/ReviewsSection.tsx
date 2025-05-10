@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -65,6 +64,9 @@ const ReviewsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
   const totalReviews = reviews.length;
 
   useEffect(() => {
@@ -89,11 +91,13 @@ const ReviewsSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % totalReviews);
+      if (!isDragging) {
+        setActiveIndex((current) => (current + 1) % totalReviews);
+      }
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [totalReviews]);
+  }, [totalReviews, isDragging]);
 
   const goToReview = (index: number) => {
     setActiveIndex(index);
@@ -105,6 +109,30 @@ const ReviewsSection = () => {
       .map((_, i) => (
         <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
       ));
+  };
+
+  // Обработчики для свайпа
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setStartX(e.touches[0].clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const diff = startX - currentX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && activeIndex < totalReviews - 1) {
+        setActiveIndex(activeIndex + 1);
+      } else if (diff < 0 && activeIndex > 0) {
+        setActiveIndex(activeIndex - 1);
+      }
+      setIsDragging(false);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
   };
 
   return (
@@ -125,44 +153,51 @@ const ReviewsSection = () => {
               <div
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
               >
                 {reviews.map((review) => (
-                  <div key={review.id} className="w-full flex-shrink-0">
-                    <Card className="border-0 shadow-lg bg-white">
-                      <CardContent className="p-8">
-                        <div className="flex items-center gap-1 mb-4">
-                          {renderStars(review.stars)}
-                        </div>
-
-                        <blockquote className="mb-6">
-                          <p className="text-xl italic text-gray-700 mb-4">
-                            "Я {review.sessions > 1 ? `всего за ${review.sessions} сеанса` : `всего за ${review.sessions} сеанс`} избавилась от {review.problem}. {review.solution}"
-                          </p>
-                        </blockquote>
-
-                        <div className="flex items-center gap-4">
-                          <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 flex items-center justify-center text-white font-bold">
-                            {review.name.charAt(0)}
+                  <div key={review.id} className="w-full flex-shrink-0 px-2">
+                    <div className="relative">
+                      {/* Эффект тени */}
+                      <div className="absolute inset-0 rounded-xl shadow-2xl opacity-20 pointer-events-none"></div>
+                      <Card className="border-0 shadow-lg bg-white relative z-10 hover:shadow-xl transition-shadow duration-300">
+                        <CardContent className="p-8">
+                          <div className="flex items-center gap-1 mb-4">
+                            {renderStars(review.stars)}
                           </div>
-                          <div>
-                            <p className="font-medium text-gray-800">
-                              {review.name}, {review.age} {review.age % 10 === 1 && review.age !== 11 ? "год" : (review.age % 10 >= 2 && review.age % 10 <= 4 && (review.age < 10 || review.age > 20) ? "года" : "лет")}
+
+                          <blockquote className="mb-6">
+                            <p className="text-xl italic text-gray-700 mb-4">
+                              "Я {review.sessions > 1 ? `всего за ${review.sessions} сеанса` : `всего за ${review.sessions} сеанс`} избавилась от {review.problem}. {review.solution}"
                             </p>
+                          </blockquote>
+
+                          <div className="flex items-center gap-4">
+                            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 flex items-center justify-center text-white font-bold">
+                              {review.name.charAt(0)}
+                            </div>
+                            <div>
+                              <p className="font-medium text-gray-800">
+                                {review.name}, {review.age} {review.age % 10 === 1 && review.age !== 11 ? "год" : (review.age % 10 >= 2 && review.age % 10 <= 4 && (review.age < 10 || review.age > 20) ? "года" : "лет")}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                        </CardContent>
+                      </Card>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="flex justify-center mt-6 gap-2">
+            <div className="flex justify-center mt-8 gap-2">
               {reviews.map((_, index) => (
                 <button
                   key={index}
-                  className={`h-2 rounded-full transition-all ${
-                    activeIndex === index ? "w-8 bg-brand-500" : "w-2 bg-gray-300"
+                  className={`h-3 w-3 rounded-full transition-all ${
+                    activeIndex === index ? "bg-brand-500 scale-125" : "bg-gray-300"
                   }`}
                   onClick={() => goToReview(index)}
                   aria-label={`Показать отзыв ${index + 1}`}
