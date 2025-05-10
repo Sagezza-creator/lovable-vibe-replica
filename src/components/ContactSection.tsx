@@ -124,7 +124,7 @@ const ContactSection = () => {
             </div>
           </div>
 
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-center">
             <div>
               <h2 className="text-xl font-semibold mb-6 text-gray-800">Оставить заявку</h2>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 p-6 bg-gray-50 rounded-lg shadow-sm">
