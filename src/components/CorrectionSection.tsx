@@ -60,22 +60,21 @@ const CorrectionSection = () => {
                 </p>
               </div>
 
-              {/* Кнопка - выровнена по правому краю с анимацией */}
-                  <div className={`mt-8 transition-all duration-700 ease-out ${
-                    isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-                  }`} style={{ transitionDelay: '0.8s' }}>
-                    <div className="flex justify-end">
-                      <Button asChild variant="outline" className="group border-yellow-300 text-yellow-700 hover:bg-yellow-50">
-                        <Link to="/correction">
-                          Узнать больше о коррекции
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 group-hover:translate-x-1 transition-transform">
-                            <path d="M5 12h14" />
-                            <path d="m12 5 7 7-7 7" />
-                          </svg>
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
+              {/* Кнопка - выровнена по правому краю текстового блока */}
+              <div className={`mt-8 flex justify-end transition-all duration-700 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`} style={{ transitionDelay: '0.8s' }}>
+                <Button asChild variant="outline" className="group border-yellow-300 text-yellow-700 hover:bg-yellow-50">
+                  <Link to="/correction">
+                    Узнать больше о коррекции
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 group-hover:translate-x-1 transition-transform">
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </Link>
+                </Button>
+              </div>
+            </div>
 
             {/* Изображение - анимация справа налево */}
             <div className="md:w-[400px] flex items-center justify-end">
