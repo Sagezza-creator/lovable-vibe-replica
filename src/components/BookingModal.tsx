@@ -15,7 +15,7 @@ import {
 interface FormData {
   name: string;
   contact: string;
-  message: string;
+  requestType: string;
 }
 
 interface BookingModalProps {
@@ -30,7 +30,6 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
   const { toast } = useToast();
 
   const onSubmit = async (data: FormData) => {
-    // Проверка интервала между отправками
     if (Date.now() - lastSubmitTime < 30000) {
       toast({
         title: "Подождите",
@@ -43,7 +42,6 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
     setIsSubmitting(true);
     setLastSubmitTime(Date.now());
     
-    // Показываем уведомление о начале отправки
     toast({
       title: "Отправка запроса",
       description: "Запрос отправлен, ожидайте ответа",
@@ -56,14 +54,9 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: data.name,
-          contact: data.contact,
-          message: data.message
-        }),
+        body: JSON.stringify(data),
       });
 
-      // Обрабатываем случаи, когда fetch завершается с ошибкой
       if (!response.ok) {
         throw new Error(response.statusText || 'Ошибка сети');
       }
@@ -83,7 +76,6 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
       reset();
       onOpenChange(false);
     } catch (error) {
-      // Не показываем ошибку, если сообщение дошло в Telegram
       console.error('Ошибка отправки:', error);
     } finally {
       setIsSubmitting(false);
@@ -131,20 +123,19 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="message">Сообщение</Label>
-            <textarea
-              id="message"
-              {...register("message", {
-                minLength: {
-                  value: 10,
-                  message: "Сообщение должно содержать минимум 10 символов"
-                }
-              })}
-              className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              placeholder="Опишите вашу ситуацию или задайте вопрос"
-            />
-            {errors.message && (
-              <p className="text-sm text-red-500">{errors.message.message}</p>
+            <Label htmlFor="requestType">Тип заявки</Label>
+            <select
+              id="requestType"
+              {...register("requestType", { required: "Выберите тип заявки" })}
+              className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <option value="">Выберите тип обращения</option>
+              <option value="Заявка на коррекцию">Заявка на коррекцию</option>
+              <option value="Консультация">Консультация</option>
+              <option value="Обучение">Обучение</option>
+            </select>
+            {errors.requestType && (
+              <p className="text-sm text-red-500">{errors.requestType.message}</p>
             )}
           </div>
 
@@ -152,7 +143,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
             {isSubmitting ? 
               "Отправка..." : 
               <>
-                <span>Отправить сообщение</span>
+                <span>Отправить заявку</span>
                 <Send size={16} className="ml-2" />
               </>
             }
