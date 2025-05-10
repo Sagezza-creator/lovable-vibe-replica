@@ -7,7 +7,7 @@ import BookingModal from '../BookingModal';
 import { NavLink } from './types';
 
 const navLinks: NavLink[] = [
-  { name: 'Главная', path: '/Home' },
+  { name: 'Главная', path: '/' },
   { name: 'Обо мне', path: '/about' },
   { 
     name: 'Мой подход', 
