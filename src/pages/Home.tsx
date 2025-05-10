@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -14,20 +15,19 @@ const Home = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const faqRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
 
     const handleScroll = () => {
-      if (parallaxRef.current && contentRef.current && faqRef.current && ctaRef.current) {
+      if (parallaxRef.current && contentRef.current && faqRef.current) {
         const scrollPosition = window.scrollY;
         const aboutSectionOffset = contentRef.current.offsetTop;
-        const ctaSectionOffset = ctaRef.current.offsetTop;
+        const faqSectionOffset = faqRef.current.offsetTop;
         
         // Only apply parallax effect when scrolling through the relevant sections
-        if (scrollPosition >= aboutSectionOffset && scrollPosition <= ctaSectionOffset) {
+        if (scrollPosition >= aboutSectionOffset && scrollPosition <= faqSectionOffset) {
           const relativeScroll = scrollPosition - aboutSectionOffset;
           parallaxRef.current.style.transform = `translateY(${relativeScroll * 0.25}px)`;
         }
@@ -47,7 +47,7 @@ const Home = () => {
         {/* Parallax background image */}
         <div 
           ref={parallaxRef}
-          className="absolute inset-0 w-full h-[calc(100%+100vh)] z-0 pointer-events-none"
+          className="absolute inset-0 w-full h-[520vh] z-0 pointer-events-none"
           style={{
             backgroundImage: "url('https://svobodarazuma.ru/Images/Font%20main%20screen.jpg')",
             backgroundSize: 'cover',
@@ -65,14 +65,12 @@ const Home = () => {
           <CorrectionSection />
           <ComparisonSection />
           <ReviewsSection />
-          <div ref={faqRef}>
-            <FAQSection />
-          </div>
         </div>
       </div>
       
-      {/* Call to Action section without the background */}
-      <div ref={ctaRef}>
+      {/* Sections without the background */}
+      <div ref={faqRef}>
+        <FAQSection />
         <CallToAction />
       </div>
     </>
