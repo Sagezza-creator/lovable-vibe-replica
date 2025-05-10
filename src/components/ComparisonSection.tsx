@@ -40,29 +40,21 @@ const ComparisonSection = () => {
       title: 'Глубина воздействия',
       myApproach: 'Работа с корневыми причинами в подсознании',
       traditional: 'Работа в основном с симптомами на уровне сознания',
-      myApproachIcon: <Check className="inline-block text-green-500 w-6 h-6" />,
-      traditionalIcon: <X className="inline-block text-red-500 w-6 h-6" />,
     },
     {
       title: 'Стойкость результата',
       myApproach: 'Постоянное устранение проблем без возврата',
       traditional: 'Проблемы могут возвращаться при стрессе',
-      myApproachIcon: <Check className="inline-block text-green-500 w-6 h-6" />,
-      traditionalIcon: <X className="inline-block text-red-500 w-6 h-6" />,
     },
     {
       title: 'Скорость достижения результата',
       myApproach: 'Видимые изменения за 1–3 коррекции',
       traditional: 'Может потребоваться месяцы или годы',
-      myApproachIcon: <Check className="inline-block text-green-500 w-6 h-6" />,
-      traditionalIcon: <X className="inline-block text-red-500 w-6 h-6" />,
     },
     {
       title: 'Основа метода',
       myApproach: 'Современные исследования в науке',
       traditional: 'Классические психологические теории',
-      myApproachIcon: <Check className="inline-block text-green-500 w-6 h-6" />,
-      traditionalIcon: <X className="inline-block text-red-500 w-6 h-6" />,
     },
   ];
 
@@ -104,7 +96,7 @@ const ComparisonSection = () => {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Заголовки таблицы */}
           <div
             ref={(el) => (elementsRef.current[1] = el)}
@@ -147,25 +139,11 @@ const ComparisonSection = () => {
               <div className="text-center">
                 <h4 className="font-semibold text-lg">{row.title}</h4>
               </div>
-
-              {/* Мой подход */}
               <div className="flex justify-center items-center bg-brand-50 rounded-lg py-4 px-6 h-full">
                 <p className="text-brand-700">{row.myApproach}</p>
               </div>
-
-              {/* Традиционная психология */}
               <div className="flex justify-center items-center bg-gray-100 rounded-lg py-4 px-6 h-full">
                 <p className="text-gray-700">{row.traditional}</p>
-              </div>
-
-              {/* Иконки */}
-              <div className="lg:flex justify-center items-center space-x-4">
-                <div className="flex justify-center items-center text-center">
-                  {row.myApproachIcon}
-                </div>
-                <div className="flex justify-center items-center text-center">
-                  {row.traditionalIcon}
-                </div>
               </div>
             </div>
           ))}
