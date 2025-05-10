@@ -77,7 +77,7 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto" style={{ minHeight: '100%', alignItems: 'stretch' }}>
           <div className="flex flex-col justify-between">
             <div>
               <h2 className="text-lg md:text-xl text-gray-700 font-semibold mb-6">
