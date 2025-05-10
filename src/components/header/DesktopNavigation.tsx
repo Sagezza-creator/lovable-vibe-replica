@@ -56,7 +56,7 @@ const DesktopNavigation = ({ navLinks, isActive, onBookingClick }: DesktopNaviga
               <NavigationMenuItem key={link.path}>
                 <Link
                   to={link.path}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 h-10 rounded-md text-sm font-medium transition-colors ${
                     isActive(link.path)
                       ? 'text-primary bg-primary/10'
                       : 'text-gray-700 hover:text-primary hover:bg-primary/5'
