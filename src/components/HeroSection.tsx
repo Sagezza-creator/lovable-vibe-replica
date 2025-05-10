@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -26,7 +27,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center pt-16" ref={heroRef}>
+    <div className="min-h-screen relative overflow-hidden flex items-center pt-16 z-20" ref={heroRef}>
       {/* Белый фон */}
       <div className="absolute inset-0 bg-white z-0" />
 

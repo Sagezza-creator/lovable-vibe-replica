@@ -59,6 +59,10 @@
   text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.shadow-text {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
@@ -67,4 +71,12 @@
 
 .animate-float {
   animation: float 5s ease-in-out infinite;
+}
+
+/* Parallax container */
+.parallax-container {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }

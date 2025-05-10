@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 
 const AboutSection = () => {
@@ -25,7 +26,7 @@ const AboutSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section ref={sectionRef} className="py-20 relative z-10">
       <div className="container mx-auto px-4 md:px-8 lg:px-10">
         <div className="flex flex-col items-center gap-12">
 
@@ -35,10 +36,10 @@ const AboutSection = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <p className="text-3xl md:text-4xl italic text-gray-800 font-serif relative leading-snug">
-              <span className="text-brand-600 text-5xl absolute -left-4 -top-4">“</span>
+            <p className="text-3xl md:text-4xl italic text-white font-serif relative leading-snug shadow-text">
+              <span className="text-white text-5xl absolute -left-4 -top-4">"</span>
               <span className="block">Переключи автопилот: живи осознанно</span>
-              <span className="text-brand-600 text-5xl absolute -right-4 -bottom-4">”</span>
+              <span className="text-white text-5xl absolute -right-4 -bottom-4">"</span>
             </p>
           </div>
 
@@ -54,6 +55,8 @@ const AboutSection = () => {
                 borderColor: '#e0e0e0',
                 borderRadius: '12px',
                 aspectRatio: '16 / 9',
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                backdropFilter: 'blur(5px)',
               }}
             >
               <video

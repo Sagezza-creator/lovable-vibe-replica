@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ProblemsSection from '@/components/ProblemsSection';
@@ -12,23 +12,67 @@ import MatricesSection from '@/components/MatricesSection';
 import CorrectionSection from '@/components/CorrectionSection';
 
 const Home = () => {
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const faqRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
+
+    const handleScroll = () => {
+      if (parallaxRef.current && contentRef.current && faqRef.current) {
+        const scrollPosition = window.scrollY;
+        const aboutSectionOffset = contentRef.current.offsetTop;
+        const faqSectionOffset = faqRef.current.offsetTop;
+        
+        // Only apply parallax effect when scrolling through the relevant sections
+        if (scrollPosition >= aboutSectionOffset && scrollPosition <= faqSectionOffset) {
+          const relativeScroll = scrollPosition - aboutSectionOffset;
+          parallaxRef.current.style.transform = `translateY(${relativeScroll * 0.25}px)`;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
       <HeroSection />
-      <AboutSection />
-      <ProblemsSection />
-      <ApproachSection />
-      <MatricesSection />
-      <CorrectionSection />
-      <ComparisonSection />
-      <ReviewsSection />
-      <FAQSection />
-      <CallToAction />
+      
+      {/* Background image container */}
+      <div className="relative">
+        {/* Parallax background image */}
+        <div 
+          ref={parallaxRef}
+          className="absolute inset-0 w-full h-[300vh] z-0 pointer-events-none"
+          style={{
+            backgroundImage: "url('https://svobodarazuma.ru/Images/Font%20main%20screen.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top',
+            top: 0,
+          }}
+        ></div>
+        
+        {/* Content sections that use the background */}
+        <div ref={contentRef} className="relative z-10">
+          <AboutSection />
+          <ProblemsSection />
+          <ApproachSection />
+          <MatricesSection />
+          <CorrectionSection />
+          <ComparisonSection />
+          <ReviewsSection />
+        </div>
+      </div>
+      
+      {/* Sections without the background */}
+      <div ref={faqRef}>
+        <FAQSection />
+        <CallToAction />
+      </div>
     </>
   );
 };
