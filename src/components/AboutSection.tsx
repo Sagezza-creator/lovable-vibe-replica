@@ -3,10 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
-  const parallaxRef = useRef(null);
 
   useEffect(() => {
-    // Intersection Observer for fade-in animation
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -21,41 +19,16 @@ const AboutSection = () => {
       observer.observe(sectionRef.current);
     }
 
-    // Parallax effect
-    const handleScroll = () => {
-      if (parallaxRef.current) {
-        const scrollY = window.scrollY;
-        // Move background at 1/4 scroll speed
-        parallaxRef.current.style.transform = `translateY(${scrollY / 4}px)`;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden"
-    >
-      <div
-        ref={parallaxRef}
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url('https://svobodarazuma.ru/Images/Font%20main%20screen.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'top center',
-          backgroundRepeat: 'no-repeat',
-          willChange: 'transform',
-        }}
-      ></div>
-      <div className="container mx-auto px-4 md:px-8 lg:px-10 relative z-10">
+    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="container mx-auto px-4 md:px-8 lg:px-10">
         <div className="flex flex-col items-center gap-12">
+
           {/* Цитата */}
           <div
             className={`transition-all duration-700 text-center max-w-3xl ${
