@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -45,7 +44,7 @@ const ProblemsSection = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
