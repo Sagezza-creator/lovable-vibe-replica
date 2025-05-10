@@ -33,33 +33,69 @@ const steps: Step[] = [
 ];
 
 const ApproachSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const elementsRef = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          const element = entry.target as HTMLElement;
+          if (entry.isIntersecting) {
+            if (!element.dataset.animated) {
+              element.style.animationPlayState = 'running';
+              element.dataset.animated = 'true';
+            }
+          }
+        });
       },
-      { threshold: 0.1 }
+      {
+        threshold: 0.05,
+        rootMargin: '0px 0px -20% 0px'
+      }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    const currentElements = elementsRef.current;
+    currentElements.forEach((el) => el && observer.observe(el));
 
     return () => {
-      observer.disconnect();
+      currentElements.forEach((el) => el && observer.unobserve(el));
     };
   }, []);
 
+  const getDelay = (index: number) => {
+    return index * 0.1; // Постепенное увеличение задержки для каждого элемента
+  };
+
   return (
-    <section ref={sectionRef} className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
+      <style jsx>{`
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-on-scroll {
+          animation: fadeUp 0.6s both;
+          animation-play-state: paused;
+        }
+      `}</style>
+
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        {/* Заголовок */}
+        <div
+          ref={(el) => (elementsRef.current[0] = el)}
+          className="max-w-3xl mx-auto text-center mb-16 animate-on-scroll"
+          style={{
+            '--delay': '0.1s',
+            opacity: 0,
+            animationDelay: 'var(--delay)'
+          } as React.CSSProperties}
+        >
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
             Как я решаю проблемы
           </h2>
@@ -68,14 +104,20 @@ const ApproachSection = () => {
           </p>
         </div>
 
+        {/* Карточки с шагами */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {steps.map((step, index) => (
             <Card 
-              key={step.id} 
-              className={`border border-gray-100 shadow-md transition-all duration-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              key={step.id}
+              ref={(el) => (elementsRef.current[index + 1] = el)}
+              className={`border border-gray-100 shadow-md animate-on-scroll ${
+                index % 2 === 0 ? 'md:translate-y-10' : 'md:-translate-y-10'
               }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              style={{
+                '--delay': `${getDelay(index)}s`,
+                opacity: 0,
+                animationDelay: 'var(--delay)'
+              } as React.CSSProperties}
             >
               <CardContent className="p-6">
                 <div className="flex items-center gap-4 mb-4">
@@ -90,7 +132,16 @@ const ApproachSection = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-brand-50 to-cyan-50 rounded-xl p-8 md:p-10 shadow-md">
+        {/* Нижний блок с кнопкой */}
+        <div
+          ref={(el) => (elementsRef.current[steps.length + 1] = el)}
+          className="bg-gradient-to-r from-brand-50 to-cyan-50 rounded-xl p-8 md:p-10 shadow-md animate-on-scroll"
+          style={{
+            '--delay': '0.5s',
+            opacity: 0,
+            animationDelay: 'var(--delay)'
+          } as React.CSSProperties}
+        >
           <div className="flex flex-col md:flex-row items-stretch justify-between gap-6">
             <div className="flex-1 max-w-lg">
               <h3 className="text-2xl font-bold mb-4 text-gray-800">Хотите узнать больше о научной основе метода?</h3>
