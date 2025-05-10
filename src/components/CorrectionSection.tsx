@@ -29,8 +29,8 @@ const CorrectionSection = () => {
   return (
     <section ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
-        {/* Увеличил max-w-3xl до max-w-4xl для более широкого контейнера */}
-        <div className="max-w-4xl mx-auto">
+        {/* Установил такую же ширину как в верхней секции - max-w-3xl */}
+        <div className="max-w-3xl mx-auto">
           {/* Заголовок по центру */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
@@ -41,49 +41,45 @@ const CorrectionSection = () => {
             </p>
           </div>
 
-          {/* Изменил соотношение ширины: текст 60%, изображение 40% */}
-          <div className="flex flex-col md:flex-row gap-8 items-stretch">
-            {/* Текст - увеличен до 60% ширины */}
-            <div className="md:w-[60%] flex flex-col justify-center">
-              <div className={`space-y-6 text-gray-700 transition-all duration-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}>
-                <p>
-                  Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
-                </p>
-                <p>
-                  В процессе коррекции мы находим нейронные связи, ассоциированные со стрессом и негативным опытом, нейтрализуем их влияние и создаем новые, здоровые модели поведения. Это позволяет разорвать повторяющиеся поведенческие шаблоны (измены, болезни, неудачи), обрести эмоциональную свободу и уверенно принимать решения.
-                </p>
-                <p className="font-medium">
-                  Одна нейрокоррекция длится 3–5 часов и проходит в комфортной обстановке через структурированный диалог. Без специальной подготовки Вы освободитесь от негативных подсознательных программ и избавитесь от стресса, копившегося всю жизнь.
-                </p>
-              </div>
-
-              {/* Кнопка */}
-              <div className={`mt-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
-                <Button asChild variant="outline" className="group border-yellow-300 text-yellow-700 hover:bg-yellow-50">
-                  <Link to="/correction">
-                    Узнать больше о коррекции
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 group-hover:translate-x-1 transition-transform">
-                      <path d="M5 12h14" />
-                      <path d="m12 5 7 7-7 7" />
-                    </svg>
-                  </Link>
-                </Button>
-              </div>
+          {/* Контент в одну колонку как в верхней секции */}
+          <div className="flex flex-col gap-8">
+            {/* Текст */}
+            <div className={`space-y-6 text-gray-700 transition-all duration-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              <p>
+                Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
+              </p>
+              <p>
+                В процессе коррекции мы находим нейронные связи, ассоциированные со стрессом и негативным опытом, нейтрализуем их влияние и создаем новые, здоровые модели поведения. Это позволяет разорвать повторяющиеся поведенческие шаблоны (измены, болезни, неудачи), обрести эмоциональную свободу и уверенно принимать решения.
+              </p>
+              <p className="font-medium">
+                Одна нейрокоррекция длится 3–5 часов и проходит в комфортной обстановке через структурированный диалог. Без специальной подготовки Вы освободитесь от негативных подсознательных программ и избавитесь от стресса, копившегося всю жизнь.
+              </p>
             </div>
 
-            {/* Изображение - уменьшено до 40% и выровнено по правому краю */}
-            <div className="md:w-[40%] flex items-center justify-end">
-              <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-500 w-full max-w-[400px] ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`} style={{ animationDelay: '0.2s' }}>
-                <img 
-                  src="https://svobodarazuma.ru/Images/correction.jpg" 
-                  alt="Нейрокоррекция" 
-                  className="w-full h-auto object-cover rounded-lg"
-                />
-              </div>
+            {/* Изображение - теперь на всю ширину как в верхней секции */}
+            <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-500 w-full ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`} style={{ animationDelay: '0.2s' }}>
+              <img 
+                src="https://svobodarazuma.ru/Images/correction.jpg" 
+                alt="Нейрокоррекция" 
+                className="w-full h-auto object-cover rounded-lg"
+              />
+            </div>
+
+            {/* Кнопка */}
+            <div className={`mt-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
+              <Button asChild variant="outline" className="group border-yellow-300 text-yellow-700 hover:bg-yellow-50 mx-auto">
+                <Link to="/correction">
+                  Узнать больше о коррекции
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2 group-hover:translate-x-1 transition-transform">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
