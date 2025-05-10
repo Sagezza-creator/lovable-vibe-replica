@@ -96,7 +96,7 @@ const ComparisonSection = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Заголовки таблицы */}
           <div
             ref={(el) => (elementsRef.current[1] = el)}
@@ -129,20 +129,20 @@ const ComparisonSection = () => {
             <div
               key={index}
               ref={(el) => (elementsRef.current[2 + index] = el)}
-              className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start mb-6 animate-on-scroll"
+              className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-6 animate-on-scroll"
               style={{
                 '--delay': `${getDelay(index)}s`,
                 opacity: 0,
                 animationDelay: 'var(--delay)',
               } as React.CSSProperties}
             >
-              <div>
+              <div className="text-center">
                 <h4 className="font-semibold text-lg">{row.title}</h4>
               </div>
-              <div className="bg-brand-50 rounded-lg py-4 px-6">
+              <div className="flex justify-center items-center bg-brand-50 rounded-lg py-4 px-6 h-full">
                 <p className="text-brand-700">{row.myApproach}</p>
               </div>
-              <div className="bg-gray-100 rounded-lg py-4 px-6">
+              <div className="flex justify-center items-center bg-gray-100 rounded-lg py-4 px-6 h-full">
                 <p className="text-gray-700">{row.traditional}</p>
               </div>
             </div>
