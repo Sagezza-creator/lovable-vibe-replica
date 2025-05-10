@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
@@ -28,12 +27,12 @@ const CorrectionSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-transparent">
+    <section ref={sectionRef} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Заголовок по центру */}
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold gradient-heading mb-2">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
               Нейрокоррекция
             </h2>
             <p className="text-lg text-gray-700">
@@ -41,28 +40,22 @@ const CorrectionSection = () => {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            {/* Текст в левой половине */}
-            <div className="md:w-1/2">
-              <Card 
-                className={`border border-yellow-100 shadow-md transition-all duration-500 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-              >
-                <CardContent className="p-6">
-                  <div className="space-y-4 text-gray-700">
-                    <p>
-                      Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
-                    </p>
-                    <p>
-                      В процессе коррекции мы находим нейронные связи, ассоциированные со стрессом и негативным опытом, нейтрализуем их влияние и создаем новые, здоровые модели поведения. Это позволяет разорвать повторяющиеся поведенческие шаблоны (измены, болезни, неудачи), обрести эмоциональную свободу и уверенно принимать решения.
-                    </p>
-                    <p className="font-medium">
-                      Одна нейрокоррекция длится 3–5 часов и проходит в комфортной обстановке через структурированный диалог. Без специальной подготовки Вы освободитесь от негативных подсознательных программ и избавитесь от стресса, копившегося всю жизнь.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+          <div className="flex flex-col md:flex-row gap-8 items-stretch">
+            {/* Текст в левой половине - выровнен по центру */}
+            <div className="md:w-1/2 flex flex-col justify-center">
+              <div className={`space-y-6 text-gray-700 transition-all duration-500 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}>
+                <p>
+                  Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
+                </p>
+                <p>
+                  В процессе коррекции мы находим нейронные связи, ассоциированные со стрессом и негативным опытом, нейтрализуем их влияние и создаем новые, здоровые модели поведения. Это позволяет разорвать повторяющиеся поведенческие шаблоны (измены, болезни, неудачи), обрести эмоциональную свободу и уверенно принимать решения.
+                </p>
+                <p className="font-medium">
+                  Одна нейрокоррекция длится 3–5 часов и проходит в комфортной обстановке через структурированный диалог. Без специальной подготовки Вы освободитесь от негативных подсознательных программ и избавитесь от стресса, копившегося всю жизнь.
+                </p>
+              </div>
 
               {/* Кнопка */}
               <div className={`mt-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`} style={{ animationDelay: '0.3s' }}>
@@ -79,8 +72,8 @@ const CorrectionSection = () => {
             </div>
 
             {/* Изображение в правой половине */}
-            <div className="md:w-1/2">
-              <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-500 ${
+            <div className="md:w-1/2 flex items-center">
+              <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-500 w-full ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`} style={{ animationDelay: '0.2s' }}>
                 <img 
