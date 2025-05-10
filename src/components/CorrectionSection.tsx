@@ -42,7 +42,7 @@ const CorrectionSection = () => {
 
           <div className="flex flex-col md:flex-row gap-8 items-stretch">
             {/* Текст в левой половине - выровнен по центру */}
-            <div className="md:w-1/2 flex flex-col justify-center">
+            <div className="md:w-1 flex flex-col justify-center">
               <div className={`space-y-6 text-gray-700 transition-all duration-500 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}>
