@@ -137,7 +137,7 @@ const ComparisonSection = () => {
             <div
               key={index}
               ref={(el) => (elementsRef.current[2 + index] = el)}
-              className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-6 animate-on-scroll"
+              className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start mb-6 animate-on-scroll"
               style={{
                 '--delay': `${getDelay(index)}s`,
                 opacity: 0,
