@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
     <>
-      <HeroSection />
+      <AboutSection />
       
       {/* Background image container */}
       <div className="relative">
