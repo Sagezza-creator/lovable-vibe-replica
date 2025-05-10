@@ -43,14 +43,21 @@ const problems: Problem[] = [
 const ProblemsSection = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
+  // Функция для расчета задержки в зависимости от позиции карточки
+  const getDelay = (index: number) => {
+    // Для первой строки: 0.4, 0.5, 0.6
+    // Для второй строки: 0.7, 0.8, 0.9
+    return 0.4 + (Math.floor(index / 3) * 0.3) + (index % 3) * 0.1;
+  };
+
   return (
     <section className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6 animate-fade-in-up animation-delay-200">
+        <div className="text-center max-w-3xl mx-auto mb-16 opacity-0 animate-fade-up" style={{ animationDelay: '0.2s' }}>
+          <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
             Какие проблемы я решаю
           </h2>
-          <p className="text-lg text-gray-700 animate-fade-in-up animation-delay-200">
+          <p className="text-lg text-gray-700">
             Чувствуете, что застряли в одной и той же ситуации? Я помогу найти и устранить причину на уровне подсознания.
           </p>
         </div>
@@ -59,10 +66,13 @@ const ProblemsSection = () => {
           {problems.map((problem, index) => (
             <Card 
               key={problem.id} 
-              className={`border-0 shadow-md opacity-0 animate-fade-in-up overflow-hidden transition-all duration-300 hover:shadow-lg ${
+              className={`border-0 shadow-md opacity-0 animate-fade-up overflow-hidden transition-all duration-300 hover:shadow-lg ${
                 activeCard === problem.id ? 'ring-2 ring-primary' : 'hover:scale-[1.02]'
               }`}
-              style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+              style={{ 
+                animationDelay: `${getDelay(index)}s`,
+                animationFillMode: 'forwards'
+              }}
               onMouseEnter={() => setActiveCard(problem.id)}
               onMouseLeave={() => setActiveCard(null)}
             >
