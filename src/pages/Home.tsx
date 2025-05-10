@@ -53,7 +53,7 @@ const Home = () => {
         {/* Parallax background image */}
         <div 
           ref={parallaxRef}
-          className="absolute inset-0 w-full h-[200%] z-0 pointer-events-none"
+          className="absolute inset-0 w-full h-[400%] z-0 pointer-events-none"
           style={{
             backgroundImage: "url('https://svobodarazuma.ru/Images/Font%20main%20screen.jpg')",
             backgroundSize: 'cover',
