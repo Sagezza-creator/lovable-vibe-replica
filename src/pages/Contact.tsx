@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import ContactSection from '@/components/ContactSection';
 
@@ -14,10 +13,10 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
-              Контакты
+              Свяжитесь со мной
             </h1>
             <p className="text-lg md:text-xl text-gray-700">
-              Свяжитесь со мной, чтобы начать путь к свободе разума
+              Напишите в Telegram или оставьте заявку через сайт
             </p>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Phone, MessageSquare, Send } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 interface FormData {
@@ -19,7 +19,6 @@ const ContactSection = () => {
   const { toast } = useToast();
 
   const onSubmit = async (data: FormData) => {
-    // Проверка интервала между отправками
     if (Date.now() - lastSubmitTime < 30000) {
       toast({
         title: "Подождите",
@@ -32,7 +31,6 @@ const ContactSection = () => {
     setIsSubmitting(true);
     setLastSubmitTime(Date.now());
     
-    // Показываем уведомление о начале отправки
     toast({
       title: "Отправка запроса",
       description: "Запрос отправлен, ожидайте ответа",
@@ -48,7 +46,6 @@ const ContactSection = () => {
         body: JSON.stringify(data),
       });
 
-      // Обрабатываем случаи, когда fetch завершается с ошибкой
       if (!response.ok) {
         throw new Error(response.statusText || 'Ошибка сети');
       }
@@ -67,7 +64,6 @@ const ContactSection = () => {
       
       reset();
     } catch (error) {
-      // Не показываем ошибку, если сообщение дошло в Telegram
       console.error('Ошибка отправки:', error);
     } finally {
       setIsSubmitting(false);
@@ -77,78 +73,55 @@ const ContactSection = () => {
   return (
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
-            Свяжитесь со мной
-          </h2>
-          <p className="text-lg text-gray-700">
-            Напишите мне, и мы начнем путь к вашей свободе
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+          {/* Левая колонка: Как связаться */}
           <div>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">Контактная информация</h3>
-                <div className="space-y-4">
-                  <a 
-                    href="tel:+79319967590" 
-                    className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="h-10 w-10 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center">
-                      <Phone size={20} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Телефон</p>
-                      <p className="text-gray-800 font-medium">+7 931 996 7590</p>
-                    </div>
-                  </a>
-                  
-                  <a 
-                    href="https://t.me/SVOBODA_RAZUMA_BLOG" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    <div className="h-10 w-10 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center">
-                      <MessageSquare size={20} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Telegram</p>
-                      <p className="text-gray-800 font-medium">@SVOBODA_RAZUMA_BLOG</p>
-                    </div>
-                  </a>
+            <h2 className="text-2xl font-bold mb-6 text-gray-800">Как связаться</h2>
+            <div className="space-y-6">
+              <a
+                href="https://t.me/Intelligence_client_bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <div className="h-10 w-10 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center">
+                  <MessageSquare size={20} />
                 </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">Что происходит после обращения?</h3>
-                <ol className="space-y-4">
-                  <li className="flex gap-3">
-                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-semibold text-sm">
-                      1
-                    </div>
-                    <p className="text-gray-600">Я свяжусь с вами в течение 24 часов</p>
-                  </li>
-                  <li className="flex gap-3">
-                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-semibold text-sm">
-                      2
-                    </div>
-                    <p className="text-gray-600">Проведем короткую бесплатную консультацию</p>
-                  </li>
-                  <li className="flex gap-3">
-                    <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-semibold text-sm">
-                      3
-                    </div>
-                    <p className="text-gray-600">Согласуем время для первого сеанса</p>
-                  </li>
-                </ol>
+                <div>
+                  <p className="text-gray-800 font-medium">Чат-бот Telegram</p>
+                  <p className="text-sm text-gray-500">@Intelligence_client_bot</p>
+                </div>
+              </a>
+
+              <a
+                href="https://t.me/SVOBODA_RAZUMA_BLOG"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <div className="h-10 w-10 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center">
+                  <MessageSquare size={20} />
+                </div>
+                <div>
+                  <p className="text-gray-800 font-medium">Канал Telegram: Свобода разума</p>
+                  <p className="text-sm text-gray-500">@SVOBODA_RAZUMA_BLOG</p>
+                </div>
+              </a>
+
+              <div className="space-y-4">
+                <p className="text-gray-600">Отсканируйте QR-код для перехода в чат-бот</p>
+                <img
+                  src="/path/to/qr-code.png"
+                  alt="QR-код для чат-бота Telegram"
+                  className="w-32 h-32 mx-auto"
+                />
               </div>
             </div>
           </div>
 
+          {/* Центральная колонка: Оставить заявку */}
           <div>
+            <h2 className="text-2xl font-bold mb-6 text-gray-800">Оставить заявку</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 p-6 bg-gray-50 rounded-lg shadow-sm">
               <div className="space-y-2">
                 <Label htmlFor="name">Ваше имя</Label>
@@ -205,11 +178,38 @@ const ContactSection = () => {
                   "Отправка..." : 
                   <>
                     <span>Отправить сообщение</span>
-                    <Send size={16} className="ml-2" />
+                    <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                    </svg>
                   </>
                 }
               </Button>
             </form>
+          </div>
+
+          {/* Правая колонка: Что происходит после обращения */}
+          <div>
+            <h2 className="text-2xl font-bold mb-6 text-gray-800">Что происходит после обращения?</h2>
+            <ol className="space-y-4">
+              <li className="flex gap-3">
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-semibold text-sm">
+                  1
+                </div>
+                <p className="text-gray-600">Я свяжусь с вами в течение 24 часов</p>
+              </li>
+              <li className="flex gap-3">
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-semibold text-sm">
+                  2
+                </div>
+                <p className="text-gray-600">Проведем короткую бесплатную консультацию</p>
+              </li>
+              <li className="flex gap-3">
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center font-semibold text-sm">
+                  3
+                </div>
+                <p className="text-gray-600">Согласуем время для первого сеанса</p>
+              </li>
+            </ol>
           </div>
         </div>
       </div>
