@@ -8,8 +8,8 @@ import ComparisonSection from '@/components/ComparisonSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import FAQSection from '@/components/FAQSection';
 import CallToAction from '@/components/CallToAction';
-import MatricesSection from '@/components/MatricesSection';
 import CorrectionSection from '@/components/CorrectionSection';
+import MatricesSection from '@/components/MatricesSection';
 
 const Home = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -40,7 +40,7 @@ const Home = () => {
 
   return (
     <>
-      <AboutSection />
+      <HeroSection />
       
       {/* Background image container */}
       <div className="relative">
