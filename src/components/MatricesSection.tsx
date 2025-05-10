@@ -34,7 +34,7 @@ const MatricesSection = () => {
           {/* Заголовок по центру с анимацией снизу вверх */}
           <div className={`text-center mb-16 transition-all duration-700 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`} style={{ transitionDelay: '0.1s' }}>
+          }`} style={{ transitionDelay: '0.2s' }}>
             <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
               Матрицы зачатия
             </h2>
@@ -49,7 +49,7 @@ const MatricesSection = () => {
             <div className="md:w-[400px] flex items-center">
               <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-700 ease-out w-full ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-              }`} style={{ transitionDelay: '0.2s' }}>
+              }`} style={{ transitionDelay: '0.4s' }}>
                 <img 
                   src="https://www.svobodarazuma.ru/Images/MatrixHome.jpg" 
                   alt="Матрицы зачатия" 
@@ -62,7 +62,7 @@ const MatricesSection = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className={`space-y-6 text-gray-700 transition-all duration-700 ease-out ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-              }`} style={{ transitionDelay: '0.3s' }}>
+              }`} style={{ transitionDelay: '0.6s' }}>
                 <p>
                   Матрицы зачатия — это клеточная память опыта, полученного во время зачатия, внутриутробного развития и рождения, которая хранится в каждой клетке вашего тела. Эта память формирует основу ваших подсознательных поведенческих паттернов, психологических проблем и жизненных вызовов.
                 </p>
@@ -77,7 +77,7 @@ const MatricesSection = () => {
               {/* Кнопка - анимация справа налево */}
               <div className={`mt-8 transition-all duration-700 ease-out ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-              }`} style={{ transitionDelay: '0.5s' }}>
+              }`} style={{ transitionDelay: '0.8s' }}>
                 <Button asChild variant="outline" className="group border-lavender-300 text-lavender-700 hover:bg-lavender-50">
                   <Link to="/conception-matrices">
                     Узнать больше о матрицах зачатия

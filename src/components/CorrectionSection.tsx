@@ -48,14 +48,14 @@ const CorrectionSection = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className={`space-y-6 text-gray-700 transition-all duration-700 ease-out ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-              }`} style={{ transitionDelay: '0.4s' }}>
+              }`} style={{ transitionDelay: '0.6s' }}>
                 <p>
                   Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
                 </p>
                 <p>
                   В процессе коррекции мы находим нейронные связи, ассоциированные со стрессом и негативным опытом, нейтрализуем их влияние и создаем новые, здоровые модели поведения. Это позволяет разорвать повторяющиеся поведенческие шаблоны (измены, болезни, неудачи), обрести эмоциональную свободу и уверенно принимать решения.
                 </p>
-                <p className="font-medium">
+                <p className="font-medium bg-yellow-700 p-4 rounded-lg border border-yellow-300">
                   Одна нейрокоррекция длится 3–5 часов и проходит в комфортной обстановке через структурированный диалог. Без специальной подготовки Вы освободитесь от негативных подсознательных программ и избавитесь от стресса, копившегося всю жизнь.
                 </p>
               </div>
@@ -63,7 +63,7 @@ const CorrectionSection = () => {
               {/* Кнопка - анимация слева направо */}
               <div className={`mt-8 transition-all duration-700 ease-out ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-              }`} style={{ transitionDelay: '0,4s' }}>
+              }`} style={{ transitionDelay: '0.8s' }}>
                 <Button asChild variant="outline" className="group border-yellow-300 text-yellow-700 hover:bg-yellow-50">
                   <Link to="/correction">
                     Узнать больше о коррекции
@@ -80,7 +80,7 @@ const CorrectionSection = () => {
             <div className="md:w-[400px] flex items-center justify-end">
               <div className={`rounded-lg overflow-hidden shadow-md transition-all duration-700 ease-out w-full ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-              }`} style={{ transitionDelay: '0.6s' }}>
+              }`} style={{ transitionDelay: '0.4s' }}>
                 <img 
                   src="https://svobodarazuma.ru/Images/correction.jpg" 
                   alt="Нейрокоррекция" 
