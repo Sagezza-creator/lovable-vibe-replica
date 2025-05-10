@@ -40,29 +40,21 @@ const ComparisonSection = () => {
       title: 'Глубина воздействия',
       myApproach: 'Работа с корневыми причинами в подсознании',
       traditional: 'Работа в основном с симптомами на уровне сознания',
-      myApproachIcon: <Check className="inline-block text-green-500 mr-2" />,
-      traditionalIcon: <X className="inline-block text-red-500 mr-2" />,
     },
     {
       title: 'Стойкость результата',
       myApproach: 'Постоянное устранение проблем без возврата',
       traditional: 'Проблемы могут возвращаться при стрессе',
-      myApproachIcon: <Check className="inline-block text-green-500 mr-2" />,
-      traditionalIcon: <X className="inline-block text-red-500 mr-2" />,
     },
     {
       title: 'Скорость достижения результата',
       myApproach: 'Видимые изменения за 1–3 коррекции',
       traditional: 'Может потребоваться месяцы или годы',
-      myApproachIcon: <Check className="inline-block text-green-500 mr-2" />,
-      traditionalIcon: <X className="inline-block text-red-500 mr-2" />,
     },
     {
       title: 'Основа метода',
       myApproach: 'Современные исследования в науке',
       traditional: 'Классические психологические теории',
-      myApproachIcon: <Check className="inline-block text-green-500 mr-2" />,
-      traditionalIcon: <X className="inline-block text-red-500 mr-2" />,
     },
   ];
 
@@ -148,16 +140,10 @@ const ComparisonSection = () => {
                 <h4 className="font-semibold text-lg">{row.title}</h4>
               </div>
               <div className="flex justify-center items-center bg-brand-50 rounded-lg py-4 px-6 h-full">
-                <div className="flex items-center justify-center">
-                  {row.myApproachIcon}
-                  <p className="text-brand-700">{row.myApproach}</p>
-                </div>
+                <p className="text-brand-700">{row.myApproach}</p>
               </div>
               <div className="flex justify-center items-center bg-gray-100 rounded-lg py-4 px-6 h-full">
-                <div className="flex items-center justify-center">
-                  {row.traditionalIcon}
-                  <p className="text-gray-700">{row.traditional}</p>
-                </div>
+                <p className="text-gray-700">{row.traditional}</p>
               </div>
             </div>
           ))}
