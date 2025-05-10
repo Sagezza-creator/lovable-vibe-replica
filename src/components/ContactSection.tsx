@@ -112,7 +112,7 @@ const ContactSection = () => {
               </div>
               <p className="mt-6 text-gray-600">Отсканируйте QR-код для перехода в чат-бот:</p>
               <img 
-                src="https://www/svobodarazuma.ru/Images/QRbot.jpg" 
+                src="https://svobodarazuma.ru/Images/QRbot.jpg" 
                 alt="QR-код для Telegram чат-бота" 
                 className="mt-4 w-32 h-32"
               />
