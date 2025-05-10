@@ -108,7 +108,7 @@ const ReviewsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section ref={sectionRef} className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
@@ -128,7 +128,7 @@ const ReviewsSection = () => {
               >
                 {reviews.map((review) => (
                   <div key={review.id} className="w-full flex-shrink-0">
-                    <Card className="border-0 shadow-lg bg-white">
+                    <Card className="border-0 shadow-lg bg-white/90 backdrop-blur-sm">
                       <CardContent className="p-8">
                         <div className="flex items-center gap-1 mb-4">
                           {renderStars(review.stars)}

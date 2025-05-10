@@ -1,3 +1,4 @@
+
 import { Check, X } from 'lucide-react';
 
 const ComparisonSection = () => {
@@ -19,12 +20,12 @@ const ComparisonSection = () => {
               {/* Пустая колонка для десктопа */}
             </div>
             <div className="hidden lg:block text-center">
-              <div className="bg-brand-50 rounded-t-lg py-4 px-6">
+              <div className="bg-brand-50/80 backdrop-blur-sm rounded-t-lg py-4 px-6">
                 <h3 className="font-bold text-xl text-brand-600">Мой подход</h3>
               </div>
             </div>
             <div className="hidden lg:block text-center">
-              <div className="bg-gray-100 rounded-t-lg py-4 px-6">
+              <div className="bg-gray-100/80 backdrop-blur-sm rounded-t-lg py-4 px-6">
                 <h3 className="font-bold text-xl text-gray-600">Традиционная психология</h3>
               </div>
             </div>
@@ -40,7 +41,7 @@ const ComparisonSection = () => {
           {/* Строки сравнения */}
           <div className="space-y-6">
             {/* Строка 1 */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-gray-50/80 backdrop-blur-sm rounded-lg">
               <div className="font-medium text-gray-800">
                 <h4 className="lg:hidden font-bold text-lg mb-4">Глубина воздействия</h4>
                 <p>Глубина воздействия</p>
@@ -62,7 +63,7 @@ const ComparisonSection = () => {
             </div>
             
             {/* Строка 2 */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-white rounded-lg border">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-lg border">
               <div className="font-medium text-gray-800">
                 <h4 className="lg:hidden font-bold text-lg mb-4">Стойкость результата</h4>
                 <p>Стойкость результата</p>
@@ -84,7 +85,7 @@ const ComparisonSection = () => {
             </div>
             
             {/* Строка 3 */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-gray-50/80 backdrop-blur-sm rounded-lg">
               <div className="font-medium text-gray-800">
                 <h4 className="lg:hidden font-bold text-lg mb-4">Скорость достижения результата</h4>
                 <p>Скорость достижения результата</p>
@@ -106,7 +107,7 @@ const ComparisonSection = () => {
             </div>
             
             {/* Строка 4 */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-white rounded-lg border">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-lg border">
               <div className="font-medium text-gray-800">
                 <h4 className="lg:hidden font-bold text-lg mb-4">Основа метода</h4>
                 <p>Основа метода</p>
