@@ -89,7 +89,6 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-gray-800 font-medium">Чат-бот Telegram</p>
-                  <p className="text-sm text-gray-500">@Intelligence_client_bot</p>
                 </div>
               </a>
 
@@ -104,7 +103,6 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="text-gray-800 font-medium">Канал Telegram: Свобода разума</p>
-                  <p className="text-sm text-gray-500">@SVOBODA_RAZUMA_BLOG</p>
                 </div>
               </a>
 
