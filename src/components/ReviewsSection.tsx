@@ -160,7 +160,7 @@ const ReviewsSection = () => {
                 {reviews.map((review) => (
                   <div key={review.id} className="w-full flex-shrink-0 px-2">
                     <div className="relative">
-                      {/* Эффект тени */}
+                      {/* Эффект тени под контейнером */}
                       <div className="absolute inset-0 rounded-xl shadow-2xl opacity-20 pointer-events-none"></div>
                       <Card className="border-0 shadow-lg bg-gradient-to-r from-brand-50 to-cyan-50 relative z-10 hover:shadow-xl transition-shadow duration-300">
                         <CardContent className="p-8">
@@ -170,7 +170,7 @@ const ReviewsSection = () => {
 
                           <blockquote className="mb-6">
                             <p className="text-xl italic text-gray-700 mb-4">
-                              "Я {review.sessions > 1 ? `всего за ${review.sessions} сеанса` : `всего за ${review.sessions} сеанс`} избавилась от {review.problem}. {review.solution}"
+                              "Я {review.sessions > 1 ? `всего за ${review.sessions} сеанса` : `всего за ${review.sessions} сеанс`} избавился от {review.problem}. {review.solution}"
                             </p>
                           </blockquote>
 
