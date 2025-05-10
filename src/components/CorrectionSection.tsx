@@ -33,7 +33,7 @@ const CorrectionSection = () => {
           {/* Заголовок по центру с анимацией снизу вверх */}
           <div className={`text-center mb-16 transition-all duration-700 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`} style={{ transitionDelay: '0.5s' }}>
+          }`} style={{ transitionDelay: '0.2s' }}>
             <h2 className="text-3xl md:text-4xl font-bold gradient-heading mb-6">
               Нейрокоррекция
             </h2>
@@ -48,7 +48,7 @@ const CorrectionSection = () => {
             <div className="flex-1 flex flex-col justify-center">
               <div className={`space-y-6 text-gray-700 transition-all duration-700 ease-out ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-              }`} style={{ transitionDelay: '1s' }}>
+              }`} style={{ transitionDelay: '0,6s' }}>
                 <p>
                   Нейрокоррекция — это целенаправленный процесс, использующий научные открытия в области эпигенетики, нейропластичности и нейрохимии для выявления и деактивации подсознательных программ, вызывающих стресс, страх или дисгармонию в вашей жизни.
                 </p>
@@ -63,7 +63,7 @@ const CorrectionSection = () => {
               {/* Кнопка - анимация слева направо */}
               <div className={`mt-8 transition-all duration-700 ease-out ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-              }`} style={{ transitionDelay: '1s' }}>
+              }`} style={{ transitionDelay: '0,4s' }}>
                 <Button asChild variant="outline" className="group border-yellow-300 text-yellow-700 hover:bg-yellow-50">
                   <Link to="/correction">
                     Узнать больше о коррекции
