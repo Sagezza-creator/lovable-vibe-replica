@@ -22,6 +22,12 @@ const Approach = () => {
           }
           .animate-section {
             animation: fadeUp 0.6s ease-out forwards;
+            }
+    .gradient-heading {
+      background: linear-gradient(to right, #2563eb, #22d3ee);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
           }
         `}
       </style>
@@ -30,7 +36,7 @@ const Approach = () => {
       <div className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center animate-section">
-            <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
               Как это работает?
             </h1>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
@@ -45,9 +51,10 @@ const Approach = () => {
           <div className="max-w-6xl mx-auto">
             {/* Как формируются блоки */}
             <div className="animate-section mb-16">
-              <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
-                Как формируются блоки в нашем мозге
-              </h2>
+                  <h3 className="text-xl font-semibold mb-4 gradient-heading flex items-center">
+                    <CheckCircle className="mr-2" size={24} />
+                    Так работают все наши проблемы:
+                  </h3>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 <div className="lg:col-span-2">
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
@@ -80,15 +87,15 @@ const Approach = () => {
 
             {/* Почему возникают проблемы */}
             <div className="animate-section mb-16">
-              <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
-                Почему возникают проблемы?
-              </h2>
+                  <h2 className="text-3xl font-bold mb-8 gradient-heading text-center">
+                    Почему возникают проблемы?
+                  </h2>
               <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10">
                 <CardContent className="p-0">
-                  <h3 className="text-xl font-semibold mb-4 text-gray-800 flex items-center">
-                    <Users className="mr-2 text-blue-500" size={24} />
-                    Разум как компьютер с двумя операционными системами
-                  </h3>
+                      <h3 className="text-xl font-semibold mb-4 gradient-heading flex items-center">
+                        <Users className="mr-2 text-blue-500" size={24} />
+                        Разум как компьютер с двумя операционными системами
+                      </h3>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="lg:col-span-2">
                       <p className="text-gray-600 mb-4">
@@ -110,9 +117,9 @@ const Approach = () => {
                   </div>
                 </CardContent>
               </Card>
-              <h3 className="text-xl font-semibold mb-4 text-gray-800">
-                Как формируются подсознательные блоки
-              </h3>
+                    <h3 className="text-xl font-semibold mb-4 gradient-heading">
+                      Как формируются подсознательные блоки
+                    </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 Каждый раз, когда мы переживаем стрессовую ситуацию, наш мозг создает особую нейронную связь. Эта связь работает как защитный механизм — "если снова возникнет подобная ситуация, нужно ее избежать". В результате формируются автоматические реакции:
               </p>
@@ -144,9 +151,9 @@ const Approach = () => {
 
             {/* Метод работы */}
             <div className="animate-section mb-16">
-              <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
-                Мой метод работы с подсознанием
-              </h2>
+                    <h2 className="text-3xl font-bold mb-8 gradient-heading text-center">
+                      Мой метод работы с подсознанием
+                    </h2>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 <div className="lg:col-span-2">
                   <h3 className="text-xl font-semibold mb-4 text-gray-800">
