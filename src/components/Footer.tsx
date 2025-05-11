@@ -18,20 +18,20 @@ const Footer = () => {
               <span className="text-lg font-medium">Свобода разума</span>
             </div>
             <p className="text-gray-600 mb-4">
-              Нетипичный подход к психологической помощи, основанный на работе с подсознанием.
+              Инновационный подход к психологической помощи, основанный на работе с подсознанием.
             </p>
             <div className="flex flex-col gap-2">
               <a href="tel:+79319967590" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
-                <Telegram size={18} />
-                Telegram-бот для записи
+                <Phone size={18} />
+                +7 931 996 7590
               </a>
               <a href="https://t.me/SVOBODA_RAZUMA_BLOG" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
-                <Telegram size={18} />
-                Telegram канал "Свобода разума"
+                <MessageSquare size={18} />
+                @SVOBODA_RAZUMA_BLOG
               </a>
-              <a href="https://www.youtube.com/@Свобода_разума" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
-                <YouTube size={18} />
-                YouTube
+              <a href="https://t.me/SVOBODA_RAZUMA_BLOG" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+                <MessageSquare size={18} />
+                Блог в Telegram
               </a>
             </div>
           </div>
@@ -42,8 +42,8 @@ const Footer = () => {
               <Link to="/" className="text-gray-600 hover:text-brand-500 transition-colors">Главная</Link>
               <Link to="/about" className="text-gray-600 hover:text-brand-500 transition-colors">Обо мне</Link>
               <Link to="/approach" className="text-gray-600 hover:text-brand-500 transition-colors">Как это работает?</Link>
-              <Link to="/correction" className="text-gray-600 hover:text-brand-500 transition-colors">Коррекция</Link>             
               <Link to="/conception-matrices" className="text-gray-600 hover:text-brand-500 transition-colors">Матрицы зачатия</Link>
+              <Link to="/correction" className="text-gray-600 hover:text-brand-500 transition-colors">Коррекция</Link>
               <Link to="/problems" className="text-gray-600 hover:text-brand-500 transition-colors">Какие проблемы решаю</Link>
               <Link to="/reviews" className="text-gray-600 hover:text-brand-500 transition-colors">Отзывы</Link>
               <Link to="/contact" className="text-gray-600 hover:text-brand-500 transition-colors">Контакты</Link>
