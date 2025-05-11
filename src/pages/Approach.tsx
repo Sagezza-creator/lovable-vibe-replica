@@ -217,9 +217,8 @@ const Approach = () => {
             </div>
 
               {/* CTA Button */}
-              <div className="flex justify-start mt-12 mb-10 animate-section">
-                <div className="w-full lg:w-1/2">
-                  <div className="flex justify-center">
+                  <div className="mt-12 mb-10 animate-section" style={{ marginLeft: '25%', width: '50%' }}>
+                    <div className="flex justify-center">
                     <Button
                       asChild
                       size="lg"
