@@ -62,7 +62,7 @@ const Correction = () => {
               ref={parallaxRef2}
               className="absolute top-0 left-0 w-full h-[200vh] bg-cover bg-top z-[-2]"
               style={{
-                backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont2.png')`,
+                backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont2.jpg')`,
                 transform: 'translateY(0)',
                 clipPath: 'inset(0 0 0 0)',
               }}
