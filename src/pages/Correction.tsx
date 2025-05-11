@@ -238,7 +238,7 @@ const Correction = () => {
                   </div>
                 </div>
                 
-                <div className="mt-8 bg-gradient-to-r from-accent-50 to-white border-brand-300 p-5 rounded-lg">
+                <div className="mt-8 bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-brand-300 p-5 rounded-lg">
                   <p className="text-gray-700">
                     За время одной сессии мы прорабатываем одну конкретную проблему до полного её разрешения. Для некоторых запросов может потребоваться несколько сессий, если проблема имеет несколько источников или «слоёв».
                   </p>
