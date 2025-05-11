@@ -311,11 +311,17 @@ const Correction = () => {
                 </div>
               </div>
             </div>
-
-                    <p className="text-3xl md:text-4xl italic text-gray-700 font-serif relative leading-snug">
-                    <span className="text-brand-600 text-5xl absolute -left-4 -top-4">“</span>
-                    <span className="block">Осознание проблемы - первый шаг к ее решению. Его Вы уже сделали. Следующий шаг - действие.</span>
-                    <span className="text-brand-600 text-5xl absolute -right-4 -top-4">”</span>
+                      <div
+                        className={`transition-all duration-700 text-center max-w-3xl ${
+                          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                        }`}
+                        >
+                        <p className="text-3xl md:text-4xl italic text-gray-700 font-serif relative leading-snug">
+                            <span className="text-brand-600 text-5xl absolute -left-4 -top-4">“</span>
+                            <span className="block">Переключи автопилот: живи осознанно</span>
+                            <span className="text-brand-600 text-5xl absolute -right-4 -top-4">”</span>
+                        </p>
+                      </div>
             </p>
           </div>
         </div>
