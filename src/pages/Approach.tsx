@@ -121,12 +121,13 @@ const Approach = () => {
                         Когда эти системы работают согласованно, вы легко достигаете целей. Но часто возникает конфликт: сознание хочет одного, а подсознание блокирует эти желания, запуская свои защитные программы.
                       </p>
                     </div>
-                        <div className="h-full pl-4"> {/* pl-4 - если нужен небольшой отступ от текста */}
-                          <div className="h-full relative" style={{ backgroundColor: 'rgba(226, 240, 255, 0.5)' }}>
+                        <div className="h-full flex justify-end"> {/* Основной контейнер */}
+                          <div className="h-full w-auto"> {/* Контейнер изображения */}
                             <img
                               src="https://svobodarazuma.ru/Images/neurobrain.png"
                               alt="Мозг и нейроны"
-                              className="absolute right-0 h-full w-auto object-contain"
+                              className="h-full w-auto max-h-full object-contain"
+                              style={{ marginLeft: 'auto' }} {/* Прижимаем вправо */}
                             />
                           </div>
                         </div>
