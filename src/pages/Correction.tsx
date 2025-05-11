@@ -110,7 +110,12 @@ const Correction = () => {
           <img
             src="https://svobodarazuma.ru/Images/wavesOpacity.svg"
             alt="Wave Divider"
-            className="w-full h-auto"
+            style={{
+              height: '80px', // Уменьшенная высота (можно настроить по желанию)
+              transform: 'rotate(180deg)', // Переворот на 180 градусов
+              objectFit: 'cover', // Обеспечивает заполнение без обрезания
+              display: 'block',
+            }}
           />
         </div>
       </div>
