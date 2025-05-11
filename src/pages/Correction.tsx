@@ -31,7 +31,7 @@ const Correction = () => {
       if (parallaxRef1.current) {
         const scrollPosition = window.scrollY;
         // Скорость параллакса для Correctionfont.png в 3 раза медленнее
-        parallaxRef1.current.style.transform = `translateY(${scrollPosition / 4}px)`;
+        parallaxRef1.current.style.transform = `translateY(${scrollPosition / 3}px)`;
       }
       if (parallaxRef2.current) {
         const scrollPosition = window.scrollY;
