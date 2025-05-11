@@ -21,7 +21,7 @@ const Footer = () => {
               Нетипичный подход к психологической помощи, основанный на работе с подсознанием.
             </p>
             <div className="flex flex-col gap-2">
-              <a href="tel:+79319967590" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+              <a href="https://t.me/Intelligence_client_bot" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
                 <Telegram size={18} />
                 Telegram-бот для записи
               </a>
