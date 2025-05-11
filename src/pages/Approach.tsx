@@ -29,6 +29,27 @@ const Approach = () => {
             background-clip: text;
             color: transparent;
           }
+          .mind-container {
+            position: relative;
+            overflow: hidden;
+          }
+          .mind-bg-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 40%;
+            background-image: url('https://svobodarazuma.ru/Images/neurobrain.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right center;
+            opacity: 0.7;
+          }
+          .mind-content {
+            position: relative;
+            z-index: 1;
+            width: 60%;
+          }
         `}
       </style>
 
@@ -102,32 +123,23 @@ const Approach = () => {
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Почему возникают проблемы?
               </h2>
-              <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10 relative">
+              <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10 mind-container">
+                <div className="mind-bg-image"></div>
                 <CardContent className="p-0">
                   <h3 className="text-xl font-semibold mb-4 approach-gradient-heading">
                     Разум как компьютер с двумя операционными системами
                   </h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2">
-                      <p className="text-gray-600 mb-4">
-                        Представьте, что ваш разум — это компьютер с двумя операционными системами:
-                      </p>
-                      <ul className="list-disc pl-6 space-y-2 text-gray-600 mb-4">
-                        <li>Сознание — то, что вы осознаете, ваши мысли, желания и намерения</li>
-                        <li>Подсознание — автоматические программы, которые работают в фоновом режиме</li>
-                      </ul>
-                      <p className="text-gray-600">
-                        Когда эти системы работают согласованно, вы легко достигаете целей. Но часто возникает конфликт: сознание хочет одного, а подсознание блокирует эти желания, запуская свои защитные программы.
-                      </p>
-                    </div>
-                    {/* Изображение прижато к правому краю голубого контейнера */}
-                    <div className="absolute right-0 top-0 bottom-0 w-1/3 flex items-center justify-end">
-                      <img
-                        src="https://svobodarazuma.ru/Images/neurobrain.png"
-                        alt="Мозг и нейроны"
-                        className="h-full max-h-full object-contain"
-                      />
-                    </div>
+                  <div className="mind-content">
+                    <p className="text-gray-600 mb-4">
+                      Представьте, что ваш разум — это компьютер с двумя операционными системами:
+                    </p>
+                    <ul className="list-disc pl-6 space-y-2 text-gray-600 mb-4">
+                      <li>Сознание — то, что вы осознаете, ваши мысли, желания и намерения</li>
+                      <li>Подсознание — автоматические программы, которые работают в фоновом режиме</li>
+                    </ul>
+                    <p className="text-gray-600">
+                      Когда эти системы работают согласованно, вы легко достигаете целей. Но часто возникает конфликт: сознание хочет одного, а подсознание блокирует эти желания, запуская свои защитные программы.
+                    </p>
                   </div>
                 </CardContent>
               </Card>
