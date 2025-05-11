@@ -26,39 +26,23 @@ const Correction = () => {
 
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             {/* Что такое нейрокоррекция */}
             <div className="mb-16">
-              <div className="flex flex-col md:flex-row gap-8 items-start">
-                <div className="md:w-1/3 relative">
-                  <div className="sticky top-24 bg-brand-50 p-6 rounded-lg shadow-sm">
-                    <h2 className="text-2xl font-bold text-brand-500 mb-3">
-                      Что такое нейрокоррекция?
-                    </h2>
-                    <div className="h-1 w-16 bg-brand-300 mb-6 rounded-full"></div>
-                    <div className="bg-white rounded-lg p-4 shadow-inner">
-                      <img 
-                        src="https://svobodarazuma.ru/Images/correction.jpg" 
-                        alt="Нейрокоррекция" 
-                        className="w-full h-auto object-cover rounded-lg"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="md:w-2/3">
-                  <div className="prose max-w-none">
-                    <p className="text-lg leading-relaxed mb-4 text-gray-700">
-                      Нейрокоррекция — это эффективный метод освобождения от ограничивающих подсознательных программ, которые управляют нашими реакциями, эмоциями и поведением без нашего ведома.
-                    </p>
-                    <p className="text-lg leading-relaxed mb-5 text-gray-700">
-                      Представьте, что в вашем подсознании хранится огромная библиотека «инструкций по выживанию», созданных на основе вашего прошлого опыта. Некоторые из этих инструкций помогают вам, а другие, наоборот, мешают и ограничивают. Нейрокоррекция помогает «переписать» устаревшие инструкции и создать новые, более полезные.
-                    </p>
-                    <div className="bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-accent-300 my-8">
-                      <p className="italic text-gray-700">
-                        "Наше подсознание определяет до 95% наших действий, реакций и решений. Нейрокоррекция позволяет получить доступ к этим механизмам и изменить их."
-                      </p>
-                    </div>
-                  </div>
+              <h2 className="text-3xl font-bold gradient-heading text-center mb-10">
+                Что такое нейрокоррекция?
+              </h2>
+              <div className="prose max-w-none">
+                <p className="text-lg leading-relaxed mb-4 text-gray-700">
+                  Нейрокоррекция — это эффективный метод освобождения от ограничивающих подсознательных программ, которые управляют нашими реакциями, эмоциями и поведением без нашего ведома.
+                </p>
+                <p className="text-lg leading-relaxed mb-5 text-gray-700">
+                  Представьте, что в вашем подсознании хранится огромная библиотека «инструкций по выживанию», созданных на основе вашего прошлого опыта. Некоторые из этих инструкций помогают вам, а другие, наоборот, мешают и ограничивают. Нейрокоррекция помогает «переписать» устаревшие инструкции и создать новые, более полезные.
+                </p>
+                <div className="bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-accent-300 my-8">
+                  <p className="italic text-gray-700">
+                    "Наше подсознание определяет до 95% наших действий, реакций и решений. Нейрокоррекция позволяет получить доступ к этим механизмам и изменить их."
+                  </p>
                 </div>
               </div>
             </div>

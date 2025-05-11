@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Check, X } from 'lucide-react';
 
@@ -60,7 +61,8 @@ const ComparisonSection = () => {
 
   return (
     <section className="py-20">
-      <style jsx>{`
+      <style>
+        {`
         @keyframes fadeUp {
           from {
             opacity: 0;
@@ -79,7 +81,8 @@ const ComparisonSection = () => {
           display: flex;
           align-items: center;
         }
-      `}</style>
+      `}
+      </style>
 
       <div className="container mx-auto px-4">
         {/* Заголовок секции */}
