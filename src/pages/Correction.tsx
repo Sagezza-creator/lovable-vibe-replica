@@ -211,23 +211,6 @@ const Correction = () => {
                 </div>
               </div>
             </div>
-            
-            {/* Дополнительный блок с призывом */}
-            <div className="mb-16">
-              <div className="bg-gradient-to-br from-yellow-50 to-white p-8 rounded-2xl border border-yellow-100 text-center">
-                <h3 className="text-2xl font-medium mb-6 text-gray-800">
-                  Готовы к переменам?
-                </h3>
-                <p className="text-gray-700 mb-8 max-w-2xl mx-auto">
-                  Запишитесь на консультацию, и я помогу вам определить оптимальный формат работы с вашим запросом. Первая консультация бесплатна.
-                </p>
-                <Button asChild size="lg" className="bg-gradient-to-r from-brand-500 to-brand-400 hover:from-brand-600 hover:to-brand-500 transition-all duration-300">
-                  <a href="/contact">
-                    Записаться на консультацию
-                  </a>
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
