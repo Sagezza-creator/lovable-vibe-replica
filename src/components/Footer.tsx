@@ -21,15 +21,15 @@ const Footer = () => {
               Нетипичный подход к психологической помощи, основанный на работе с подсознанием.
             </p>
             <div className="flex flex-col gap-2">
-              <base href="https://t.me/Intelligence_client_bot" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+              <href="https://t.me/Intelligence_client_bot" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
                 <MessageSquare size={18} />
                 Telegram-бот для записи
               </a>
-              <base href="https://t.me/SVOBODA_RAZUMA_BLOG" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+              <href="https://t.me/SVOBODA_RAZUMA_BLOG" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
                 <MessageSquare size={18} />
                 Telegram канал "Свобода разума"
               </a>
-              <base href="https://youtube.com/@Свобода_разума" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+              <href="https://youtube.com/@Свобода_разума" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
                 <MessageSquare size={18} />
                 YouTube
               </a>
