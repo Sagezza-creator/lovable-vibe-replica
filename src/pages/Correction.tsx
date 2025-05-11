@@ -156,7 +156,7 @@ const Correction = () => {
                 <p className="text-lg leading-relaxed mb-5 text-gray-700">
                   Представьте, что в вашем подсознании хранится огромная библиотека «инструкций по выживанию», созданных на основе вашего прошлого опыта. Некоторые из этих инструкций помогают вам, а другие, наоборот, мешают и ограничивают. Нейрокоррекция помогает «переписать» устаревшие инструкции и создать новые, более полезные.
                 </p>
-                <div className="bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-accent-300 my-8">
+                <div className="bg-gradient-to-r from-brand-300 to-brand-500 p-6 rounded-lg border-l-4 border-accent-300 my-8">
                   <p className="italic text-gray-700">
                     "Наше подсознание определяет до 95% наших действий, реакций и решений. Нейрокоррекция позволяет получить доступ к этим механизмам и изменить их."
                   </p>
@@ -299,7 +299,7 @@ const Correction = () => {
                 </div>
                 
                 <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <div className="h-2 bg-gradient-to-r from-brand-300/2 to-brand-500/2"></div>
+                  <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-4 text-gray-800">
                       Быстрый и стойкий результат
