@@ -3,16 +3,7 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Brain, CheckCircle, Users, ArrowRight, Activity } from 'lucide-react';
-
-// Временный заглушка для CallToAction, если он отсутствует
-const CallToAction = () => (
-  <div className="bg-blue-100 py-12 text-center">
-    <h2 className="text-2xl font-bold text-gray-800">Готовы начать?</h2>
-    <Button asChild size="lg" className="mt-4 bg-blue-600 text-white">
-      <Link to="/contact">Связаться с нами</Link>
-    </Button>
-  </div>
-);
+import CallToAction from '@/components/CallToAction';
 
 const Approach = () => {
   return (
