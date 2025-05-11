@@ -246,7 +246,7 @@ const Correction = () => {
               </div>
 
               {/* Физиологический уровень */}
-              <div className="mb-16 bg-gradient-to-r from-lavender-50 to-white p-8 rounded-2xl">
+              <div className="mb-16 bg-secondary/50 p-8 rounded-2xl">
                 <h3 className="text-2xl font-medium mb-6 text-lavender-700">
                   Что происходит на физиологическом уровне?
                 </h3>
@@ -287,7 +287,7 @@ const Correction = () => {
                 </div>
                 
                 <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <div className="h-2 bg-gradient-to-r from-accent-300 to-accent-500"></div>
+                  <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-4 text-gray-800">
                       Отсутствие необходимости «бороться с собой»
@@ -299,7 +299,7 @@ const Correction = () => {
                 </div>
                 
                 <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <div className="h-2 bg-gradient-to-r from-yellow-300 to-yellow-500"></div>
+                  <div className="h-2 bg-gradient/2-to-r/2 from-brand-300 to-brand-500"></div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-4 text-gray-800">
                       Быстрый и стойкий результат
