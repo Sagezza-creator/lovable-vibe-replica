@@ -2,7 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { CheckCircle, ArrowRight, Activity } from 'lucide-react';
+import { CheckCircle, ArrowRight } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
 
 const Approach = () => {
@@ -193,9 +193,10 @@ const Approach = () => {
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Мой метод работы с подсознанием
               </h2>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                    {/* Текст теперь занимает 1/2 (было lg:col-span-2) */}
-                    <div>
+              
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Текстовая колонка */}
+                <div>
                   <h3 className="text-xl font-semibold mb-4 text-gray-800">
                     Биохимия мозга и эмоции
                   </h3>
@@ -205,20 +206,9 @@ const Approach = () => {
                   <p className="text-gray-600">
                     Любая нейронная связь в нашем мозге закрепляется либо на кортизоле (и тогда мы стремимся избегать связанных с ней ситуаций), либо на дофамине (и тогда нам хочется повторять эти действия).
                   </p>
-                </div>
-                <div className="flex justify-center bio-image-container">
-                  <img 
-                    src="https://svobodarazuma.ru/Images/neurobrain2.jpg" 
-                    alt="Биохимия мозга"
-                    className="bio-image"
-                  />
-                </div>
-              </div>
-            </div>
-
-              {/* CTA Button */}
-                  <div className="mt-12 mb-10 animate-section" style={{ marginLeft: '25%', width: '50%' }}>
-                    <div className="flex justify-center">
+                  
+                  {/* Кнопка внутри текстовой колонки */}
+                  <div className="flex justify-center mt-12 mb-10 animate-section">
                     <Button
                       asChild
                       size="lg"
@@ -231,7 +221,19 @@ const Approach = () => {
                     </Button>
                   </div>
                 </div>
+                
+                {/* Изображение */}
+                <div className="flex justify-center bio-image-container">
+                  <img 
+                    src="https://svobodarazuma.ru/Images/neurobrain2.jpg" 
+                    alt="Биохимия мозга"
+                    className="bio-image"
+                  />
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <CallToAction />
