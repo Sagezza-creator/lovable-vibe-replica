@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
@@ -7,57 +6,6 @@ import { CheckCircle, ArrowRight } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
 
 const Approach = () => {
-  const [scale, setScale] = useState(1);
-  const heroRef = useRef(null);
-  const elementsRef = useRef([]);
-  
-  // Zoom effect for hero section image
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        const scrollPosition = window.scrollY;
-        const heroHeight = heroRef.current.offsetHeight;
-        const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress; // Double zoom effect
-        setScale(newScale);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.remove  window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Scroll animation for elements
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-section');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    elementsRef.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => {
-      elementsRef.current.forEach((el) => {
-        if (el) observer.unobserve(el);
-      });
-    };
-  }, []);
-
-  const addToRefs = (el) => {
-    if (el && !elementsRef.current.includes(el)) {
-      elementsRef.current.push(el);
-    }
-  };
-
   return (
     <>
       <style>
@@ -74,7 +22,6 @@ const Approach = () => {
           }
           .animate-section {
             animation: fadeUp 0.6s ease-out forwards;
-            opacity: 0;
           }
           .approach-gradient-heading {
             background: linear-gradient(to right, #2E86C1, #22d3ee);
@@ -120,22 +67,17 @@ const Approach = () => {
       </style>
 
       {/* Hero Section */}
-      <div className="pt-32 pb-16 relative overflow-hidden" ref={heroRef}>
+      <div className="pt-32 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://svobodarazuma.ru/Images/correctionbanner.jpg" 
             alt="Научный подход к психологии"
             className="w-full h-full object-cover"
-            style={{ 
-              transform: `scale(${scale})`,
-              transformOrigin: 'center center',
-              transition: 'transform 0.1s ease-out'
-            }}
           />
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center" ref={addToRefs}>
+          <div className="max-w-3xl mx-auto text-center animate-section">
             <h1 className="text-4xl md:text-5xl font-bold approach-gradient-heading mb-6">
               Как это работает?
             </h1>
@@ -150,7 +92,7 @@ const Approach = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Как формируются блоки */}
-            <div className="mb-16" ref={addToRefs}>
+            <div className="animate-section mb-16">
               <h3 className="text-xl font-semibold mb-4 approach-gradient-heading flex items-center">
                 <CheckCircle className="mr-2" size={24} />
                 Как формируются блоки в нашем мозге
@@ -190,7 +132,7 @@ const Approach = () => {
             <Separator className="my-12" />
 
             {/* Почему возникают проблемы */}
-            <div className="mb-16" ref={addToRefs}>
+            <div className="animate-section mb-16">
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Почему возникают проблемы?
               </h2>
@@ -247,7 +189,7 @@ const Approach = () => {
             <Separator className="my-12" />
 
             {/* Метод работы */}
-            <div className="mb-16" ref={addToRefs}>
+            <div className="animate-section mb-16">
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Мой метод работы с подсознанием
               </h2>
@@ -266,7 +208,7 @@ const Approach = () => {
                   </p>
                   
                   {/* Кнопка внутри текстовой колонки */}
-                  <div className="flex justify-center mt-12 mb-10">
+                  <div className="flex justify-center mt-12 mb-10 animate-section">
                     <Button
                       asChild
                       size="lg"
