@@ -2,7 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { CheckCircle, Users, ArrowRight, Activity } from 'lucide-react';
+import { CheckCircle, ArrowRight, Activity } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
 
 const Approach = () => {
@@ -84,9 +84,8 @@ const Approach = () => {
                     </CardContent>
                   </Card>
                 </div>
-                <div className="flex justify-center w-full h-[390px]"> {/* Настраиваемая высота */}
-                    <div className="relative w-full max-w-[500px] h-full"> {/* Настраиваемая максимальная ширина
-                    */}
+                <div className="flex justify-center w-full h-[390px]">
+                  <div className="relative w-full max-w-[500px] h-full">
                     <img 
                       src="https://svobodarazuma.ru/Images/neuroform.jpg" 
                       alt="Нейроны и мозг"
@@ -106,8 +105,7 @@ const Approach = () => {
               </h2>
               <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10">
                 <CardContent className="p-0">
-                  <h3 className="text-xl font-semibold mb-4 approach-gradient-heading flex items-center">
-                    <Users className="mr-2 text-brand-500" size={24} />
+                  <h3 className="text-xl font-semibold mb-4 approach-gradient-heading">
                     Разум как компьютер с двумя операционными системами
                   </h3>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -123,9 +121,13 @@ const Approach = () => {
                         Когда эти системы работают согласованно, вы легко достигаете целей. Но часто возникает конфликт: сознание хочет одного, а подсознание блокирует эти желания, запуская свои защитные программы.
                       </p>
                     </div>
-                    <div className="flex justify-center">
-                      <div className="bg-white p-6 rounded-full shadow-md">
-                        <Users className="text-brand-500" size={80} />
+                    <div className="flex justify-center w-full h-full">
+                      <div className="relative w-full h-full min-h-[200px]">
+                        <img 
+                          src="https://svobodarazuma.ru/Images/neurobrain.png" 
+                          alt="Мозг и нейроны"
+                          className="absolute inset-0 w-full h-full object-contain object-right"
+                        />
                       </div>
                     </div>
                   </div>
