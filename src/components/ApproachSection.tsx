@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
@@ -68,7 +69,8 @@ const ApproachSection = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      <style jsx>{`
+      <style>
+        {`
         @keyframes fadeUp {
           from {
             opacity: 0;
@@ -83,7 +85,8 @@ const ApproachSection = () => {
           animation: fadeUp 0.6s both;
           animation-play-state: paused;
         }
-      `}</style>
+        `}
+      </style>
 
       <div className="container mx-auto px-4">
         {/* Заголовок */}
