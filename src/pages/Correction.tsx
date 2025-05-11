@@ -78,7 +78,7 @@ const Correction = () => {
 
   return (
     <>
-      <div className="relative overflow-hidden" ref={heroRef} style={{ height: '885px' }}>
+      <div className="relative overflow-hidden" ref={heroRef} style={{ height: '885px', position: 'relative' }}>
         <div className="absolute inset-0 z-0">
           <img
             ref={imgRef}
@@ -105,8 +105,8 @@ const Correction = () => {
             </p>
           </div>
         </div>
-        {/* Добавляем волну в нижнюю часть hero-секции */}
-        <div className="custom-shape-divider-bottom-1747000970">
+        {/* Волна в нижней части hero-секции, поверх изображения */}
+        <div className="custom-shape-divider-bottom-1747000970 absolute bottom-0 left-0 w-full z-10">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path
               d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
@@ -194,4 +194,125 @@ const Correction = () => {
                   
                   <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-
+                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">2</div>
+                      <h4 className="font-medium text-gray-800">Находим первоисточник</h4>
+                    </div>
+                    <p className="text-gray-600 pl-14">
+                      Находим момент, когда сформировалась ограничивающая программа
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">3</div>
+                      <h4 className="font-medium text-gray-800">Деактивируем связи</h4>
+                    </div>
+                    <p className="text-gray-600 pl-14">
+                      Деактивируем деструктивные связи в мозге, используя специальные техники
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">4</div>
+                      <h4 className="font-medium text-gray-800">Формируем новое</h4>
+                    </div>
+                    <p className="text-gray-600 pl-14">
+                      Формируем новые, позитивные нейронные связи
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300 md:col-span-2">
+                    <div className="flex items-center gap-4 mb-3">
+                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">5</div>
+                      <h4 className="font-medium text-gray-800">Проверяем результат</h4>
+                    </div>
+                    <p className="text-gray-600 pl-14">
+                      Проверяем результат и закрепляем изменения
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="mt-8 bg-brand-50 border-l-4 border-brand-300 p-5 rounded-lg">
+                  <p className="text-gray-700">
+                    За время одной сессии мы прорабатываем одну конкретную проблему до полного её разрешения. Для некоторых запросов может потребоваться несколько сессий, если проблема имеет несколько источников или «слоёв».
+                  </p>
+                </div>
+              </div>
+
+              {/* Физиологический уровень */}
+              <div className="mb-16 bg-gradient-to-r from-lavender-50 to-white p-8 rounded-2xl">
+                <h3 className="text-2xl font-medium mb-6 text-lavender-700">
+                  Что происходит на физиологическом уровне?
+                </h3>
+                <div className="flex flex-col md:flex-row gap-8 items-center">
+                  <div className="md:w-1/3 order-2 md:order-1">
+                    <div className="bg-white p-5 rounded-xl shadow-sm">
+                      <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
+                        <div className="text-gray-400 text-sm">Изображение нейронных связей</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:w-2/3 order-1 md:order-2">
+                    <p className="text-gray-700 mb-4">
+                      Когда мы переживаем стресс, в мозге формируется нейронная связь на основе гормона стресса — кортизола. В момент нейрокоррекции мы создаём новую нейронную связь, но уже на основе гормона удовольствия — дофамина. Это позволяет мозгу «переключиться» с режима защиты на режим удовольствия и роста.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Эффективность нейрокоррекции */}
+            <div className="mb-16">
+              <h2 className="text-3xl font-bold mb-10 text-center gradient-heading">
+                Что делает нейрокоррекцию настолько эффективной?
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                  <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                      Работа с первопричиной, а не симптомами
+                    </h3>
+                    <p className="text-gray-600">
+                      В отличие от многих терапевтических подходов, нейрокоррекция направлена на работу с корнем проблемы — теми самыми нейронными связями в мозге, которые запускают нежелательное поведение или реакцию.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                  <div className="h-2 bg-gradient-to-r from-accent-300 to-accent-500"></div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                      Отсутствие необходимости «бороться с собой»
+                    </h3>
+                    <p className="text-gray-600">
+                      После нейрокоррекции вам не нужно прикладывать постоянные усилия, чтобы подавлять старые реакции или заставлять себя действовать по-новому. Изменения происходят естественно, потому что меняется сама основа реакции на нейронном уровне.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                  <div className="h-2 bg-gradient-to-r from-yellow-300 to-yellow-500"></div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                      Быстрый и стойкий результат
+                    </h3>
+                    <p className="text-gray-600">
+                      Многие клиенты отмечают изменения уже во время первой сессии. А поскольку мы работаем на уровне нейронных связей, а не убеждений или эмоций, результат сохраняется надолго без необходимости постоянной «поддержки».
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <CallToAction />
+    </>
+  );
+};
+
+export default Correction;
