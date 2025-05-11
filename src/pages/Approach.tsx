@@ -121,7 +121,7 @@ const Approach = () => {
                       </p>
                     </div>
                     {/* Изображение прижато к правому краю голубого контейнера */}
-                    <div className="absolute right-0 top-0 bottom-0 w-1/3 flex items-center justify-end pr-4">
+                    <div className="absolute right-0 top-0 bottom-0 w-1/3 flex items-center justify-end">
                       <img
                         src="https://svobodarazuma.ru/Images/neurobrain.png"
                         alt="Мозг и нейроны"
