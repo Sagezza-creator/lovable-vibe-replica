@@ -299,7 +299,7 @@ const Correction = () => {
                 </div>
                 
                 <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <div className="h-2 bg-gradient/2-to-r/2 from-brand-300 to-brand-500"></div>
+                  <div className="h-2 bg-gradient-to-r from-brand-300/2 to-brand-500/2"></div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-4 text-gray-800">
                       Быстрый и стойкий результат
