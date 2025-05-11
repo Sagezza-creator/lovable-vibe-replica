@@ -217,21 +217,22 @@ const Approach = () => {
             </div>
 
               {/* CTA Button */}
-              <div className="lg:ml-[25%] lg:w-1/2"> {/* Новый контейнер */}
-                <div className="flex justify-center mt-12 mb-10 animate-section"> 
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-brand-500 hover:bg-brand-600 text-white group"
-                  >
-                    <Link to="/correction" className="flex items-center">
-                      Узнать больше о нейрокоррекции
-                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
+              <div className="flex justify-start mt-12 mb-10 animate-section">
+                <div className="w-full lg:w-1/2">
+                  <div className="flex justify-center">
+                    <Button
+                      asChild
+                      size="lg"
+                      className="bg-brand-500 hover:bg-brand-600 text-white group"
+                    >
+                      <Link to="/correction" className="flex items-center">
+                        Узнать больше о нейрокоррекции
+                        <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
-        </div>
       </section>
 
       <CallToAction />
