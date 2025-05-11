@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
 
@@ -6,6 +6,10 @@ const Correction = () => {
   const parallaxRef1 = useRef(null); // Для Correctionfont.png
   const parallaxRef2 = useRef(null); // Для Correctionfont2.jpg
   const sectionRef = useRef(null); // Для секции контента
+  const heroRef = useRef(null); // Для hero-секции
+  const imgRef = useRef(null); // Для фонового изображения hero-секции
+  const [scale, setScale] = useState(1); // Для эффекта масштабирования
+  const [imgLoaded, setImgLoaded] = useState(false); // Для отслеживания загрузки изображения
 
   useLayoutEffect(() => {
     // Scroll to top when component mounts
@@ -49,10 +53,49 @@ const Correction = () => {
     };
   }, []);
 
+  // Zoom effect for hero section image
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const scrollPosition = window.scrollY;
+        const heroHeight = heroRef.current.offsetHeight;
+        const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
+        const newScale = 1 + scrollProgress * 0.30;
+        setScale(newScale);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Check image load
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setImgLoaded(true);
+    }
+  }, []);
+
   return (
     <>
-      <div className="pt-32 pb-16 bg-gradient-to-b from-secondary to-white relative">
-        <div className="container mx-auto px-4">
+      <div className="relative overflow-hidden" ref={heroRef} style={{ height: '885px' }}>
+        <div className="absolute inset-0 z-0">
+          <img
+            ref={imgRef}
+            src="https://svobodarazuma.ru/Images/correctionherosection.jpg"
+            alt="Нейрокоррекция"
+            className={`w-full h-full object-cover object-center transition-all duration-1000 ease-out will-change-transform ${
+              imgLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              transform: `scale(${scale})`,
+              transformOrigin: 'center center',
+              transitionProperty: 'opacity, transform',
+            }}
+            onLoad={() => setImgLoaded(true)}
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
               Нейрокоррекция
@@ -165,7 +208,7 @@ const Correction = () => {
                       <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">4</div>
                       <h4 className="font-medium text-gray-800">Формируем новое</h4>
                     </div>
-                    <p className="text-gray-600 pl-14">
+                    <p className="text-gray- rôle: "text-gray-600 pl-14">
                       Формируем новые, позитивные нейронные связи
                     </p>
                   </div>
