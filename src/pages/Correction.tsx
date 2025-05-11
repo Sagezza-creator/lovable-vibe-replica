@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
 
 const Correction = () => {
-  const parallaxRef1 = useRef(null);
-  const parallaxRef2 = useRef(null);
+  const parallaxRef1 = useRef(null); // Для Correctionfont.png
+  const parallaxRef2 = useRef(null); // Для Correctionfont2.jpg
 
   useEffect(() => {
     // Scroll to top when component mounts
@@ -14,12 +14,12 @@ const Correction = () => {
     const handleScroll = () => {
       if (parallaxRef1.current) {
         const scrollPosition = window.scrollY;
-        // Скорость параллакса для Correction font.png в 3 раза медленнее
+        // Скорость параллакса для Correctionfont.png в 3 раза медленнее
         parallaxRef1.current.style.transform = `translateY(${scrollPosition / 3}px)`;
       }
       if (parallaxRef2.current) {
         const scrollPosition = window.scrollY;
-        // Скорость параллакса для Correction font2.png в 6 раз медленнее
+        // Скорость параллакса для Correctionfont2.jpg в 6 раз медленнее
         parallaxRef2.current.style.transform = `translateY(${scrollPosition / 6}px)`;
       }
     };
@@ -43,28 +43,26 @@ const Correction = () => {
         </div>
       </div>
 
-      <section className "py-16 relative">
+      <section className="py-16 relative">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            {/* Фоновое изображение 1 с параллаксом (Correction font.png) */}
-            <div
-              ref={parallaxRef1}
-              className="absolute top-0 left-0 w-full h-[200vh] bg-cover bg-top z-[-1]"
-              style={{
-                backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont.png')`,
-                transform: 'translateY(0)',
-                clipPath: 'inset(0 0 0 0)',
-              }}
-            ></div>
-
-            {/* Фоновое изображение 2 с параллаксом (Correction font2.png) */}
+            {/* Фоновое изображение 2 с параллаксом (Correctionfont2.jpg, нижний слой) */}
             <div
               ref={parallaxRef2}
               className="absolute top-0 left-0 w-full h-[200vh] bg-cover bg-top z-[-2]"
               style={{
                 backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont2.jpg')`,
                 transform: 'translateY(0)',
-                clipPath: 'inset(0 0 0 0)',
+              }}
+            ></div>
+
+            {/* Фоновое изображение 1 с параллаксом (Correctionfont.png, верхний слой) */}
+            <div
+              ref={parallaxRef1}
+              className="absolute top-[10px] left-0 w-full h-[200vh] bg-cover bg-top z-[-1]"
+              style={{
+                backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont.png')`,
+                transform: 'translateY(0)',
               }}
             ></div>
 
