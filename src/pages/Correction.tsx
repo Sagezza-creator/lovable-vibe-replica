@@ -95,7 +95,7 @@ const Correction = () => {
             onLoad={() => setImgLoaded(true)}
           />
         </div>
-        <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
+        <div className="container mx-auto px-4 relative z-10 h-full flex items-center justify-center">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
               Нейрокоррекция
@@ -208,7 +208,7 @@ const Correction = () => {
                       <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">4</div>
                       <h4 className="font-medium text-gray-800">Формируем новое</h4>
                     </div>
-                    <p className="text-gray- rôle: "text-gray-600 pl-14">
+                    <p className="text-gray-600 pl-14">
                       Формируем новые, позитивные нейронные связи
                     </p>
                   </div>
@@ -255,7 +255,7 @@ const Correction = () => {
 
             {/* Эффективность нейрокоррекции */}
             <div className="mb-16">
-              <h2 className="text-3xl font-bold mb-10 text-center gradient-heading">
+              <h2 className="text-3xl font-bold mb-10 text-center gradient-heading'>
                 Что делает нейрокоррекцию настолько эффективной?
               </h2>
               
