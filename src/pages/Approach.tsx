@@ -57,7 +57,7 @@ const Approach = () => {
             height: 100%;
           }
           .bio-image {
-            max-height: 300px;
+            max-height: 400px;
             width: auto;
             object-fit: contain;
             border-radius: 0.5rem;
