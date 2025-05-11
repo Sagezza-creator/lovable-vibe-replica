@@ -193,8 +193,9 @@ const Approach = () => {
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Мой метод работы с подсознанием
               </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                <div className="lg:col-span-2">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    {/* Текст теперь занимает 1/2 (было lg:col-span-2) */}
+                    <div>
                   <h3 className="text-xl font-semibold mb-4 text-gray-800">
                     Биохимия мозга и эмоции
                   </h3>
