@@ -41,15 +41,14 @@ const Approach = () => {
             alt="Научный подход к психологии"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/30"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center animate-section">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold approach-gradient-heading mb-6">
               Как это работает?
             </h1>
-            <p className="text-lg md:text-xl text-white leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
               Научный подход к решению психологических проблем
             </p>
           </div>
