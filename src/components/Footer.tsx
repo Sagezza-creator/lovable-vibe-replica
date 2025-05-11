@@ -21,12 +21,12 @@ const Footer = () => {
               Нетипичный подход к психологической помощи, основанный на работе с подсознанием.
             </p>
             <div className="flex flex-col gap-2">
-              <a href="tel:+79319967590" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
-                <Telegram size={18} />
+              <a href="https://t.me/Intelligence_client_bot" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+                <MessageSquare size={18} />
                 Telegram-бот для записи
               </a>
               <a href="https://t.me/SVOBODA_RAZUMA_BLOG" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
-                <Telegram size={18} />
+                <MessageSquare size={18} />
                 Telegram канал "Свобода разума"
               </a>
               <a href="https://www.youtube.com/@Свобода_разума" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
