@@ -84,7 +84,7 @@ const Approach = () => {
                     </CardContent>
                   </Card>
                 </div>
-                <div className="flex justify-center w-full h-[400px]"> {/* Настраиваемая высота */}
+                <div className="flex justify-center w-full h-[390px]"> {/* Настраиваемая высота */}
                     <div className="relative w-full max-w-[500px] h-full"> {/* Настраиваемая максимальная ширина
                     */}
                     <img 
