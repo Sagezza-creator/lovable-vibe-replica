@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
@@ -6,6 +7,34 @@ import { CheckCircle, ArrowRight } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
 
 const Approach = () => {
+  const [scale, setScale] = useState(1);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const heroRef = useRef(null);
+  const imgRef = useRef(null);
+
+  // Zoom effect for hero section image
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const scrollPosition = window.scrollY;
+        const heroHeight = heroRef.current.offsetHeight;
+        const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
+        const newScale = 1 + scrollProgress * 0.30; // Same scale animation as in HeroSection
+        setScale(newScale);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Check image load
+  useEffect(() => {
+    if (imgRef.current?.complete) {
+      setImgLoaded(true);
+    }
+  }, []);
+
   return (
     <>
       <style>
@@ -22,6 +51,13 @@ const Approach = () => {
           }
           .animate-section {
             animation: fadeUp 0.6s ease-out forwards;
+          }
+          .animate-fade-in-up {
+            animation: fadeUp 0.6s ease-out forwards;
+            opacity: 0;
+          }
+          .animation-delay-100 {
+            animation-delay: 0.1s;
           }
           .approach-gradient-heading {
             background: linear-gradient(to right, #2E86C1, #22d3ee);
@@ -67,21 +103,30 @@ const Approach = () => {
       </style>
 
       {/* Hero Section */}
-      <div className="pt-32 pb-16 relative overflow-hidden">
+      <div className="pt-32 pb-16 relative overflow-hidden" ref={heroRef}>
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://svobodarazuma.ru/Images/correctionbanner.jpg" 
+          <img
+            ref={imgRef}
+            src="https://svobodarazuma.ru/Images/correctionbanner.jpg"
             alt="Научный подход к психологии"
-            className="w-full h-full object-cover"
+            className={`w-full h-full object-cover object-center transition-all duration-1000 ease-out will-change-transform ${
+              imgLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              transform: `scale(${scale})`,
+              transformOrigin: 'center center',
+              transitionProperty: 'opacity, transform',
+            }}
+            onLoad={() => setImgLoaded(true)}
           />
         </div>
-        
+
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center animate-section">
-            <h1 className="text-4xl md:text-5xl font-bold approach-gradient-heading mb-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold approach-gradient-heading mb-6 animate-fade-in-up">
               Как это работает?
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed animate-fade-in-up animation-delay-100">
               Научный подход к решению психологических проблем
             </p>
           </div>
@@ -110,7 +155,7 @@ const Approach = () => {
                       </h3>
                       <ol className="list-decimal pl-6 space-y-2 text-gray-600">
                         <li>Происходит стрессовое событие</li>
-                        <li>Мозг создает защитную программу</li>
+                        <li>Мозг создает защитную программ</li>
                         <li>Эта программа автоматически запускается в похожих ситуациях</li>
                         <li>Мы испытываем негативные эмоции и блокируем собственные действия</li>
                       </ol>
@@ -119,8 +164,8 @@ const Approach = () => {
                 </div>
                 <div className="flex justify-center w-full h-[390px]">
                   <div className="relative w-full max-w-[500px] h-full">
-                    <img 
-                      src="https://svobodarazuma.ru/Images/neuroform.jpg" 
+                    <img
+                      src="https://svobodarazuma.ru/Images/neuroform.jpg"
                       alt="Нейроны и мозг"
                       className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-md"
                     />
@@ -193,7 +238,7 @@ const Approach = () => {
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Мой метод работы с подсознанием
               </h2>
-              
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Текстовая колонка */}
                 <div>
@@ -206,7 +251,7 @@ const Approach = () => {
                   <p className="text-gray-600">
                     Любая нейронная связь в нашем мозге закрепляется либо на кортизоле (и тогда мы стремимся избегать связанных с ней ситуаций), либо на дофамине (и тогда нам хочется повторять эти действия).
                   </p>
-                  
+
                   {/* Кнопка внутри текстовой колонки */}
                   <div className="flex justify-center mt-12 mb-10 animate-section">
                     <Button
@@ -221,11 +266,11 @@ const Approach = () => {
                     </Button>
                   </div>
                 </div>
-                
+
                 {/* Изображение */}
                 <div className="flex justify-center bio-image-container">
-                  <img 
-                    src="https://svobodarazuma.ru/Images/neurobrain2.jpg" 
+                  <img
+                    src="https://svobodarazuma.ru/Images/neurobrain2.jpg"
                     alt="Биохимия мозга"
                     className="bio-image"
                   />
