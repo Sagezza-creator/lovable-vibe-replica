@@ -2,7 +2,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Brain, CheckCircle, Users, ArrowRight, Activity } from 'lucide-react';
+import { CheckCircle, Users, ArrowRight, Activity } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
 
 const Approach = () => {
@@ -85,8 +85,12 @@ const Approach = () => {
                   </Card>
                 </div>
                 <div className="flex justify-center">
-                  <div className="bg-white p-6 rounded-full shadow-md">
-                    <Brain className="text-brand-500" size={80} />
+                  <div className="bg-white p-4 rounded-xl shadow-md">
+                    <img 
+                      src="https://svobodarazuma.ru/Images/neuroform.jpg" 
+                      alt="Нейроны и мозг"
+                      className="w-64 h-auto object-contain"
+                    />
                   </div>
                 </div>
               </div>
