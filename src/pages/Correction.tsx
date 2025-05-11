@@ -42,7 +42,7 @@ const Correction = () => {
         ref={parallaxRef}
         className="fixed top-0 left-0 w-full h-[200vh] bg-cover bg-center z-[-1]"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundImage: `url('https://svobodarazuma.ru/Images/Correction font.png')`,
           backgroundAttachment: 'fixed',
           transform: 'translateY(0)',
         }}
