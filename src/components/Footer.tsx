@@ -29,7 +29,7 @@ const Footer = () => {
                 <MessageSquare size={18} />
                 Telegram канал "Свобода разума"
               </a>
-              <a href="https://www.youtube.com/@Свобода_разума" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
+              <a href="https://youtube.com/@Свобода_разума" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
                 <YouTube size={18} />
                 YouTube
               </a>
