@@ -30,7 +30,7 @@ const Approach = () => {
       <div className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center animate-section">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
+            <h1 className="text-4xl md:text-4xl font-bold gradient-heading mb-4 flex items-center">>
               Как это работает?
             </h1>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
@@ -55,7 +55,7 @@ const Approach = () => {
                   </p>
                   <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 shadow-lg">
                     <CardContent className="p-0">
-                      <h3 className="text-3xl md:text-4xl font-bold gradient-heading mb-4 flex items-center">
+                      <h3 className="text-2xl md:text-4xl font-bold gradient-heading mb-4 flex items-center">
                         <CheckCircle className="mr-2" size={24} />
                         Так работают все наши проблемы:
                       </h3>
