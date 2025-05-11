@@ -14,8 +14,8 @@ const navLinks: NavLink[] = [
     path: '/approach',
     dropdown: [
       { name: 'Как это работает?', path: '/approach' },
-      { name: 'Матрицы зачатия', path: '/conception-matrices' },
       { name: 'Коррекция', path: '/correction' }
+      { name: 'Матрицы зачатия', path: '/conception-matrices' },
     ]
   },
   { name: 'Какие проблемы решаю', path: '/problems' },
