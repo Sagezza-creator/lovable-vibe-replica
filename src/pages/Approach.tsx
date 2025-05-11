@@ -1,34 +1,20 @@
-import { useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import CallToAction from '@/components/CallToAction';
 import { Brain, CheckCircle, Users, ArrowRight, Activity } from 'lucide-react';
 
+// Временный заглушка для CallToAction, если он отсутствует
+const CallToAction = () => (
+  <div className="bg-blue-100 py-12 text-center">
+    <h2 className="text-2xl font-bold text-gray-800">Готовы начать?</h2>
+    <Button asChild size="lg" className="mt-4 bg-blue-600 text-white">
+      <Link to="/contact">Связаться с нами</Link>
+    </Button>
+  </div>
+);
+
 const Approach = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-
-    // Анимация при прокрутке
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-on-scroll');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    document.querySelectorAll('.scroll-section').forEach((section) => {
-      observer.observe(section);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <>
       <style>
@@ -43,13 +29,8 @@ const Approach = () => {
               transform: translateY(0);
             }
           }
-          .animate-on-scroll {
-            animation: fadeUp 0.6s ease-out both;
-            animation-play-state: paused;
-          }
-          .scroll-section {
-            opacity: 0;
-            transform: translateY(20px);
+          .animate-section {
+            animation: fadeUp 0.6s ease-out forwards;
           }
         `}
       </style>
@@ -57,7 +38,7 @@ const Approach = () => {
       {/* Hero Section */}
       <div className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center scroll-section">
+          <div className="max-w-3xl mx-auto text-center animate-section">
             <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500 mb-6">
               Как это работает?
             </h1>
@@ -72,7 +53,7 @@ const Approach = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Как формируются блоки */}
-            <div className="scroll-section mb-16">
+            <div className="animate-section mb-16">
               <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
                 Как формируются блоки в нашем мозге
               </h2>
@@ -107,7 +88,7 @@ const Approach = () => {
             <Separator className="my-12" />
 
             {/* Почему возникают проблемы */}
-            <div className="scroll-section mb-16">
+            <div className="animate-section mb-16">
               <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
                 Почему возникают проблемы?
               </h2>
@@ -153,7 +134,10 @@ const Approach = () => {
                   "Самосаботаж при приближении к успеху",
                   "Хронические проблемы со здоровьем",
                 ].map((item, index) => (
-                  <Card key={index} className="bg-white p-4 rounded-lg shadow-sm border border-blue-100 hover:shadow-md transition-shadow">
+                  <Card
+                    key={index}
+                    className="bg-white p-4 rounded-lg shadow-sm border border-blue-100 hover:shadow-md transition-shadow"
+                  >
                     <CardContent className="p-0">
                       <p className="text-gray-700">{item}</p>
                     </CardContent>
@@ -168,7 +152,7 @@ const Approach = () => {
             <Separator className="my-12" />
 
             {/* Метод работы */}
-            <div className="scroll-section mb-16">
+            <div className="animate-section mb-16">
               <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">
                 Мой метод работы с подсознанием
               </h2>
@@ -193,7 +177,7 @@ const Approach = () => {
             </div>
 
             {/* CTA Button */}
-            <div className="flex justify-center mt-12 mb-10 scroll-section">
+            <div className="flex justify-center mt-12 mb-10 animate-section">
               <Button
                 asChild
                 size="lg"
