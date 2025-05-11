@@ -94,15 +94,13 @@ const Correction = () => {
             }}
             onLoad={() => setImgLoaded(true)}
           />
-          {/* Оверлей для улучшения читаемости текста */}
-          <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
         </div>
-        <div className="container mx-auto px-4 relative z-20 h-full flex items-center justify-center">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+        <div className="container mx-auto px-4 relative z-10 h-full flex items-center">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
               Нейрокоррекция
             </h1>
-            <p className="text-lg md:text-xl">
+            <p className="text-lg md:text-xl text-gray-700">
               Глубинная трансформация подсознательных программ
             </p>
           </div>
