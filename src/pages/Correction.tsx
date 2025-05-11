@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
 
@@ -7,7 +7,7 @@ const Correction = () => {
   const parallaxRef2 = useRef(null); // Для Correctionfont2.jpg
   const sectionRef = useRef(null); // Для секции контента
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
 
@@ -15,8 +15,10 @@ const Correction = () => {
     const setBackgroundHeight = () => {
       if (sectionRef.current && parallaxRef1.current && parallaxRef2.current) {
         const sectionHeight = sectionRef.current.offsetHeight;
-        parallaxRef1.current.style.height = `${sectionHeight}px`;
+        // Высота нижнего фона равна высоте секции
         parallaxRef2.current.style.height = `${sectionHeight}px`;
+        // Высота верхнего фона уменьшена на 10px из-за смещения top-[10px]
+        parallaxRef1.current.style.height = `${sectionHeight - 10}px`;
       }
     };
 
@@ -30,12 +32,12 @@ const Correction = () => {
     const handleScroll = () => {
       if (parallaxRef1.current) {
         const scrollPosition = window.scrollY;
-        // Скорость параллакса для Correctionfont.png в 3 раза медленнее
+        // Скорость параллакса для Correctionfont.png в 7 раз медленнее
         parallaxRef1.current.style.transform = `translateY(${scrollPosition / 7}px)`;
       }
       if (parallaxRef2.current) {
         const scrollPosition = window.scrollY;
-        // Скорость параллакса для Correctionfont2.jpg в 6 раз медленнее
+        // Скорость параллакса для Correctionfont2.jpg в 3 раз медленнее
         parallaxRef2.current.style.transform = `translateY(${scrollPosition / 3}px)`;
       }
     };
@@ -62,7 +64,7 @@ const Correction = () => {
         </div>
       </div>
 
-      <section className="py-16 relative" ref={sectionRef}>
+      <section className="py-16 relative overflow-hidden" ref={sectionRef}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Фоновое изображение 2 с параллаксом (Correctionfont2.jpg, нижний слой) */}
