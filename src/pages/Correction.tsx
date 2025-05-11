@@ -51,7 +51,7 @@ const Correction = () => {
               ref={parallaxRef1}
               className="absolute top-0 left-0 w-full h-[200vh] bg-cover bg-top z-[-1]"
               style={{
-                backgroundImage: `url('https://svobodarazuma.ru/Images/Correction font.png')`,
+                backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont.png')`,
                 transform: 'translateY(0)',
                 clipPath: 'inset(0 0 0 0)',
               }}
@@ -62,7 +62,7 @@ const Correction = () => {
               ref={parallaxRef2}
               className="absolute top-0 left-0 w-full h-[200vh] bg-cover bg-top z-[-2]"
               style={{
-                backgroundImage: `url('https://svobodarazuma.ru/Images/Correction font2.png')`,
+                backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont2.png')`,
                 transform: 'translateY(0)',
                 clipPath: 'inset(0 0 0 0)',
               }}
