@@ -1,57 +1,62 @@
+import { useEffect, useRef, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
-import { useEffect } from 'react';
-import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
 
 const Approach = () => {
+  const [scale, setScale] = useState(1);
+  const heroRef = useRef(null);
+  const elementsRef = useRef([]);
+  
+  // Zoom effect for hero section image
   useEffect(() => {
-    // Register ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const scrollPosition = window.scrollY;
+        const heroHeight = heroRef.current.offsetHeight;
+        const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
+        const newScale = 1 + scrollProgress; // Double zoom effect
+        setScale(newScale);
+      }
+    };
 
-    // Hero image zoom effect
-    gsap.to('.hero-bg-image', {
-      scale: 2,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.remove  window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Scroll animation for elements
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-section');
+            observer.unobserve(entry.target);
+          }
+        });
       },
+      { threshold: 0.1 }
+    );
+
+    elementsRef.current.forEach((el) => {
+      if (el) observer.observe(el);
     });
 
-    // Fade-up animation for all sections
-    gsap.utils.toArray('.animate-section').forEach((section) => {
-      gsap.fromTo(
-        section,
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-
-    // Clean up ScrollTriggers on component unmount
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      elementsRef.current.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
     };
   }, []);
+
+  const addToRefs = (el) => {
+    if (el && !elementsRef.current.includes(el)) {
+      elementsRef.current.push(el);
+    }
+  };
 
   return (
     <>
@@ -68,6 +73,7 @@ const Approach = () => {
             }
           }
           .animate-section {
+            animation: fadeUp 0.6s ease-out forwards;
             opacity: 0;
           }
           .approach-gradient-heading {
@@ -114,17 +120,22 @@ const Approach = () => {
       </style>
 
       {/* Hero Section */}
-      <div className="pt-32 pb-16 relative overflow-hidden hero-section">
+      <div className="pt-32 pb-16 relative overflow-hidden" ref={heroRef}>
         <div className="absolute inset-0 z-0">
-          <img
-            src="https://svobodarazuma.ru/Images/correctionbanner.jpg"
+          <img 
+            src="https://svobodarazuma.ru/Images/correctionbanner.jpg" 
             alt="Научный подход к психологии"
-            className="w-full h-full object-cover hero-bg-image"
+            className="w-full h-full object-cover"
+            style={{ 
+              transform: `scale(${scale})`,
+              transformOrigin: 'center center',
+              transition: 'transform 0.1s ease-out'
+            }}
           />
         </div>
-
+        
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center animate-section">
+          <div className="max-w-3xl mx-auto text-center" ref={addToRefs}>
             <h1 className="text-4xl md:text-5xl font-bold approach-gradient-heading mb-6">
               Как это работает?
             </h1>
@@ -139,7 +150,7 @@ const Approach = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Как формируются блоки */}
-            <div className="animate-section mb-16">
+            <div className="mb-16" ref={addToRefs}>
               <h3 className="text-xl font-semibold mb-4 approach-gradient-heading flex items-center">
                 <CheckCircle className="mr-2" size={24} />
                 Как формируются блоки в нашем мозге
@@ -147,11 +158,7 @@ const Approach = () => {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 <div className="lg:col-span-2">
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    Представьте: в детстве вы выступали перед публикой и забыли слова. Все
-                    смеялись, и вы испытали сильный стресс. В этот момент ваш мозг делает
-                    пометку: "Выступления перед людьми — опасно!" И в будущем, когда вам
-                    нужно будет выступать, подсознание будет всячески этому
-                    сопротивляться — появится страх, тревога, желание избежать ситуации.
+                    Представьте: в детстве вы выступали перед публикой и забыли слова. Все смеялись, и вы испытали сильный стресс. В этот момент ваш мозг делает пометку: "Выступления перед людьми — опасно!" И в будущем, когда вам нужно будет выступать, подсознание будет всячески этому сопротивляться — появится страх, тревога, желание избежать ситуации.
                   </p>
                   <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 shadow-lg">
                     <CardContent className="p-0">
@@ -170,8 +177,8 @@ const Approach = () => {
                 </div>
                 <div className="flex justify-center w-full h-[390px]">
                   <div className="relative w-full max-w-[500px] h-full">
-                    <img
-                      src="https://svobodarazuma.ru/Images/neuroform.jpg"
+                    <img 
+                      src="https://svobodarazuma.ru/Images/neuroform.jpg" 
                       alt="Нейроны и мозг"
                       className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-md"
                     />
@@ -183,7 +190,7 @@ const Approach = () => {
             <Separator className="my-12" />
 
             {/* Почему возникают проблемы */}
-            <div className="animate-section mb-16">
+            <div className="mb-16" ref={addToRefs}>
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Почему возникают проблемы?
               </h2>
@@ -202,9 +209,7 @@ const Approach = () => {
                       <li>Подсознание — автоматические программы, которые работают в фоновом режиме</li>
                     </ul>
                     <p className="text-gray-600">
-                      Когда эти системы работают согласованно, вы легко достигаете целей. Но часто
-                      возникает конфликт: сознание хочет одного, а подсознание блокирует эти желания,
-                      запуская свои защитные программы.
+                      Когда эти системы работают согласованно, вы легко достигаете целей. Но часто возникает конфликт: сознание хочет одного, а подсознание блокирует эти желания, запуская свои защитные программы.
                     </p>
                   </div>
                 </CardContent>
@@ -213,9 +218,7 @@ const Approach = () => {
                 Как формируются подсознательные блоки
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Каждый раз, когда мы переживаем стрессовую ситуацию, наш мозг создает особую нейронную
-                связь. Эта связь работает как защитный механизм — "если снова возникнет подобная
-                ситуация, нужно ее избежать". В результате формируются автоматические реакции:
+                Каждый раз, когда мы переживаем стрессовую ситуацию, наш мозг создает особую нейронную связь. Эта связь работает как защитный механизм — "если снова возникнет подобная ситуация, нужно ее избежать". В результате формируются автоматические реакции:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                 {[
@@ -237,19 +240,18 @@ const Approach = () => {
                 ))}
               </div>
               <p className="text-gray-600 italic text-center">
-                Эти реакции становятся настолько автоматическими, что мы не осознаем их влияние на
-                нашу жизнь.
+                Эти реакции становятся настолько автоматическими, что мы не осознаем их влияние на нашу жизнь.
               </p>
             </div>
 
             <Separator className="my-12" />
 
             {/* Метод работы */}
-            <div className="animate-section mb-16">
+            <div className="mb-16" ref={addToRefs}>
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Мой метод работы с подсознанием
               </h2>
-
+              
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Текстовая колонка */}
                 <div>
@@ -257,18 +259,14 @@ const Approach = () => {
                     Биохимия мозга и эмоции
                   </h3>
                   <p className="text-gray-600 mb-4 leading-relaxed">
-                    В основе моего подхода лежит понимание биохимических процессов в мозге. Когда мы
-                    испытываем стресс, в организме вырабатывается кортизол — гормон стресса. Когда мы
-                    чувствуем удовольствие — выделяется дофамин, гормон удовольствия.
+                    В основе моего подхода лежит понимание биохимических процессов в мозге. Когда мы испытываем стресс, в организме вырабатывается кортизол — гормон стресса. Когда мы чувствуем удовольствие — выделяется дофамин, гормон удовольствия.
                   </p>
                   <p className="text-gray-600">
-                    Любая нейронная связь в нашем мозге закрепляется либо на кортизоле (и тогда мы
-                    стремимся избегать связанных с ней ситуаций), либо на дофамине (и тогда нам
-                    хочется повторять эти действия).
+                    Любая нейронная связь в нашем мозге закрепляется либо на кортизоле (и тогда мы стремимся избегать связанных с ней ситуаций), либо на дофамине (и тогда нам хочется повторять эти действия).
                   </p>
-
+                  
                   {/* Кнопка внутри текстовой колонки */}
-                  <div className="flex justify-center mt-12 mb-10 animate-section">
+                  <div className="flex justify-center mt-12 mb-10">
                     <Button
                       asChild
                       size="lg"
@@ -281,11 +279,11 @@ const Approach = () => {
                     </Button>
                   </div>
                 </div>
-
+                
                 {/* Изображение */}
                 <div className="flex justify-center bio-image-container">
-                  <img
-                    src="https://svobodarazuma.ru/Images/neurobrain2.jpg"
+                  <img 
+                    src="https://svobodarazuma.ru/Images/neurobrain2.jpg" 
                     alt="Биохимия мозга"
                     className="bio-image"
                   />
