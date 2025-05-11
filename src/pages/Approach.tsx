@@ -34,7 +34,6 @@ const Approach = () => {
 
       {/* Hero Section */}
       <div className="pt-32 pb-16 relative overflow-hidden">
-        {/* Фоновое изображение */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://svobodarazuma.ru/Images/correctionbanner.jpg" 
@@ -103,7 +102,7 @@ const Approach = () => {
               <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Почему возникают проблемы?
               </h2>
-              <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10">
+              <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10 relative">
                 <CardContent className="p-0">
                   <h3 className="text-xl font-semibold mb-4 approach-gradient-heading">
                     Разум как компьютер с двумя операционными системами
@@ -121,16 +120,14 @@ const Approach = () => {
                         Когда эти системы работают согласованно, вы легко достигаете целей. Но часто возникает конфликт: сознание хочет одного, а подсознание блокирует эти желания, запуская свои защитные программы.
                       </p>
                     </div>
-                        <div className="h-full flex justify-end"> {/* Основной контейнер */}
-                          <div className="h-full w-auto"> {/* Контейнер изображения */}
-                            <img
-                              src="https://svobodarazuma.ru/Images/neurobrain.png"
-                              alt="Мозг и нейроны"
-                              className="h-full w-auto max-h-full object-contain"
-                              style={{ marginLeft: 'auto' }} {/* Прижимаем вправо */}
-                            />
-                          </div>
-                        </div>
+                    {/* Изображение прижато к правому краю голубого контейнера */}
+                    <div className="absolute right-0 top-0 bottom-0 w-1/3 flex items-center justify-end pr-4">
+                      <img
+                        src="https://svobodarazuma.ru/Images/neurobrain.png"
+                        alt="Мозг и нейроны"
+                        className="h-full max-h-full object-contain"
+                      />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
