@@ -80,7 +80,7 @@ const ContactSection = () => {
         <div className="flex flex-col md:flex-row gap-12 max-w-4xl mx-auto min-h-full">
           <div className="flex-1 flex flex-col justify-between">
             <div>
-              <h2 className="text-lg md:text-xl text-gray-700 font-semibold mb-6 text-center">
+              <h2 className="text-lg md:text-xl text-gray-700 font-semibold mb-6 text-center animate-fade-in-up">
                 Как связаться
               </h2>
               <div className="space-y-4">
@@ -88,7 +88,7 @@ const ContactSection = () => {
                   href="https://t.me/Intelligence_client_bot" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-transform hover:scale-105 duration-300 animate-fade-in-up animation-delay-100"
                 >
                   <div className="h-10 w-10 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center">
                     <MessageSquare size={20} />
@@ -103,7 +103,7 @@ const ContactSection = () => {
                   href="https://t.me/SVOBODA_RAZUMA_BLOG" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-transform hover:scale-105 duration-300 animate-fade-in-up animation-delay-200"
                 >
                   <div className="h-10 w-10 rounded-full bg-brand-50 text-brand-500 flex items-center justify-center">
                     <MessageSquare size={20} />
@@ -114,11 +114,13 @@ const ContactSection = () => {
                   </div>
                 </a>
               </div>
-              <p className="mt-6 text-gray-600 text-center">Отсканируйте QR-код для перехода в чат-бот:</p>
+              <p className="mt-6 text-gray-600 text-center animate-fade-in-up animation-delay-300">
+                Отсканируйте QR-код для перехода в чат-бот:
+              </p>
               <img 
                 src="https://svobodarazuma.ru/Images/QRbot.jpg" 
                 alt="QR-код для Telegram чат-бота" 
-                className="mt-4 qr-code-auto mx-auto"
+                className="mt-4 qr-code-auto mx-auto animate-fade-in-up animation-delay-400"
                 onError={handleImageError}
               />
             </div>
@@ -126,10 +128,10 @@ const ContactSection = () => {
 
           <div className="flex-1 flex flex-col justify-center">
             <div>
-              <h2 className="text-xl font-semibold mb-6 text-gray-800 text-center">
+              <h2 className="text-xl font-semibold mb-6 text-gray-800 text-center animate-fade-in-up">
                 Оставить заявку
               </h2>
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 p-6 bg-gray-50 rounded-lg shadow-sm">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 p-6 bg-gray-50 rounded-lg shadow-sm animate-fade-in-up animation-delay-100">
                 <div className="space-y-2">
                   <Label htmlFor="name">Ваше имя</Label>
                   <Input
@@ -179,7 +181,11 @@ const ContactSection = () => {
                   )}
                 </div>
 
-                <Button type="submit" disabled={isSubmitting} className="w-full">
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting} 
+                  className="w-full transition-transform hover:scale-105 active:scale-95 duration-200"
+                >
                   {isSubmitting ? 
                     "Отправка..." : 
                     <>
@@ -192,7 +198,7 @@ const ContactSection = () => {
                 </Button>
               </form>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 animate-fade-in-up animation-delay-200">
               <h3 className="text-lg font-semibold mb-4 text-gray-800">Что происходит после обращения?</h3>
               <ol className="space-y-4">
                 <li className="flex gap-3">
@@ -226,6 +232,37 @@ const ContactSection = () => {
             width: auto;
             max-width: 100%;
             object-fit: contain;
+          }
+
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+          }
+
+          .animation-delay-100 {
+            animation-delay: 0.1s;
+          }
+
+          .animation-delay-200 {
+            animation-delay: 0.2s;
+          }
+
+          .animation-delay-300 {
+            animation-delay: 0.3s;
+          }
+
+          .animation-delay-400 {
+            animation-delay: 0.4s;
           }
         `}
       </style>
