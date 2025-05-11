@@ -11,7 +11,8 @@ const Approach = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const heroRef = useRef(null);
   const imgRef = useRef(null);
-
+  const sectionRefs = useRef([]);
+  
   // Zoom effect for hero section image
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +20,7 @@ const Approach = () => {
         const scrollPosition = window.scrollY;
         const heroHeight = heroRef.current.offsetHeight;
         const scrollProgress = Math.min(scrollPosition / (heroHeight * 2.5), 1);
-        const newScale = 1 + scrollProgress * 0.30; // Same scale animation as in HeroSection
+        const newScale = 1 + scrollProgress * 0.30;
         setScale(newScale);
       }
     };
@@ -34,6 +35,37 @@ const Approach = () => {
       setImgLoaded(true);
     }
   }, []);
+
+  // Scroll animation for sections
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    sectionRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sectionRefs.current.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+
+  const addToRefs = (el) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el);
+    }
+  };
 
   return (
     <>
@@ -50,14 +82,36 @@ const Approach = () => {
             }
           }
           .animate-section {
-            animation: fadeUp 0.6s ease-out forwards;
+            opacity: 0;
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+          }
+          .animate-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
           }
           .animate-fade-in-up {
-            animation: fadeUp 0.6s ease-out forwards;
             opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+          }
+          .animate-fade-in-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
           }
           .animation-delay-100 {
-            animation-delay: 0.1s;
+            transition-delay: 0.1s;
+          }
+          .animation-delay-200 {
+            transition-delay: 0.2s;
+          }
+          .animation-delay-300 {
+            transition-delay: 0.3s;
+          }
+          .animation-delay-400 {
+            transition-delay: 0.4s;
+          }
+          .animation-delay-600 {
+            transition-delay: 0.6s;
           }
           .approach-gradient-heading {
             background: linear-gradient(to right, #2E86C1, #22d3ee);
@@ -122,7 +176,7 @@ const Approach = () => {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
+          <div className="max-w-3xl mx-auto text-center animate-section" ref={addToRefs}>
             <h1 className="text-4xl md:text-5xl font-bold approach-gradient-heading mb-6 animate-fade-in-up">
               Как это работает?
             </h1>
@@ -137,17 +191,17 @@ const Approach = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Как формируются блоки */}
-            <div className="animate-section mb-16">
-              <h3 className="text-xl font-semibold mb-4 approach-gradient-heading flex items-center">
+            <div className="animate-section mb-16" ref={addToRefs}>
+              <h3 className="text-xl font-semibold mb-4 approach-gradient-heading flex items-center animate-fade-in-up">
                 <CheckCircle className="mr-2" size={24} />
                 Как формируются блоки в нашем мозге
               </h3>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                <div className="lg:col-span-2">
+                <div className="lg:col-span-2 animate-fade-in-up animation-delay-200">
                   <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                     Представьте: в детстве вы выступали перед публикой и забыли слова. Все смеялись, и вы испытали сильный стресс. В этот момент ваш мозг делает пометку: "Выступления перед людьми — опасно!" И в будущем, когда вам нужно будет выступать, подсознание будет всячески этому сопротивляться — появится страх, тревога, желание избежать ситуации.
                   </p>
-                  <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 shadow-lg">
+                  <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 shadow-lg animate-fade-in-up animation-delay-300">
                     <CardContent className="p-0">
                       <h3 className="text-xl font-semibold mb-4 text-brand-500 flex items-center">
                         <CheckCircle className="mr-2" size={24} />
@@ -155,14 +209,14 @@ const Approach = () => {
                       </h3>
                       <ol className="list-decimal pl-6 space-y-2 text-gray-600">
                         <li>Происходит стрессовое событие</li>
-                        <li>Мозг создает защитную программ</li>
+                        <li>Мозг создает защитную программу</li>
                         <li>Эта программа автоматически запускается в похожих ситуациях</li>
                         <li>Мы испытываем негативные эмоции и блокируем собственные действия</li>
                       </ol>
                     </CardContent>
                   </Card>
                 </div>
-                <div className="flex justify-center w-full h-[390px]">
+                <div className="flex justify-center w-full h-[390px] animate-fade-in-up animation-delay-400">
                   <div className="relative w-full max-w-[500px] h-full">
                     <img
                       src="https://svobodarazuma.ru/Images/neuroform.jpg"
@@ -177,17 +231,17 @@ const Approach = () => {
             <Separator className="my-12" />
 
             {/* Почему возникают проблемы */}
-            <div className="animate-section mb-16">
-              <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
+            <div className="animate-section mb-16" ref={addToRefs}>
+              <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center animate-fade-in-up">
                 Почему возникают проблемы?
               </h2>
-              <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10 mind-container">
+              <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10 mind-container animate-fade-in-up animation-delay-200">
                 <div className="mind-bg-image"></div>
                 <CardContent className="p-0">
-                  <h3 className="text-xl font-semibold mb-4 approach-gradient-heading">
+                  <h3 className="text-xl font-semibold mb-4 approach-gradient-heading animate-fade-in-up animation-delay-300">
                     Разум как компьютер с двумя операционными системами
                   </h3>
-                  <div className="mind-content">
+                  <div className="mind-content animate-fade-in-up animation-delay-400">
                     <p className="text-gray-600 mb-4">
                       Представьте, что ваш разум — это компьютер с двумя операционными системами:
                     </p>
@@ -201,13 +255,13 @@ const Approach = () => {
                   </div>
                 </CardContent>
               </Card>
-              <h3 className="text-xl font-semibold mb-4 approach-gradient-heading">
+              <h3 className="text-xl font-semibold mb-4 approach-gradient-heading animate-fade-in-up animation-delay-200">
                 Как формируются подсознательные блоки
               </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <p className="text-gray-600 mb-6 leading-relaxed animate-fade-in-up animation-delay-300">
                 Каждый раз, когда мы переживаем стрессовую ситуацию, наш мозг создает особую нейронную связь. Эта связь работает как защитный механизм — "если снова возникнет подобная ситуация, нужно ее избежать". В результате формируются автоматические реакции:
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 animate-fade-in-up animation-delay-400">
                 {[
                   "Страх перед публичными выступлениями",
                   "Сложности в отношениях с противоположным полом",
@@ -226,7 +280,7 @@ const Approach = () => {
                   </Card>
                 ))}
               </div>
-              <p className="text-gray-600 italic text-center">
+              <p className="text-gray-600 italic text-center animate-fade-in-up animation-delay-600">
                 Эти реакции становятся настолько автоматическими, что мы не осознаем их влияние на нашу жизнь.
               </p>
             </div>
@@ -234,14 +288,14 @@ const Approach = () => {
             <Separator className="my-12" />
 
             {/* Метод работы */}
-            <div className="animate-section mb-16">
-              <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
+            <div className="animate-section mb-16" ref={addToRefs}>
+              <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center animate-fade-in-up">
                 Мой метод работы с подсознанием
               </h2>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Текстовая колонка */}
-                <div>
+                <div className="animate-fade-in-up animation-delay-200">
                   <h3 className="text-xl font-semibold mb-4 text-gray-800">
                     Биохимия мозга и эмоции
                   </h3>
@@ -253,7 +307,7 @@ const Approach = () => {
                   </p>
 
                   {/* Кнопка внутри текстовой колонки */}
-                  <div className="flex justify-center mt-12 mb-10 animate-section">
+                  <div className="flex justify-center mt-12 mb-10 animate-fade-in-up animation-delay-400">
                     <Button
                       asChild
                       size="lg"
@@ -268,7 +322,7 @@ const Approach = () => {
                 </div>
 
                 {/* Изображение */}
-                <div className="flex justify-center bio-image-container">
+                <div className="flex justify-center bio-image-container animate-fade-in-up animation-delay-300">
                   <img
                     src="https://svobodarazuma.ru/Images/neurobrain2.jpg"
                     alt="Биохимия мозга"
