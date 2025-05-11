@@ -84,12 +84,12 @@ const Approach = () => {
                     </CardContent>
                   </Card>
                 </div>
-                <div className="flex justify-center">
-                  <div className="bg-white p-4 rounded-xl shadow-md">
+                <div className="flex justify-center w-full h-[400px]"> {/* Настраиваемая высота */}
+                    <div className="relative w-full max-w-[500px] h-full"> {/* Настраиваемая максимальная ширина
                     <img 
                       src="https://svobodarazuma.ru/Images/neuroform.jpg" 
                       alt="Нейроны и мозг"
-                      className="w-64 h-auto object-contain"
+                      className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-md"
                     />
                   </div>
                 </div>
