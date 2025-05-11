@@ -43,7 +43,7 @@ const Approach = () => {
             background-size: contain;
             background-repeat: no-repeat;
             background-position: right center;
-            opacity: 0.7;
+            opacity: 1;
           }
           .mind-content {
             position: relative;
