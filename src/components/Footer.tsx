@@ -30,7 +30,7 @@ const Footer = () => {
                 Telegram канал "Свобода разума"
               </a>
               <a href="https://youtube.com/@Свобода_разума" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-500 flex items-center gap-2 transition-colors">
-                <YouTube size={18} />
+                <MessageSquare size={18} />
                 YouTube
               </a>
             </div>
