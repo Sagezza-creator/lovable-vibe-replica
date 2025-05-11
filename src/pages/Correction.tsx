@@ -49,7 +49,7 @@ const Correction = () => {
             {/* Фоновое изображение 2 с параллаксом (Correctionfont2.jpg, нижний слой) */}
             <div
               ref={parallaxRef2}
-              className="absolute top-0 left-0 w-full h-[200vh] bg-cover bg-top z-[-2]"
+              className="absolute top-0 left-0 w-full h-[200vh] bg-cover bg-top z-[-1]"
               style={{
                 backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont2.jpg')`,
                 transform: 'translateY(0)',
@@ -59,7 +59,7 @@ const Correction = () => {
             {/* Фоновое изображение 1 с параллаксом (Correctionfont.png, верхний слой) */}
             <div
               ref={parallaxRef1}
-              className="absolute top-[10px] left-0 w-full h-[200vh] bg-cover bg-top z-[-1]"
+              className="absolute top-[10px] left-0 w-full h-[200vh] bg-cover bg-top z-[-2]"
               style={{
                 backgroundImage: `url('https://svobodarazuma.ru/Images/Correctionfont.png')`,
                 transform: 'translateY(0)',
