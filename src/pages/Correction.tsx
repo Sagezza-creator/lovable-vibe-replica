@@ -37,20 +37,20 @@ const Correction = () => {
         </div>
       </div>
 
-      {/* Фоновое изображение с параллаксом */}
-      <div
-        ref={parallaxRef}
-        className="fixed top-0 left-0 w-full h-[200vh] bg-cover bg-center z-[-1]"
-        style={{
-          backgroundImage: `url('https://svobodarazuma.ru/Images/Correction font.png')`,
-          backgroundAttachment: 'fixed',
-          transform: 'translateY(0)',
-        }}
-      ></div>
-
       <section className="py-16 relative">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
+            {/* Фоновое изображение с параллаксом */}
+            <div
+              ref={parallaxRef}
+              className="absolute top-0 left-0 w-full h-[200vh] bg-cover bg-top z-[-1]"
+              style={{
+                backgroundImage: `url('https://svobodarazuma.ru/Images/Correction font.png')`,
+                transform: 'translateY(0)',
+                clipPath: 'inset(0 0 0 0)', // Обрезаем верхнюю часть, если нужно
+              }}
+            ></div>
+
             {/* Что такое нейрокоррекция */}
             <div className="mb-16">
               <h2 className="text-3xl font-bold gradient-heading text-center mb-10">
