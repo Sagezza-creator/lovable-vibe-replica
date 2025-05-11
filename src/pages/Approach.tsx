@@ -50,6 +50,19 @@ const Approach = () => {
             z-index: 1;
             width: 60%;
           }
+          .bio-image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+          }
+          .bio-image {
+            max-height: 300px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          }
         `}
       </style>
 
@@ -192,16 +205,18 @@ const Approach = () => {
                     Любая нейронная связь в нашем мозге закрепляется либо на кортизоле (и тогда мы стремимся избегать связанных с ней ситуаций), либо на дофамине (и тогда нам хочется повторять эти действия).
                   </p>
                 </div>
-                <div className="flex justify-center">
-                  <div className="bg-white p-6 rounded-full shadow-md">
-                    <Activity className="text-brand-500" size={80} />
-                  </div>
+                <div className="flex justify-center bio-image-container">
+                  <img 
+                    src="https://svobodarazuma.ru/Images/neurobrain2.jpg" 
+                    alt="Биохимия мозга"
+                    className="bio-image"
+                  />
                 </div>
               </div>
             </div>
 
             {/* CTA Button */}
-            <div className="flex justify-center mt-12 mb-10 animate-section">
+            <div className="flex justify-start mt-12 mb-10 animate-section lg:ml-[16.666667%]">
               <Button
                 asChild
                 size="lg"
