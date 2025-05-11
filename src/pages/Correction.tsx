@@ -1,17 +1,30 @@
-
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
 
 const Correction = () => {
+  const parallaxRef = useRef(null);
+
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
+
+    // Parallax effect
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrollPosition = window.scrollY;
+        // Делим позицию скролла на 6 для скорости параллакса в 6 раз медленнее
+        parallaxRef.current.style.transform = `translateY(${scrollPosition / 6}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
-      <div className="pt-32 pb-16 bg-gradient-to-b from-secondary to-white">
+      <div className="pt-32 pb-16 bg-gradient-to-b from-secondary to-white relative">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
@@ -24,7 +37,18 @@ const Correction = () => {
         </div>
       </div>
 
-      <section className="py-16">
+      {/* Фоновое изображение с параллаксом */}
+      <div
+        ref={parallaxRef}
+        className="fixed top-0 left-0 w-full h-[200vh] bg-cover bg-center z-[-1]"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundAttachment: 'fixed',
+          transform: 'translateY(0)',
+        }}
+      ></div>
+
+      <section className="py-16 relative">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             {/* Что такое нейрокоррекция */}
@@ -137,7 +161,6 @@ const Correction = () => {
                   <div className="md:w-1/3 order-2 md:order-1">
                     <div className="bg-white p-5 rounded-xl shadow-sm">
                       <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
-                        {/* Здесь можно будет вставить изображение мозга/нейронов */}
                         <div className="text-gray-400 text-sm">Изображение нейронных связей</div>
                       </div>
                     </div>
