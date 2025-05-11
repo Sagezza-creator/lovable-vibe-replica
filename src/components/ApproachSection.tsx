@@ -161,8 +161,10 @@ const ApproachSection = () => {
               />
             </div>
             
-            <Button asChild size="lg" className="whitespace-nowrap flex-shrink-0 self-center bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white">
-              <Link to="/approach">Подробнее о методе</Link>
+            <Button asChild size="lg" className="whitespace-nowrap flex-shrink-0 self-center bg-brand-500 hover:bg-brand-600 text-white">
+              <Link to="/approach" onClick={() => window.scrollTo(0, 0)}>
+                Подробнее о методе
+              </Link>
             </Button>
           </div>
         </div>

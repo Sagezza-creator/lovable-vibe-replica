@@ -1,8 +1,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
 
 interface ProblemPoint {
   title: string;
@@ -66,7 +64,7 @@ const ProblemsSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 bg-white relative"
+      className="py-20 bg-transparent relative" // Changed from bg-white to bg-transparent
     >
       <style>
         {`
@@ -115,7 +113,7 @@ const ProblemsSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {problems.map((problem, index) => (
             <div 
               key={index}
@@ -137,11 +135,7 @@ const ProblemsSection = () => {
           ))}
         </div>
         
-        <div className="text-center opacity-0 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-          <Button asChild size="lg" className="bg-gradient-to-r from-brand-500 to-accent-500 hover:from-brand-600 hover:to-accent-600 shadow-md hover:shadow-lg transition-all">
-            <Link to="/approach">Узнать, как я решаю эти проблемы</Link>
-          </Button>
-        </div>
+        {/* Button removed as requested */}
       </div>
     </section>
   );

@@ -24,8 +24,8 @@ const Approach = () => {
           .animate-section {
             animation: fadeUp 0.6s ease-out forwards;
           }
-          .gradient-heading {
-            background: linear-gradient(to right, #2563eb, #22d3ee);
+          .approach-gradient-heading {
+            background: linear-gradient(to right, #2E86C1, #22d3ee);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -37,7 +37,7 @@ const Approach = () => {
       <div className="pt-32 pb-16 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center animate-section">
-            <h1 className="text-4xl md:text-5xl font-bold gradient-heading mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold approach-gradient-heading mb-6">
               Как это работает?
             </h1>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
@@ -52,7 +52,7 @@ const Approach = () => {
           <div className="max-w-6xl mx-auto">
             {/* Как формируются блоки */}
             <div className="animate-section mb-16">
-              <h3 className="text-xl font-semibold mb-4 gradient-heading flex items-center">
+              <h3 className="text-xl font-semibold mb-4 approach-gradient-heading flex items-center">
                 <CheckCircle className="mr-2" size={24} />
                 Как формируются блоки в нашем мозге
               </h3>
@@ -63,7 +63,7 @@ const Approach = () => {
                   </p>
                   <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-6 shadow-lg">
                     <CardContent className="p-0">
-                      <h3 className="text-xl font-semibold mb-4 text-blue-600 flex items-center">
+                      <h3 className="text-xl font-semibold mb-4 text-brand-500 flex items-center">
                         <CheckCircle className="mr-2" size={24} />
                         Так работают все наши проблемы:
                       </h3>
@@ -78,7 +78,7 @@ const Approach = () => {
                 </div>
                 <div className="flex justify-center">
                   <div className="bg-white p-6 rounded-full shadow-md">
-                    <Brain className="text-blue-500" size={80} />
+                    <Brain className="text-brand-500" size={80} />
                   </div>
                 </div>
               </div>
@@ -88,13 +88,13 @@ const Approach = () => {
 
             {/* Почему возникают проблемы */}
             <div className="animate-section mb-16">
-              <h2 className="text-3xl font-bold mb-8 gradient-heading text-center">
+              <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Почему возникают проблемы?
               </h2>
               <Card className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-8 shadow-lg mb-10">
                 <CardContent className="p-0">
-                  <h3 className="text-xl font-semibold mb-4 gradient-heading flex items-center">
-                    <Users className="mr-2 text-blue-500" size={24} />
+                  <h3 className="text-xl font-semibold mb-4 approach-gradient-heading flex items-center">
+                    <Users className="mr-2 text-brand-500" size={24} />
                     Разум как компьютер с двумя операционными системами
                   </h3>
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -112,13 +112,13 @@ const Approach = () => {
                     </div>
                     <div className="flex justify-center">
                       <div className="bg-white p-6 rounded-full shadow-md">
-                        <Users className="text-blue-500" size={80} />
+                        <Users className="text-brand-500" size={80} />
                       </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-              <h3 className="text-xl font-semibold mb-4 gradient-heading">
+              <h3 className="text-xl font-semibold mb-4 approach-gradient-heading">
                 Как формируются подсознательные блоки
               </h3>
               <p className="text-gray-600 mb-6 leading-relaxed">
@@ -152,7 +152,7 @@ const Approach = () => {
 
             {/* Метод работы */}
             <div className="animate-section mb-16">
-              <h2 className="text-3xl font-bold mb-8 gradient-heading text-center">
+              <h2 className="text-3xl font-bold mb-8 approach-gradient-heading text-center">
                 Мой метод работы с подсознанием
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
@@ -169,7 +169,7 @@ const Approach = () => {
                 </div>
                 <div className="flex justify-center">
                   <div className="bg-white p-6 rounded-full shadow-md">
-                    <Activity className="text-blue-500" size={80} />
+                    <Activity className="text-brand-500" size={80} />
                   </div>
                 </div>
               </div>
@@ -180,7 +180,7 @@ const Approach = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white group"
+                className="bg-brand-500 hover:bg-brand-600 text-white group"
               >
                 <Link to="/correction" className="flex items-center">
                   Узнать больше о нейрокоррекции
