@@ -291,6 +291,11 @@ const Correction = () => {
                 </div>
               </div>
             </div>
+              <div className="bg-secondary/50 rounded-xl p-8 mb-12">
+              <p className="italic text-gray-700 text-center">
+                Признание проблемы — первый шаг к её решению. Его вы уже сделали. Следующий шаг — действие.
+              </p>
+            </div>
           </div>
         </div>
       </section>
