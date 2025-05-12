@@ -149,7 +149,7 @@ const ConceptionMatrices = () => {
         <div className="absolute inset-0 z-0">
           <img
             ref={imgRef}
-            src="https://svobodarazuma.ru/Images/correctionherosection.jpg"
+            src="https://svobodarazuma.ru/Images/matrixhero.jpg"
             alt="Матрицы зачатия"
             className={`w-full h-full object-cover object-center transition-all duration-1000 ease-out will-change-transform ${
               imgLoaded ? 'opacity-100' : 'opacity-0'
