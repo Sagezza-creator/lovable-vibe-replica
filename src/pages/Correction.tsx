@@ -205,14 +205,14 @@ const Correction = () => {
                       </div>
                     </div>
                   </div>
-                            <div className="w-[60%] flex items-center justify-center">
-                            <img
-                              src="https://svobodarazuma.ru/Images/WorkRoad.jpg"
-                              alt="Work Road"
-                              className="rounded-lg shadow-sm"
-                              style={{ height: '100px', width: 'auto', objectFit: 'contain' }}
-                            />
-                          </div>
+                        <div className="w-[60%] flex items-center justify-center">
+                          <img
+                            src="https://svobodarazuma.ru/Images/WorkRoad.jpg"
+                            alt="Work Road"
+                            className="rounded-lg shadow-sm"
+                            style={{ height: '100px', width: 'auto', objectFit: 'scale-down' }}
+                          />
+                        </div>
                 
                 <div className="mt-8 bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-brand-300">
                   <p className="text-gray-700">
