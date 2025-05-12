@@ -210,7 +210,7 @@ const Correction = () => {
                               src="https://svobodarazuma.ru/Images/WorkRoad.jpg"
                               alt="Work Road"
                               className="rounded-lg shadow-sm"
-                              style={{ height: '240px', width: 'auto', objectFit: 'contain' }}
+                              style={{ height: '100px', width: 'auto', objectFit: 'contain' }}
                             />
                           </div>
                 
