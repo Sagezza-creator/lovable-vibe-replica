@@ -265,46 +265,54 @@ const Correction = () => {
             </div>
 
             <div className="mb-16">
-              <h2 className="text-3xl font-bold mb-10 text-center gradient-heading">
-                Что делает нейрокоррекцию настолько эффективной?
-              </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap- лично mb-16">
-                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-800">
-                      Работа с первопричиной, а не симптомами
-                    </h3>
-                    <p className="text-gray-600">
-                      В отличие от многих терапевтических подходов, нейрокоррекция направлена на работу с корнем проблемы — теми самыми нейронными связями в мозге, которые запускают нежелательное поведение или реакцию.
-                    </p>
+                <h2 className="text-3xl font-bold mb-10 text-center gradient-heading">
+                  Что делает нейрокоррекцию настолько эффективной?
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                  <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                    <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                        Работа с первопричиной, а не симптомами
+                      </h3>
+                      <p className="text-gray-600">
+                        В отличие от многих терапевтических подходов, нейрокоррекция направлена на работу с корнем проблемы — теми самыми нейронными связями в мозге, которые запускают нежелательное поведение или реакцию.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                    <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                        Отсутствие необходимости «бороть с собой»
+                      </h3>
+                      <p className="text-gray-600">
+                        После нейрокоррекции вам не нужно прикладывать постоянные усилия, чтобы подавлять старые реакции или заставлять себя действовать по-новому. Изменения происходят естественно, потому что меняется сама основа реакции на нейронном уровне.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                    <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-4 text-gray-800">
+                        Быстрый и стойкий результат
+                      </h3>
+                      <p className="text-gray-600">
+                        Многие клиенты отмечают изменения уже во время первой сессии. А поскольку мы работаем на уровне нейронных связей, а не убеждений или эмоций, результат сохраняется надолго без необходимости постоянной «поддержки».
+                      </p>
+                    </div>
                   </div>
                 </div>
                 
-                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-800">
-                      Отсутствие необходимости «бороть с собой»
-                    </h3>
-                    <p className="text-gray-600">
-                      После нейрокоррекции вам не нужно прикладывать постоянные усилия, чтобы подавлять старые реакции или заставлять себя действовать по-новому. Изменения происходят естественно, потому что меняется сама основа реакции на нейронном уровне.
-                    </p>
-                  </div>
+                <div className="mt-16 bg-secondary/50 rounded-xl p-8 mb-12">
+                  <p className="italic text-gray-700 text-center">
+                    Признание проблемы — первый шаг к её решению. Его вы уже сделали. Следующий шаг — действие.
+                  </p>
                 </div>
-                
-                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                  <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-4 text-gray-800">
-                      Быстрый и стойкий результат
-                    </h3>
-                    <p className="text-gray-600">
-                      Многие клиенты отмечают изменения уже во время первой сессии. А поскольку мы работаем на уровне нейронных связей, а не убеждений или эмоций, результат сохраняется надолго без необходимости постоянной «поддержки».
-                    </p>
-                  </div>
-                </div>
+              </div>
               </div>
               
               <div className="mt-16 bg-secondary/50 rounded-xl p-8 mb-12">
