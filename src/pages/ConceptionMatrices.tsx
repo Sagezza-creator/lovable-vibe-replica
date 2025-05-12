@@ -259,25 +259,25 @@ const ConceptionMatrices = () => {
             </div>
 
             <div className="bg-secondary/50 rounded-lg p-8 mb-8 animate-fade-in-up animation-delay-100">
-              <h3 className="text-2xl font-medium mb-6 text-brand-600 animate-fade-in-up animation-delay-200">
-                Преимущества работы с матрицами зачатия:
+              <h3 className="text-2xl font-medium mb-6 text-brand-600 text-center animate-fade-in-up animation-delay-200">
+                Преимущества работы с матрицами зачатия
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in-up animation-delay-300">
                 <div className="bg-white p-4 rounded shadow-sm">
-                  <p className="font-medium text-gray-800">Устранение глубинных причин</p>
-                  <p className="text-gray-600 text-sm">Работа с первопричиной проблем, а не с симптомами</p>
+                  <p className="font-medium text-gray-800 text-center">Устранение глубинных причин</p>
+                  <p className="text-gray-600 text-sm text-center">Работа с первопричиной проблем, а не с симптомами</p>
                 </div>
                 <div className="bg-white p-4 rounded shadow-sm">
-                  <p className="font-medium text-gray-800">Долговременный эффект</p>
-                  <p className="text-gray-600 text-sm">Изменения становятся частью новой "операционной системы"</p>
+                  <p className="font-medium text-gray-800 text-center">Долговременный эффект</p>
+                  <p className="text-gray-600 text-sm text-center">Изменения становятся частью новой "операционной системы"</p>
                 </div>
                 <div className="bg-white p-4 rounded shadow-sm">
-                  <p className="font-medium text-gray-800">Системный подход</p>
-                  <p className="text-gray-600 text-sm">Затрагивает все аспекты жизни: здоровье, отношения, самореализацию</p>
+                  <p className="font-medium text-gray-800 text-center">Системный подход</p>
+                  <p className="text-gray-600 text-sm text-center">Затрагивает все аспекты жизни: здоровье, отношения, самореализацию</p>
                 </div>
                 <div className="bg-white p-4 rounded shadow-sm">
-                  <p className="font-medium text-gray-800">Ускорение результатов</p>
-                  <p className="text-gray-600 text-sm">Делает более эффективной работу с последующими коррекциями</p>
+                  <p className="font-medium text-gray-800 text-center">Ускорение результатов</p>
+                  <p className="text-gray-600 text-sm text-center">Делает более эффективной работу с последующими коррекциями</p>
                 </div>
               </div>
             </div>
