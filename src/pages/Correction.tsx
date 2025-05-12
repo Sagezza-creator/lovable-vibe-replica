@@ -1,6 +1,8 @@
+
 import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const Correction = () => {
   const parallaxRef1 = useRef(null);
@@ -168,61 +170,57 @@ const Correction = () => {
                 <p className="text-gray-700 mb-6 text-center">
                   Одна сессия нейрокоррекции длится 3-5 часов. Это интенсивная, но спокойная работа, во время которой мы поэтапно:
                 </p>
-                <div className="flex">
-                  <div className="w-[40%] flex flex-col gap-6">
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">1</div>
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="md:w-1/2 flex flex-col gap-4">
+                    <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 h-full">
+                      <div className="flex items-center gap-4">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg flex-shrink-0">1</div>
                         <h4 className="font-medium text-gray-800">Точно определяем проблему, над которой будем работать</h4>
                       </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">2</div>
+                    <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 h-full">
+                      <div className="flex items-center gap-4">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg flex-shrink-0">2</div>
                         <h4 className="font-medium text-gray-800">Находим момент, когда сформировалась ограничивающая программа</h4>
                       </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">3</div>
+                    <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 h-full">
+                      <div className="flex items-center gap-4">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg flex-shrink-0">3</div>
                         <h4 className="font-medium text-gray-800">Деактивируем деструктивные связи в мозге, используя специальные техники</h4>
                       </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">4</div>
+                    <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 h-full">
+                      <div className="flex items-center gap-4">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg flex-shrink-0">4</div>
                         <h4 className="font-medium text-gray-800">Формируем новые, позитивные нейронные связи</h4>
                       </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">5</div>
+                    <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 h-full">
+                      <div className="flex items-center gap-4">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg flex-shrink-0">5</div>
                         <h4 className="font-medium text-gray-800">Проверяем результат и закрепляем изменения</h4>
                       </div>
                     </div>
                   </div>
-                  <div className="w-[60%] flex items-center justify-center">
-                    <img
-                      src="https://svobodarazuma.ru/Images/WorkRoad.jpg"
-                      alt="Work Road"
-                      className="w-full h-auto rounded-lg shadow-sm"
-                    />
+                  <div className="md:w-1/2 flex items-center justify-center">
+                    <div className="h-full w-full flex items-center justify-center">
+                      <img
+                        src="https://svobodarazuma.ru/Images/WorkRoad.jpg"
+                        alt="Work Road"
+                        className="w-full h-auto max-h-full object-cover rounded-lg shadow-sm"
+                      />
+                    </div>
                   </div>
                 </div>
                 
                 <div className="mt-8 bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-brand-300">
                   <p className="text-gray-700">
                     За время одной сессии мы прорабатываем одну конкретную проблему до полного её разрешения. Для некоторых запросов может потребоваться несколько сессий, если проблема имеет несколько источников или «слоёв».
-                  </p>
-                </div>
-
-                <div className="mt-8 bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-brand-300">
-                  <p className="italic text-gray-700 text-center">
-                    Признание проблемы — первый шаг к её решению. Его вы уже сделали. Следующий шаг — действие.
                   </p>
                 </div>
               </div>
@@ -290,6 +288,13 @@ const Correction = () => {
                   </div>
                 </div>
               </div>
+              
+              {/* Relocated quote to the end of the page before CallToAction */}
+              <div className="mt-16 bg-secondary/50 rounded-xl p-8 mb-12">
+                <p className="italic text-gray-700 text-center">
+                  Признание проблемы — первый шаг к её решению. Его вы уже сделали. Следующий шаг — действие.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -301,3 +306,4 @@ const Correction = () => {
 };
 
 export default Correction;
+
