@@ -18,9 +18,7 @@ export const ReviewCard = ({ review }: ReviewCardProps) => {
   return (
     <div className="w-full flex-shrink-0 px-2">
       <div className="relative">
-        {/* Shadow effect under the container */}
-        <div className="absolute inset-0 rounded-xl shadow-2xl opacity-20 pointer-events-none"></div>
-        <Card className="border-0 shadow-lg bg-gradient-to-r from-brand-50 to-cyan-50 relative z-10 transition-shadow duration-300 h-[250px] flex flex-col">
+        <Card className="border-0 bg-gradient-to-r from-brand-50 to-cyan-50 relative z-10 h-[250px] flex flex-col">
           <CardContent className="p-8 flex flex-col flex-grow gap-2">
             <div className="flex items-center gap-1 mb-4">
               {renderStars(review.rating)}
