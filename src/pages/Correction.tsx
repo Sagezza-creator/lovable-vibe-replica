@@ -93,11 +93,11 @@ const Correction = () => {
           }
           .effectiveness-grid {
             display: grid;
-            gap: 64px;
+            gap: 32px;
           }
           @media (max-width: 768px) {
             .effectiveness-grid {
-              gap: 32px;
+              gap: 16px;
             }
           }
           .effectiveness-card {
@@ -281,7 +281,7 @@ const Correction = () => {
                 Что делает нейрокоррекцию настолько эффективной?
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 effectiveness-grid">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-16 effectiveness-grid">
                 <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden effectiveness-card">
                   <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
                   <div className="p-6">
