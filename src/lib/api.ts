@@ -90,6 +90,7 @@ export async function fetchArticle(slug: string) {
       title: getArticleTitle(article) || 'Без названия',
       content: article.content?.rendered || '',
       date: article.datePublished || article.date || '',
+      slug: article.slug || slug, // Ensure slug is always available
       image: getFeaturedImage(article),
       meta: {
         title: article.meta_title || getArticleTitle(article) || '',

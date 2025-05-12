@@ -85,7 +85,11 @@ const ArticleView = () => {
           const apiArticle = await fetchArticle(slug);
           
           if (apiArticle) {
-            setArticle(apiArticle);
+            // Ensure the apiArticle has all required fields including slug
+            setArticle({
+              ...apiArticle,
+              slug: slug // Explicitly set the slug from the URL parameter
+            });
             
             // Set SEO meta tags if available
             if (apiArticle.meta.title) {
