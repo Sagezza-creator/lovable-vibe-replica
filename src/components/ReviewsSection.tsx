@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { Star, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -13,6 +12,7 @@ interface Review {
   problem: string;
   victories: string;
   description: string;
+  date: string; // Added date property to interface
 }
 
 const ReviewsSection = () => {
@@ -30,9 +30,14 @@ const ReviewsSection = () => {
       if (savedReviews) {
         const parsedReviews = JSON.parse(savedReviews);
         // Сортировка по дате (новые сначала)
-        const sortedReviews = parsedReviews.sort((a: Review, b: Review) => 
-          new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
+        const sortedReviews = parsedReviews.sort((a: Review, b: Review) => {
+          // Check if date properties exist before comparing
+          if (!a.date && !b.date) return 0;
+          if (!a.date) return 1;
+          if (!b.date) return -1;
+          
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
         setReviews(sortedReviews);
       }
     } catch (error) {
