@@ -192,41 +192,29 @@ const Correction = () => {
                     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">1</div>
-                        <h4 className="font-medium text-gray-800">Определяем проблему</h4>
+                        <h4 className="font-medium text-gray-800">Точно определяем проблему, над которой будем работать</h4>
                       </div>
-                      <p className="text-gray-600 pl-14">
-                        Точно определяем проблему, над которой будем работать
-                      </p>
                     </div>
                     
                     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">2</div>
-                        <h4 className="font-medium text-gray-800">Находим первоисточник</h4>
+                        <h4 className="font-medium text-gray-800">Находим момент, когда сформировалась ограничивающая программа</h4>
                       </div>
-                      <p className="text-gray-600 pl-14">
-                        Находим момент, когда сформировалась ограничивающая программа
-                      </p>
                     </div>
                     
                     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">3</div>
-                        <h4 className="font-medium text-gray-800">Деактивируем связи</h4>
+                        <h4 className="font-medium text-gray-800">Деактивируем деструктивные связи в мозге, используя специальные техники</h4>
                       </div>
-                      <p className="text-gray-600 pl-14">
-                        Деактивируем деструктивные связи в мозге, используя специальные техники
-                      </p>
                     </div>
                     
                     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">4</div>
-                        <h4 className="font-medium text-gray-800">Формируем новое</h4>
+                        <h4 className="font-medium text-gray-800">Формируем новые, позитивные нейронные связи</h4>
                       </div>
-                      <p className="text-gray-600 pl-14">
-                        Формируем новые, позитивные нейронные связи
-                      </p>
                     </div>
                     
                     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
