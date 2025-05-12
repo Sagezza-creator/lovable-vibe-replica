@@ -232,12 +232,7 @@ const Correction = () => {
                     <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">5</div>
-                        <h4 className="font-medium text-gray-800">Проверяем результат</h4>
-                      </div>
-                      <p className="text-gray-600 pl-14">
-                        Проверяем результат и закрепляем изменения
-                      </p>
-                    </div>
+                        <h4 className="font-medium text-gray-800">Проверяем результат и закрепляем изменени</h4>
                   </div>
                 </div>
                 
