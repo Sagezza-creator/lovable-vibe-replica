@@ -75,20 +75,21 @@ const Correction = () => {
           }
           .physiology-bg-image {
             position: absolute;
-            right: 0;
+            left: 0;
             top: 0;
             bottom: 0;
             width: 40%;
             background-image: url('https://svobodarazuma.ru/Images/molecul.png');
             background-size: contain;
             background-repeat: no-repeat;
-            background-position: right center;
+            background-position: left center;
             opacity: 1;
           }
           .physiology-content {
             position: relative;
             z-index: 1;
             width: 60%;
+            margin-left: 40%;
           }
         `}
       </style>
@@ -268,7 +269,7 @@ const Correction = () => {
                 Что делает нейрокоррекцию настолько эффективной?
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap- лично mb-16">
                 <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
                   <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
                   <div className="p-6">
