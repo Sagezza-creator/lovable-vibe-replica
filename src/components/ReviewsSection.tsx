@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { useReviews } from '@/hooks/useReviews';
 import { ReviewCarousel } from './reviews/ReviewCarousel';
@@ -6,11 +5,12 @@ import { ReviewCarousel } from './reviews/ReviewCarousel';
 const ReviewsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { reviews } = useReviews();
+  const { reviews, isLoading } = useReviews();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        console.log('IntersectionObserver entry:', entry.isIntersecting);
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.disconnect();
@@ -21,6 +21,8 @@ const ReviewsSection = () => {
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
+    } else {
+      console.log('sectionRef.current is null');
     }
 
     return () => {
@@ -28,8 +30,20 @@ const ReviewsSection = () => {
     };
   }, []);
 
+  if (isLoading) {
+    return (
+      <section ref={sectionRef} className="py-20 bg-transparent">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center py-12">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   if (reviews.length === 0) {
-    return null; // Don't show the section if there are no reviews
+    return null;
   }
 
   return (
