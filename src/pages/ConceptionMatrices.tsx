@@ -244,7 +244,7 @@ const ConceptionMatrices = () => {
             </div>
 
             <div className="mb-12 animate-section" ref={addToRefs}>
-              <h3 className="text-2xl font-medium mb-6 text-brand-600 animate-fade-in-up animation-delay-100">
+              <h3 className="text-3xl font-medium mb-6 text-brand-600 animate-fade-in-up animation-delay-100">
                 Работа с матрицами зачатия
               </h3>
               <p className="text-gray-700 mb-4 animate-fade-in-up animation-delay-200">
