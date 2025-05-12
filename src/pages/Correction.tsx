@@ -233,6 +233,8 @@ const Correction = () => {
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">5</div>
                         <h4 className="font-medium text-gray-800">Проверяем результат и закрепляем изменени</h4>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
