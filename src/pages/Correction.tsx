@@ -186,55 +186,58 @@ const Correction = () => {
                 <p className="text-gray-700 mb-6">
                   Одна сессия нейрокоррекции длится 3-5 часов. Это интенсивная, но спокойная работа, во время которой мы поэтапно:
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">1</div>
-                      <h4 className="font-medium text-gray-800">Определяем проблему</h4>
+                <div className="flex">
+                  <div className="w-[60%]"></div>
+                  <div className="w-[40%] flex flex-col gap-6">
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">1</div>
+                        <h4 className="font-medium text-gray-800">Определяем проблему</h4>
+                      </div>
+                      <p className="text-gray-600 pl-14">
+                        Точно определяем проблему, над которой будем работать
+                      </p>
                     </div>
-                    <p className="text-gray-600 pl-14">
-                      Точно определяем проблему, над которой будем работать
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">2</div>
-                      <h4 className="font-medium text-gray-800">Находим первоисточник</h4>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">2</div>
+                        <h4 className="font-medium text-gray-800">Находим первоисточник</h4>
+                      </div>
+                      <p className="text-gray-600 pl-14">
+                        Находим момент, когда сформировалась ограничивающая программа
+                      </p>
                     </div>
-                    <p className="text-gray-600 pl-14">
-                      Находим момент, когда сформировалась ограничивающая программа
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">3</div>
-                      <h4 className="font-medium text-gray-800">Деактивируем связи</h4>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">3</div>
+                        <h4 className="font-medium text-gray-800">Деактивируем связи</h4>
+                      </div>
+                      <p className="text-gray-600 pl-14">
+                        Деактивируем деструктивные связи в мозге, используя специальные техники
+                      </p>
                     </div>
-                    <p className="text-gray-600 pl-14">
-                      Деактивируем деструктивные связи в мозге, используя специальные техники
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">4</div>
-                      <h4 className="font-medium text-gray-800">Формируем новое</h4>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">4</div>
+                        <h4 className="font-medium text-gray-800">Формируем новое</h4>
+                      </div>
+                      <p className="text-gray-600 pl-14">
+                        Формируем новые, позитивные нейронные связи
+                      </p>
                     </div>
-                    <p className="text-gray-600 pl-14">
-                      Формируем новые, позитивные нейронные связи
-                    </p>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 md:col-span-2">
-                    <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">5</div>
-                      <h4 className="font-medium text-gray-800">Проверяем результат</h4>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">5</div>
+                        <h4 className="font-medium text-gray-800">Проверяем результат</h4>
+                      </div>
+                      <p className="text-gray-600 pl-14">
+                        Проверяем результат и закрепляем изменения
+                      </p>
                     </div>
-                    <p className="text-gray-600 pl-14">
-                      Проверяем результат и закрепляем изменения
-                    </p>
                   </div>
                 </div>
                 
@@ -290,7 +293,7 @@ const Correction = () => {
                   <div className="h-2 bg-gradient-to-r from-brand-300 to-brand-500"></div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-4 text-gray-800">
-                      Отсутствие необходимости «бороться с собой»
+                      Отсутствие необходимости «бороть с собой»
                     </h3>
                     <p className="text-gray-600">
                       После нейрокоррекции вам не нужно прикладывать постоянные усилия, чтобы подавлять старые реакции или заставлять себя действовать по-новому. Изменения происходят естественно, потому что меняется сама основа реакции на нейронном уровне.
