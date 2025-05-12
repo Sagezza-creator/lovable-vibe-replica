@@ -320,7 +320,7 @@ const Correction = () => {
               </div>
               
               <div className="mt-16 bg-secondary/50 rounded-xl p-8 mb-12">
-                <p className="italic text-gray-700 text-center">
+                <p className="text-3xl md:text-4xl italic text-brand-600 font-serif relative leading-snug">
                   Признание проблемы — первый шаг к её решению. Его вы уже сделали. Следующий шаг — действие.
                 </p>
               </div>
