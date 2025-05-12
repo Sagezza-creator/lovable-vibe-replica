@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -6,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useToast } from '@/hooks/use-toast';
 import CallToAction from '@/components/CallToAction';
-import { fetchArticle, formatDate } from '@/lib/api';
+import { formatDate } from '@/lib/api';
 import DOMPurify from 'dompurify';
 
 interface ArticleData {
@@ -14,6 +15,8 @@ interface ArticleData {
   title: string;
   content: string;
   date: string;
+  slug: string;
+  status?: 'published' | 'draft';
   image?: string | null;
   meta: {
     title: string;
@@ -46,32 +49,74 @@ const ArticleView = () => {
       
       try {
         setIsLoading(true);
-        const data = await fetchArticle(slug);
         
-        if (data) {
-          setArticle(data);
+        // Check for admin-created articles in localStorage first
+        const savedArticles = localStorage.getItem('articles');
+        if (savedArticles) {
+          const parsedArticles = JSON.parse(savedArticles);
+          const adminArticle = parsedArticles.find(
+            (a: ArticleData) => a.slug === slug && a.status === 'published'
+          );
           
-          // Set SEO meta tags if available
-          if (data.meta.title) {
-            document.title = data.meta.title;
+          if (adminArticle) {
+            setArticle(adminArticle);
+            
+            // Set SEO meta tags if available
+            if (adminArticle.meta.title) {
+              document.title = adminArticle.meta.title;
+            } else {
+              document.title = adminArticle.title;
+            }
+            
+            // Set meta description if available
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription && adminArticle.meta.description) {
+              metaDescription.setAttribute('content', adminArticle.meta.description);
+            }
+            
+            setIsLoading(false);
+            return;
+          }
+        }
+        
+        // If not found in localStorage, try fetching from API
+        try {
+          const { fetchArticle } = await import('@/lib/api');
+          const apiArticle = await fetchArticle(slug);
+          
+          if (apiArticle) {
+            setArticle(apiArticle);
+            
+            // Set SEO meta tags if available
+            if (apiArticle.meta.title) {
+              document.title = apiArticle.meta.title;
+            } else {
+              document.title = apiArticle.title;
+            }
+            
+            // Set meta description if available
+            const metaDescription = document.querySelector('meta[name="description"]');
+            if (metaDescription && apiArticle.meta.description) {
+              metaDescription.setAttribute('content', apiArticle.meta.description);
+            }
           } else {
-            document.title = data.title;
+            toast({
+              title: "Статья не найдена",
+              description: "Запрашиваемая статья не найдена или была удалена.",
+              variant: "destructive",
+            });
           }
-          
-          // Set meta description if available
-          const metaDescription = document.querySelector('meta[name="description"]');
-          if (metaDescription && data.meta.description) {
-            metaDescription.setAttribute('content', data.meta.description);
-          }
-        } else {
+        } catch (error) {
+          console.error('Error fetching article from API:', error);
           toast({
-            title: "Статья не найдена",
-            description: "Запрашиваемая статья не найдена или была удалена.",
+            title: "Ошибка загрузки",
+            description: "Не удалось загрузить статью. Пожалуйста, попробуйте позже.",
             variant: "destructive",
           });
         }
+        
       } catch (error) {
-        console.error('Error fetching article:', error);
+        console.error('Error loading article:', error);
         toast({
           title: "Ошибка загрузки",
           description: "Не удалось загрузить статью. Пожалуйста, попробуйте позже.",
@@ -104,15 +149,15 @@ const ArticleView = () => {
             {isLoading ? (
               <>
                 <Skeleton className="h-10 w-3/4 mb-4" />
-                <Skeleton className="h-6 w-1/3 mb-4" /> {/* Изменено с mb-8 на mb-4 */}
+                <Skeleton className="h-6 w-1/3 mb-4" />
               </>
             ) : article ? (
               <>
                 <h1 
-                  className="text-3xl md:text-4xl font-bold text-gray-800 mb-3" // Изменено с mb-4 на mb-3
+                  className="text-3xl md:text-4xl font-bold text-gray-800 mb-3"
                   dangerouslySetInnerHTML={{ __html: article.title }} 
                 />
-                <div className="text-sm text-gray-500 mb-1"> {/* Изменено с mb-8 на mb-6 */}
+                <div className="text-sm text-gray-500 mb-1">
                   {formatDate(article.date)}
                 </div>
               </>
@@ -125,7 +170,7 @@ const ArticleView = () => {
         </div>
       </div>
 
-      <section className="py-6"> {/* Изменено с py-12 на py-8 */}
+      <section className="py-6">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             {isLoading ? (

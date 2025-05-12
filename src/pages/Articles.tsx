@@ -1,10 +1,11 @@
+
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Skeleton } from '@/components/ui/skeleton';
 import CallToAction from '@/components/CallToAction';
-import { fetchArticles, formatDate } from '@/lib/api';
+import { formatDate } from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
 
 interface Article {
@@ -14,6 +15,7 @@ interface Article {
   excerpt: string;
   date: string;
   slug: string;
+  status?: 'published' | 'draft';
   image?: string | null;
   meta: {
     title: string;
@@ -32,10 +34,34 @@ const Articles = () => {
     const loadArticles = async () => {
       try {
         setIsLoading(true);
-        const data = await fetchArticles();
-        setArticles(data);
+        
+        // Get articles from localStorage that were created in admin panel
+        const savedArticles = localStorage.getItem('articles');
+        let adminArticles: Article[] = [];
+        
+        if (savedArticles) {
+          const parsedArticles = JSON.parse(savedArticles);
+          // Only show published articles
+          adminArticles = parsedArticles.filter((article: Article) => article.status === 'published');
+        }
+        
+        // Combine with existing fetchArticles functionality if needed
+        let apiArticles: Article[] = [];
+        try {
+          // Only try to fetch from API if admin articles are empty
+          if (adminArticles.length === 0) {
+            const { fetchArticles } = await import('@/lib/api');
+            apiArticles = await fetchArticles();
+          }
+        } catch (error) {
+          console.warn('Could not fetch articles from API:', error);
+        }
+        
+        // Combine both sources, with admin articles taking precedence
+        const combinedArticles = [...adminArticles, ...apiArticles];
+        setArticles(combinedArticles);
       } catch (error) {
-        console.error('Error fetching articles:', error);
+        console.error('Error loading articles:', error);
         toast({
           title: "Ошибка загрузки",
           description: "Не удалось загрузить статьи. Пожалуйста, попробуйте позже.",
