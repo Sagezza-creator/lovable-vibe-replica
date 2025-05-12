@@ -187,9 +187,9 @@ const Correction = () => {
                   Одна сессия нейрокоррекции длится 3-5 часов. Это интенсивная, но спокойная работа, во время которой мы поэтапно:
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300">
+                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">1</div>
+                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">1</div>
                       <h4 className="font-medium text-gray-800">Определяем проблему</h4>
                     </div>
                     <p className="text-gray-600 pl-14">
@@ -197,9 +197,9 @@ const Correction = () => {
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300">
+                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">2</div>
+                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">2</div>
                       <h4 className="font-medium text-gray-800">Находим первоисточник</h4>
                     </div>
                     <p className="text-gray-600 pl-14">
@@ -207,9 +207,9 @@ const Correction = () => {
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300">
+                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">3</div>
+                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">3</div>
                       <h4 className="font-medium text-gray-800">Деактивируем связи</h4>
                     </div>
                     <p className="text-gray-600 pl-14">
@@ -217,9 +217,9 @@ const Correction = () => {
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300">
+                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">4</div>
+                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">4</div>
                       <h4 className="font-medium text-gray-800">Формируем новое</h4>
                     </div>
                     <p className="text-gray-600 pl-14">
@@ -227,9 +227,9 @@ const Correction = () => {
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-yellow-300 hover:shadow-md transition-all duration-300 md:col-span-2">
+                  <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 md:col-span-2">
                     <div className="flex items-center gap-4 mb-3">
-                      <div className="h-10 w-10 rounded-full bg-yellow-100 text-yellow-500 flex items-center justify-center font-bold text-lg">5</div>
+                      <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">5</div>
                       <h4 className="font-medium text-gray-800">Проверяем результат</h4>
                     </div>
                     <p className="text-gray-600 pl-14">
@@ -247,7 +247,7 @@ const Correction = () => {
 
               {/* Физиологический уровень */}
               <div className="mb-16 bg-secondary/50 p-8 rounded-2xl">
-                <h3 className="text-2xl font-medium mb-6 text-lavender-700">
+                <h3 className="text-2xl font-medium mb-6 text-brand-600">
                   Что происходит на физиологическом уровне?
                 </h3>
                 <div className="flex flex-col md:flex-row gap-8 items-center">
