@@ -1,13 +1,9 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { Card } from '@/components/ui/card';
-import { Save, FileCheck, X } from 'lucide-react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { Save, Eye } from 'lucide-react';
 
 interface Article {
   id: number;
@@ -31,175 +27,159 @@ interface ArticleEditorProps {
 }
 
 const ArticleEditor = ({ article, onSave, onPublish, onCancel }: ArticleEditorProps) => {
-  const [editedArticle, setEditedArticle] = useState<Article>({ ...article });
-  const [isSlugTouched, setIsSlugTouched] = useState(false);
-
-  // Auto-generate slug from title if not manually edited
-  useEffect(() => {
-    if (!isSlugTouched && editedArticle.title) {
-      const slug = editedArticle.title
+  const [formData, setFormData] = useState<Article>(article);
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    
+    if (name.startsWith('meta.')) {
+      const metaField = name.split('.')[1];
+      setFormData({
+        ...formData,
+        meta: {
+          ...formData.meta,
+          [metaField]: value
+        }
+      });
+    } else if (name === 'title') {
+      const slug = value
         .toLowerCase()
-        .replace(/[^\wа-яё\s]/gi, '')
+        .replace(/[^\w\sа-яё]/gi, '')
         .replace(/\s+/g, '-');
-      setEditedArticle(prev => ({ ...prev, slug }));
+      
+      setFormData({
+        ...formData,
+        [name]: value,
+        slug: slug
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
     }
-  }, [editedArticle.title, isSlugTouched]);
-
-  const handleInputChange = (field: keyof Article, value: string) => {
-    setEditedArticle(prev => ({ ...prev, [field]: value }));
-
-    // Track if slug has been manually edited
-    if (field === 'slug') {
-      setIsSlugTouched(true);
+  };
+  
+  const handleSubmit = (e: React.FormEvent, publish: boolean = false) => {
+    e.preventDefault();
+    
+    if (!formData.title.trim()) {
+      alert('Пожалуйста, введите заголовок статьи');
+      return;
+    }
+    
+    if (!formData.content.trim()) {
+      alert('Пожалуйста, введите содержание статьи');
+      return;
+    }
+    
+    if (publish) {
+      onPublish(formData);
+    } else {
+      onSave(formData);
     }
   };
-
-  const handleMetaChange = (field: keyof typeof article.meta, value: string) => {
-    setEditedArticle(prev => ({
-      ...prev,
-      meta: {
-        ...prev.meta,
-        [field]: value
-      }
-    }));
-  };
-
-  const modules = {
-    toolbar: [
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'indent': '-1'}, { 'indent': '+1' }],
-      [{ 'align': [] }],
-      ['link', 'image'],
-      ['clean']
-    ],
-  };
-
-  const formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike',
-    'list', 'bullet', 'indent',
-    'align',
-    'link', 'image'
-  ];
-
+  
   return (
-    <div className="space-y-6 max-h-[calc(90vh-120px)] overflow-y-auto px-2">
-      {/* Основная информация */}
-      <div className="space-y-4">
+    <form className="h-full flex flex-col" onSubmit={(e) => handleSubmit(e, false)}>
+      <div className="grid gap-4 mb-4 flex-grow overflow-y-auto">
         <div>
-          <Label htmlFor="title">Заголовок</Label>
+          <label htmlFor="title" className="block text-sm font-medium mb-1">
+            Заголовок
+          </label>
           <Input
             id="title"
-            value={editedArticle.title}
-            onChange={(e) => handleInputChange('title', e.target.value)}
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
             placeholder="Введите заголовок статьи"
-            className="mt-1"
+            className="w-full"
           />
         </div>
-
-        <div>
-          <Label htmlFor="slug">URL-адрес (slug)</Label>
-          <Input
-            id="slug"
-            value={editedArticle.slug}
-            onChange={(e) => handleInputChange('slug', e.target.value)}
-            placeholder="url-adres-stati"
-            className="mt-1"
-          />
-          <p className="text-sm text-gray-500 mt-1">
-            Используется в URL-адресе статьи. Пример: /articles/{editedArticle.slug || 'url-adres-stati'}
-          </p>
-        </div>
-
-        <div>
-          <Label htmlFor="excerpt">Краткое описание</Label>
-          <Textarea
-            id="excerpt"
-            value={editedArticle.excerpt}
-            onChange={(e) => handleInputChange('excerpt', e.target.value)}
-            placeholder="Краткое описание статьи, которое будет отображаться в списке статей"
-            className="mt-1"
-            rows={3}
-          />
-        </div>
-      </div>
-
-      {/* Редактор контента */}
-      <div className="space-y-2">
-        <Label htmlFor="content">Содержание статьи</Label>
-        <Card className="p-0">
-          <ReactQuill
-            theme="snow"
-            value={editedArticle.content}
-            onChange={(content) => handleInputChange('content', content)}
-            modules={modules}
-            formats={formats}
-            placeholder="Введите содержание статьи..."
-            className="min-h-[300px]"
-          />
-        </Card>
-      </div>
-
-      {/* SEO метаданные */}
-      <div className="space-y-4 pt-4">
-        <h3 className="text-md font-medium">SEO метаданные</h3>
         
         <div>
-          <Label htmlFor="meta_title">META заголовок</Label>
-          <Input
-            id="meta_title"
-            value={editedArticle.meta.title}
-            onChange={(e) => handleMetaChange('title', e.target.value)}
-            placeholder="META заголовок (для поисковых систем)"
-            className="mt-1"
-          />
-        </div>
-
-        <div>
-          <Label htmlFor="meta_description">META описание</Label>
+          <label htmlFor="excerpt" className="block text-sm font-medium mb-1">
+            Краткое описание (отображается в списке статей)
+          </label>
           <Textarea
-            id="meta_description"
-            value={editedArticle.meta.description}
-            onChange={(e) => handleMetaChange('description', e.target.value)}
-            placeholder="META описание (для поисковых систем)"
-            className="mt-1"
+            id="excerpt"
+            name="excerpt"
+            value={formData.excerpt}
+            onChange={handleChange}
+            placeholder="Введите краткое описание статьи"
+            className="w-full"
             rows={3}
           />
         </div>
+        
+        <div>
+          <label htmlFor="content" className="block text-sm font-medium mb-1">
+            Содержание статьи
+          </label>
+          <Textarea
+            id="content"
+            name="content"
+            value={formData.content}
+            onChange={handleChange}
+            placeholder="Введите содержание статьи"
+            className="w-full"
+            rows={15}
+          />
+        </div>
+        
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="meta.title" className="block text-sm font-medium mb-1">
+              SEO Заголовок
+            </label>
+            <Input
+              id="meta.title"
+              name="meta.title"
+              value={formData.meta.title}
+              onChange={handleChange}
+              placeholder="SEO заголовок для поисковых систем"
+            />
+          </div>
+          <div>
+            <label htmlFor="meta.description" className="block text-sm font-medium mb-1">
+              SEO Описание
+            </label>
+            <Input
+              id="meta.description"
+              name="meta.description"
+              value={formData.meta.description}
+              onChange={handleChange}
+              placeholder="SEO описание для поисковых систем"
+            />
+          </div>
+        </div>
       </div>
-
-      {/* Кнопки управления */}
-      <div className="flex items-center justify-between pt-4">
-        <Button 
-          variant="outline" 
-          onClick={onCancel}
-          className="flex items-center gap-2"
-        >
-          <X size={16} />
+      
+      <div className="flex justify-between pt-4 border-t">
+        <Button type="button" variant="outline" onClick={onCancel}>
           Отмена
         </Button>
-
-        <div className="flex items-center gap-2">
-          <Button 
-            onClick={() => onSave(editedArticle)}
-            variant="outline" 
+        <div className="space-x-2">
+          <Button
+            type="button"
+            variant="outline"
+            onClick={(e) => handleSubmit(e, false)}
             className="flex items-center gap-2"
           >
             <Save size={16} />
             Сохранить черновик
           </Button>
-          <Button 
-            onClick={() => onPublish(editedArticle)}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700"
+          <Button
+            type="button"
+            onClick={(e) => handleSubmit(e, true)}
+            className="flex items-center gap-2"
           >
-            <FileCheck size={16} />
+            <Eye size={16} />
             Опубликовать
           </Button>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
