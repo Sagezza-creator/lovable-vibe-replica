@@ -3,45 +3,35 @@ import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
 
 const Correction = () => {
-  const parallaxRef1 = useRef(null); // Для Correctionfont.png
-  const parallaxRef2 = useRef(null); // Для Correctionfont2.jpg
-  const sectionRef = useRef(null); // Для секции контента
-  const heroRef = useRef(null); // Для hero-секции
-  const imgRef = useRef(null); // Для фонового изображения hero-секции
-  const [scale, setScale] = useState(1); // Для эффекта масштабирования
-  const [imgLoaded, setImgLoaded] = useState(false); // Для отслеживания загрузки изображения
+  const parallaxRef1 = useRef(null);
+  const parallaxRef2 = useRef(null);
+  const sectionRef = useRef(null);
+  const heroRef = useRef(null);
+  const imgRef = useRef(null);
+  const [scale, setScale] = useState(1);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   useLayoutEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
 
-    // Установка высоты фоновых изображений
     const setBackgroundHeight = () => {
       if (sectionRef.current && parallaxRef1.current && parallaxRef2.current) {
         const sectionHeight = sectionRef.current.offsetHeight;
-        // Высота нижнего фона равна высоте секции
         parallaxRef2.current.style.height = `${sectionHeight}px`;
-        // Высота верхнего фона уменьшена на 10px из-за смещения top-[10px]
         parallaxRef1.current.style.height = `${sectionHeight - 10}px`;
       }
     };
 
-    // Инициализация высоты
     setBackgroundHeight();
-
-    // Обновление высоты при изменении размера окна
     window.addEventListener('resize', setBackgroundHeight);
 
-    // Parallax effect
     const handleScroll = () => {
       if (parallaxRef1.current) {
         const scrollPosition = window.scrollY;
-        // Скорость параллакса для Correctionfont.png в 7 раз медленнее
         parallaxRef1.current.style.transform = `translateY(${scrollPosition / 7}px)`;
       }
       if (parallaxRef2.current) {
         const scrollPosition = window.scrollY;
-        // Скорость параллакса для Correctionfont2.jpg в 3 раз медленнее
         parallaxRef2.current.style.transform = `translateY(${scrollPosition / 3}px)`;
       }
     };
@@ -53,7 +43,6 @@ const Correction = () => {
     };
   }, []);
 
-  // Zoom effect for hero section image
   useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
@@ -69,7 +58,6 @@ const Correction = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Check image load
   useEffect(() => {
     if (imgRef.current?.complete) {
       setImgLoaded(true);
@@ -105,16 +93,15 @@ const Correction = () => {
             </p>
           </div>
         </div>
-        {/* Новая волна в нижней части hero-секции, поверх изображения */}
         <div className="custom-shape-divider-bottom absolute bottom-0 left-0 w-full z-10">
           <img
             src="https://svobodarazuma.ru/Images/wavesOpacity.svg"
             alt="Wave Divider"
             className="w-full"
             style={{
-              height: '80px', // Уменьшенная высота (можно настроить по желанию)
-              transform: 'rotate(180deg)', // Переворот на 180 градусов
-              objectFit: 'cover', // Обеспечивает заполнение без обрезания
+              height: '80px',
+              transform: 'rotate(180deg)',
+              objectFit: 'cover',
               display: 'block',
             }}
           />
@@ -124,7 +111,6 @@ const Correction = () => {
       <section className="py-16 relative overflow-hidden" ref={sectionRef}>
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
-            {/* Фоновое изображение 2 с параллаксом (Correctionfont2.jpg, нижний слой) */}
             <div
               ref={parallaxRef2}
               className="absolute top-0 left-0 w-full bg-cover bg-top z-[-2]"
@@ -133,8 +119,6 @@ const Correction = () => {
                 transform: 'translateY(0)',
               }}
             ></div>
-
-            {/* Фоновое изображение 1 с параллаксом (Correctionfont.png, верхний слой) */}
             <div
               ref={parallaxRef1}
               className="absolute top-[10px] left-0 w-full bg-cover bg-top z-[-1]"
@@ -144,7 +128,6 @@ const Correction = () => {
               }}
             ></div>
 
-            {/* Что такое нейрокоррекция */}
             <div className="mb-16">
               <h2 className="text-3xl font-bold gradient-heading text-center mb-10">
                 Что такое нейрокоррекция?
@@ -164,7 +147,6 @@ const Correction = () => {
               </div>
             </div>
 
-            {/* Как проходит сессия */}
             <div className="mb-16">
               <h2 className="text-3xl font-bold mb-10 text-center gradient-heading">
                 Как проходит сессия нейрокоррекции?
@@ -180,60 +162,71 @@ const Correction = () => {
               </div>
 
               <div className="mb-12">
-                <h3 className="text-2xl font-medium mb-6 text-brand-600">
+                <h3 className="text-2xl font-medium mb-6 text-brand-600 text-center">
                   Продолжительность и формат
                 </h3>
-                <p className="text-gray-700 mb-6">
+                <p className="text-gray-700 mb-6 text-center">
                   Одна сессия нейрокоррекции длится 3-5 часов. Это интенсивная, но спокойная работа, во время которой мы поэтапно:
                 </p>
                 <div className="flex">
-                  <div className="w-[60%]"></div>
                   <div className="w-[40%] flex flex-col gap-6">
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">1</div>
                         <h4 className="font-medium text-gray-800">Точно определяем проблему, над которой будем работать</h4>
                       </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">2</div>
                         <h4 className="font-medium text-gray-800">Находим момент, когда сформировалась ограничивающая программа</h4>
                       </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">3</div>
                         <h4 className="font-medium text-gray-800">Деактивируем деструктивные связи в мозге, используя специальные техники</h4>
                       </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">4</div>
                         <h4 className="font-medium text-gray-800">Формируем новые, позитивные нейронные связи</h4>
                       </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300">
+                    <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all duration-300 flex items-center justify-center text-center">
                       <div className="flex items-center gap-4 mb-3">
                         <div className="h-10 w-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center font-bold text-lg">5</div>
-                        <h4 className="font-medium text-gray-800">Проверяем результат и закрепляем изменени</h4>
+                        <h4 className="font-medium text-gray-800">Проверяем результат и закрепляем изменения</h4>
                       </div>
                     </div>
                   </div>
+                  <div className="w-[60%] flex items-center justify-center">
+                    <img
+                      src="https://svobodarazuma.ru/Images/WorkRoad.jpg"
+                      alt="Work Road"
+                      className="w-full h-auto rounded-lg shadow-sm"
+                    />
+                  </div>
                 </div>
                 
-                <div className="mt-8 bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-brand-300 p-5 rounded-lg">
+                <div className="mt-8 bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-brand-300">
                   <p className="text-gray-700">
                     За время одной сессии мы прорабатываем одну конкретную проблему до полного её разрешения. Для некоторых запросов может потребоваться несколько сессий, если проблема имеет несколько источников или «слоёв».
                   </p>
                 </div>
+
+                <div className="mt-8 bg-gradient-to-r from-accent-50 to-white p-6 rounded-lg border-l-4 border-brand-300">
+                  <p className="italic text-gray-700 text-center">
+                    Признание проблемы — первый шаг к её решению. Его вы уже сделали. Следующий шаг — действие.
+                  </p>
+                </div>
               </div>
 
-              {/* Физиологический уровень */}
               <div className="mb-16 bg-secondary/50 p-8 rounded-2xl">
                 <h3 className="text-2xl font-medium mb-6 text-brand-600">
                   Что происходит на физиологическом уровне?
@@ -255,7 +248,6 @@ const Correction = () => {
               </div>
             </div>
 
-            {/* Эффективность нейрокоррекции */}
             <div className="mb-16">
               <h2 className="text-3xl font-bold mb-10 text-center gradient-heading">
                 Что делает нейрокоррекцию настолько эффективной?
