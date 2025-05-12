@@ -1,9 +1,23 @@
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Save, Eye } from 'lucide-react';
+import { 
+  Save, 
+  Eye, 
+  Bold, 
+  Italic, 
+  Underline, 
+  List, 
+  ListOrdered,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  Heading1,
+  Heading2,
+  Link as LinkIcon
+} from 'lucide-react';
 
 interface Article {
   id: number;
@@ -28,6 +42,7 @@ interface ArticleEditorProps {
 
 const ArticleEditor = ({ article, onSave, onPublish, onCancel }: ArticleEditorProps) => {
   const [formData, setFormData] = useState<Article>(article);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -79,6 +94,70 @@ const ArticleEditor = ({ article, onSave, onPublish, onCancel }: ArticleEditorPr
       onSave(formData);
     }
   };
+
+  // Функции для форматирования текста
+  const formatText = (tag: string) => {
+    if (!contentRef.current) return;
+    
+    const textArea = contentRef.current;
+    const start = textArea.selectionStart;
+    const end = textArea.selectionEnd;
+    const selectedText = formData.content.substring(start, end);
+    let formattedText = '';
+    
+    switch (tag) {
+      case 'b':
+        formattedText = `<strong>${selectedText}</strong>`;
+        break;
+      case 'i':
+        formattedText = `<em>${selectedText}</em>`;
+        break;
+      case 'u':
+        formattedText = `<u>${selectedText}</u>`;
+        break;
+      case 'ul':
+        formattedText = `\n<ul>\n\t<li>${selectedText}</li>\n</ul>\n`;
+        break;
+      case 'ol':
+        formattedText = `\n<ol>\n\t<li>${selectedText}</li>\n</ol>\n`;
+        break;
+      case 'h1':
+        formattedText = `<h1>${selectedText}</h1>`;
+        break;
+      case 'h2':
+        formattedText = `<h2>${selectedText}</h2>`;
+        break;
+      case 'center':
+        formattedText = `<div style="text-align: center;">${selectedText}</div>`;
+        break;
+      case 'right':
+        formattedText = `<div style="text-align: right;">${selectedText}</div>`;
+        break;
+      case 'link':
+        const url = prompt('Введите URL ссылки:', 'https://');
+        if (url) {
+          formattedText = `<a href="${url}" target="_blank">${selectedText || url}</a>`;
+        } else {
+          return;
+        }
+        break;
+      default:
+        formattedText = selectedText;
+    }
+    
+    const newContent = formData.content.substring(0, start) + formattedText + formData.content.substring(end);
+    
+    setFormData({
+      ...formData,
+      content: newContent
+    });
+    
+    // Set focus back to the textarea after applying format
+    setTimeout(() => {
+      textArea.focus();
+      textArea.setSelectionRange(start + formattedText.length, start + formattedText.length);
+    }, 0);
+  };
   
   return (
     <form className="h-full flex flex-col" onSubmit={(e) => handleSubmit(e, false)}>
@@ -116,7 +195,104 @@ const ArticleEditor = ({ article, onSave, onPublish, onCancel }: ArticleEditorPr
           <label htmlFor="content" className="block text-sm font-medium mb-1">
             Содержание статьи
           </label>
+          <div className="bg-gray-100 p-1 mb-2 rounded flex flex-wrap gap-1">
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('b')}
+              className="h-8 px-2"
+            >
+              <Bold size={16} />
+            </Button>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('i')}
+              className="h-8 px-2"
+            >
+              <Italic size={16} />
+            </Button>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('u')}
+              className="h-8 px-2"
+            >
+              <Underline size={16} />
+            </Button>
+            <div className="h-8 border-l mx-1"></div>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('h1')}
+              className="h-8 px-2"
+            >
+              <Heading1 size={16} />
+            </Button>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('h2')}
+              className="h-8 px-2"
+            >
+              <Heading2 size={16} />
+            </Button>
+            <div className="h-8 border-l mx-1"></div>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('ul')}
+              className="h-8 px-2"
+            >
+              <List size={16} />
+            </Button>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('ol')}
+              className="h-8 px-2"
+            >
+              <ListOrdered size={16} />
+            </Button>
+            <div className="h-8 border-l mx-1"></div>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('center')}
+              className="h-8 px-2"
+            >
+              <AlignCenter size={16} />
+            </Button>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('right')}
+              className="h-8 px-2"
+            >
+              <AlignRight size={16} />
+            </Button>
+            <div className="h-8 border-l mx-1"></div>
+            <Button 
+              type="button" 
+              variant="outline" 
+              size="sm" 
+              onClick={() => formatText('link')}
+              className="h-8 px-2"
+            >
+              <LinkIcon size={16} />
+            </Button>
+          </div>
           <Textarea
+            ref={contentRef}
             id="content"
             name="content"
             value={formData.content}

@@ -1,64 +1,20 @@
+
 import { useEffect, useState, useRef } from 'react';
 import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 interface Review {
   id: number;
   name: string;
   age: number;
+  rating: number;
   problem: string;
-  solution: string;
-  sessions: number;
-  stars: number;
+  victories: string;
+  description: string;
+  date: string;
 }
-
-const reviews: Review[] = [
-  {
-    id: 1,
-    name: "Анна",
-    age: 34,
-    problem: "страх начинать новые проекты",
-    solution: "Я научилась доверять себе и запустила свой бизнес!",
-    sessions: 2,
-    stars: 5
-  },
-  {
-    id: 2,
-    name: "Игорь",
-    age: 45,
-    problem: "хроническая усталость от стресса",
-    solution: "Я вернул энергию и радость жизни",
-    sessions: 4,
-    stars: 5
-  },
-  {
-    id: 3,
-    name: "Мария",
-    age: 27,
-    problem: "разрушенные отношения из-за старых обид",
-    solution: "Я отпустила прошлое и теперь счастлива в новых отношениях",
-    sessions: 3,
-    stars: 5
-  },
-  {
-    id: 4,
-    name: "Дмитрий",
-    age: 39,
-    problem: "социальная тревожность",
-    solution: "Я больше не боюсь общаться с новыми людьми и публичных выступлений",
-    sessions: 3,
-    stars: 5
-  },
-  {
-    id: 5,
-    name: "Екатерина",
-    age: 31,
-    problem: "постоянное откладывание важных дел",
-    solution: "Я победила прокрастинацию и теперь достигаю поставленных целей",
-    sessions: 2,
-    stars: 5
-  }
-];
 
 const ReviewsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -66,10 +22,30 @@ const ReviewsSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
-  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const totalReviews = reviews.length;
 
   useEffect(() => {
+    // Загружаем отзывы из localStorage
+    const loadReviews = () => {
+      try {
+        const savedReviews = localStorage.getItem('reviews');
+        if (savedReviews) {
+          const parsedReviews = JSON.parse(savedReviews);
+          // Сортируем по дате, новые первыми
+          const sortedReviews = parsedReviews.sort((a: Review, b: Review) => {
+            if (!a.date || !b.date) return 0;
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          });
+          setReviews(sortedReviews);
+        }
+      } catch (error) {
+        console.error('Error loading reviews:', error);
+      }
+    };
+    
+    loadReviews();
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -90,6 +66,8 @@ const ReviewsSection = () => {
   }, []);
 
   useEffect(() => {
+    if (reviews.length === 0) return;
+    
     const interval = setInterval(() => {
       if (!isDragging) {
         setActiveIndex((current) => (current + 1) % totalReviews);
@@ -97,7 +75,7 @@ const ReviewsSection = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [totalReviews, isDragging]);
+  }, [totalReviews, isDragging, reviews]);
 
   const goToReview = (index: number) => {
     setActiveIndex(index);
@@ -135,6 +113,10 @@ const ReviewsSection = () => {
     setIsDragging(false);
   };
 
+  if (reviews.length === 0) {
+    return null; // Не показываем секцию, если отзывов нет
+  }
+
   return (
     <section ref={sectionRef} className="py-20 bg-transparent">
       <div className="container mx-auto px-4">
@@ -165,24 +147,27 @@ const ReviewsSection = () => {
                       <Card className="border-0 shadow-lg bg-gradient-to-r from-brand-50 to-cyan-50 relative z-10 hover:shadow-xl transition-shadow duration-300">
                         <CardContent className="p-8">
                           <div className="flex items-center gap-1 mb-4">
-                            {renderStars(review.stars)}
+                            {renderStars(review.rating)}
                           </div>
 
                           <blockquote className="mb-6">
                             <p className="text-xl italic text-gray-700 mb-4">
-                              "Я {review.sessions > 1 ? `всего за ${review.sessions} сеанса` : `всего за ${review.sessions} сеанс`} избавился от {review.problem}. {review.solution}"
+                              "{review.description}"
                             </p>
                           </blockquote>
 
-                          <div className="flex items-center gap-4">
-                            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 flex items-center justify-center text-white font-bold">
-                              {review.name.charAt(0)}
-                            </div>
-                            <div>
-                              <p className="font-medium text-gray-800">
-                                {review.name}, {review.age} {review.age % 10 === 1 && review.age !== 11 ? "год" : (review.age % 10 >= 2 && review.age % 10 <= 4 && (review.age < 10 || review.age > 20) ? "года" : "лет")}
-                              </p>
-                            </div>
+                          <div>
+                            <p className="font-medium text-gray-800">
+                              {review.name}, {review.age} {review.age % 10 === 1 && review.age !== 11 ? "год" : (review.age % 10 >= 2 && review.age % 10 <= 4 && (review.age < 10 || review.age > 20) ? "года" : "лет")}
+                            </p>
+                          </div>
+                          
+                          <div className="mt-4">
+                            <Link to={`/reviews#review-${review.id}`}>
+                              <Button variant="outline" className="border-brand-500 text-brand-500 hover:text-brand-700">
+                                Прочитать отзыв полностью
+                              </Button>
+                            </Link>
                           </div>
                         </CardContent>
                       </Card>

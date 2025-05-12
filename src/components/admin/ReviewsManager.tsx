@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -32,7 +31,12 @@ const ReviewsManager = () => {
       try {
         const savedReviews = localStorage.getItem('reviews');
         if (savedReviews) {
-          setReviews(JSON.parse(savedReviews));
+          const parsedReviews = JSON.parse(savedReviews);
+          // Sort by date, newest first
+          const sortedReviews = parsedReviews.sort((a: Review, b: Review) => {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          });
+          setReviews(sortedReviews);
         }
       } catch (error) {
         console.error('Error loading reviews:', error);
@@ -45,8 +49,12 @@ const ReviewsManager = () => {
   }, []);
 
   const saveReviewsToStorage = (updatedReviews: Review[]) => {
-    localStorage.setItem('reviews', JSON.stringify(updatedReviews));
-    setReviews(updatedReviews);
+    // Sort by date, newest first before saving
+    const sortedReviews = updatedReviews.sort((a: Review, b: Review) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+    localStorage.setItem('reviews', JSON.stringify(sortedReviews));
+    setReviews(sortedReviews);
   };
 
   const handleCreateReview = () => {
@@ -72,7 +80,11 @@ const ReviewsManager = () => {
 
   const handleSaveReview = (review: Review) => {
     const updatedReviews = reviews.filter(r => r.id !== review.id);
-    saveReviewsToStorage([...updatedReviews, review]);
+    const updatedReview = {
+      ...review,
+      date: new Date().toISOString() // Update date when saving
+    };
+    saveReviewsToStorage([...updatedReviews, updatedReview]);
     setIsEditorOpen(false);
     
     toast({
