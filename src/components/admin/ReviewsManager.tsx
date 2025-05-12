@@ -6,17 +6,7 @@ import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell } from '@
 import { Plus, Edit, Trash2, Star } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import ReviewEditor from './ReviewEditor';
-
-interface Review {
-  id: number;
-  name: string;
-  age: number;
-  rating: number;
-  problem: string;
-  victories: string;
-  description: string;
-  date: string;
-}
+import { Review } from '@/models/Review';
 
 const ReviewsManager = () => {
   const [reviews, setReviews] = useState<Review[]>([]);

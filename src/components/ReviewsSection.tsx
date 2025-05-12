@@ -1,51 +1,14 @@
 
-import { useEffect, useState, useRef } from 'react';
-import { Star } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
-
-interface Review {
-  id: number;
-  name: string;
-  age: number;
-  rating: number;
-  problem: string;
-  victories: string;
-  description: string;
-  date: string;
-}
+import { useEffect, useRef, useState } from 'react';
+import { useReviews } from '@/hooks/useReviews';
+import { ReviewCarousel } from './reviews/ReviewCarousel';
 
 const ReviewsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const totalReviews = reviews.length;
+  const { reviews } = useReviews();
 
   useEffect(() => {
-    // Загружаем отзывы из localStorage
-    const loadReviews = () => {
-      try {
-        const savedReviews = localStorage.getItem('reviews');
-        if (savedReviews) {
-          const parsedReviews = JSON.parse(savedReviews);
-          // Сортируем по дате, новые первыми
-          const sortedReviews = parsedReviews.sort((a: Review, b: Review) => {
-            if (!a.date || !b.date) return 0;
-            return new Date(b.date).getTime() - new Date(a.date).getTime();
-          });
-          setReviews(sortedReviews);
-        }
-      } catch (error) {
-        console.error('Error loading reviews:', error);
-      }
-    };
-    
-    loadReviews();
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -65,56 +28,8 @@ const ReviewsSection = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (reviews.length === 0) return;
-    
-    const interval = setInterval(() => {
-      if (!isDragging) {
-        setActiveIndex((current) => (current + 1) % totalReviews);
-      }
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [totalReviews, isDragging, reviews]);
-
-  const goToReview = (index: number) => {
-    setActiveIndex(index);
-  };
-
-  const renderStars = (count: number) => {
-    return Array(count)
-      .fill(0)
-      .map((_, i) => (
-        <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
-      ));
-  };
-
-  // Обработчики для свайпа
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setStartX(e.touches[0].clientX);
-    setIsDragging(true);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging) return;
-    const currentX = e.touches[0].clientX;
-    const diff = startX - currentX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0 && activeIndex < totalReviews - 1) {
-        setActiveIndex(activeIndex + 1);
-      } else if (diff < 0 && activeIndex > 0) {
-        setActiveIndex(activeIndex - 1);
-      }
-      setIsDragging(false);
-    }
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
-
   if (reviews.length === 0) {
-    return null; // Не показываем секцию, если отзывов нет
+    return null; // Don't show the section if there are no reviews
   }
 
   return (
@@ -130,66 +45,7 @@ const ReviewsSection = () => {
         </div>
 
         <div className="max-w-4xl mx-auto relative">
-          <div className={`transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <div className="overflow-hidden relative">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-              >
-                {reviews.map((review) => (
-                  <div key={review.id} className="w-full flex-shrink-0 px-2">
-                    <div className="relative">
-                      {/* Эффект тени под контейнером */}
-                      <div className="absolute inset-0 rounded-xl shadow-2xl opacity-20 pointer-events-none"></div>
-                      <Card className="border-0 shadow-lg bg-gradient-to-r from-brand-50 to-cyan-50 relative z-10 hover:shadow-xl transition-shadow duration-300">
-                        <CardContent className="p-8">
-                          <div className="flex items-center gap-1 mb-4">
-                            {renderStars(review.rating)}
-                          </div>
-
-                          <blockquote className="mb-6">
-                            <p className="text-xl italic text-gray-700 mb-4">
-                              "{review.description}"
-                            </p>
-                          </blockquote>
-
-                          <div>
-                            <p className="font-medium text-gray-800">
-                              {review.name}, {review.age} {review.age % 10 === 1 && review.age !== 11 ? "год" : (review.age % 10 >= 2 && review.age % 10 <= 4 && (review.age < 10 || review.age > 20) ? "года" : "лет")}
-                            </p>
-                          </div>
-                          
-                          <div className="mt-4">
-                            <Link to={`/reviews#review-${review.id}`}>
-                              <Button variant="outline" className="border-brand-500 text-brand-500 hover:text-brand-700">
-                                Прочитать отзыв полностью
-                              </Button>
-                            </Link>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex justify-center mt-8 gap-2">
-              {reviews.map((_, index) => (
-                <button
-                  key={index}
-                  className={`h-3 w-3 rounded-full transition-all ${
-                    activeIndex === index ? "bg-brand-500 scale-125" : "bg-gray-300"
-                  }`}
-                  onClick={() => goToReview(index)}
-                  aria-label={`Показать отзыв ${index + 1}`}
-                ></button>
-              ))}
-            </div>
-          </div>
+          <ReviewCarousel reviews={reviews} isVisible={isVisible} />
         </div>
       </div>
     </section>

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star } from 'lucide-react';
@@ -11,20 +10,10 @@ import {
   PaginationNext, 
   PaginationPrevious 
 } from '@/components/ui/pagination';
-
-interface AdminReview {
-  id: number;
-  name: string;
-  age: number;
-  rating: number;
-  problem: string;
-  victories: string;
-  description: string;
-  date: string;
-}
+import { Review } from '@/models/Review';
 
 const Reviews = () => {
-  const [reviews, setReviews] = useState<AdminReview[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 10;
@@ -40,7 +29,7 @@ const Reviews = () => {
         if (savedReviews) {
           const parsedReviews = JSON.parse(savedReviews);
           // Sort by date, newest first
-          const sortedReviews = parsedReviews.sort((a: AdminReview, b: AdminReview) => {
+          const sortedReviews = parsedReviews.sort((a: Review, b: Review) => {
             return new Date(b.date).getTime() - new Date(a.date).getTime();
           });
           setReviews(sortedReviews);

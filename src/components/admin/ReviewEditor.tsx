@@ -1,20 +1,9 @@
-
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Star } from 'lucide-react';
-
-interface Review {
-  id: number;
-  name: string;
-  age: number;
-  rating: number;
-  problem: string;
-  victories: string;
-  description: string;
-  date: string;
-}
+import { Review } from '@/models/Review';
 
 interface ReviewEditorProps {
   review: Review;
