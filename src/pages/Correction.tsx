@@ -319,7 +319,7 @@ const Correction = () => {
                 <p className="italic text-gray-700 text-center">
                   Признание проблемы — первый шаг к её решению. Его вы уже сделали. Следующий шаг — действие.
                 </p>
-              </div>
+              
             </div>
           </div>
         </div>
