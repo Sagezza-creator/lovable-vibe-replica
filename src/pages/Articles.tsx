@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
@@ -60,21 +59,8 @@ const Articles = () => {
             });
         }
         
-        // Combine with existing fetchArticles functionality if needed
-        let apiArticles: Article[] = [];
-        try {
-          // Only try to fetch from API if admin articles are empty
-          if (adminArticles.length === 0) {
-            const { fetchArticles } = await import('@/lib/api');
-            apiArticles = await fetchArticles();
-          }
-        } catch (error) {
-          console.warn('Could not fetch articles from API:', error);
-        }
-        
-        // Combine both sources, with admin articles taking precedence
-        const combinedArticles = [...adminArticles, ...apiArticles];
-        setArticles(combinedArticles);
+        // Set articles from localStorage
+        setArticles(adminArticles);
       } catch (error) {
         console.error('Error loading articles:', error);
         toast({
@@ -210,7 +196,7 @@ const Articles = () => {
               <div className="mt-16 p-8 bg-gradient-to-r from-brand-50 to-blue-50 rounded-xl shadow-md">
                 <h2 className="text-2xl font-bold mb-4 text-gray-800">Статьи не найдены</h2>
                 <p className="text-gray-700 mb-4">
-                  К сожалению, на данный момент статьи не найдены. Пожалуйста, проверьте подключение к интернету или повторите попытку позже.
+                  К сожалению, на данный момент статьи не найдены. Пожалуйста, проверьте наличие данных в локальном хранилище или добавьте новые статьи через админ-панель.
                 </p>
               </div>
             )}
