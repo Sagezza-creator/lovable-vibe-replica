@@ -1,73 +1,44 @@
+
 import { useEffect, useState, useRef } from 'react';
-import { Star } from 'lucide-react';
+import { Star, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 interface Review {
   id: number;
   name: string;
   age: number;
+  rating: number;
   problem: string;
-  solution: string;
-  sessions: number;
-  stars: number;
+  victories: string;
+  description: string;
 }
 
-const reviews: Review[] = [
-  {
-    id: 1,
-    name: "Анна",
-    age: 34,
-    problem: "страх начинать новые проекты",
-    solution: "Я научилась доверять себе и запустила свой бизнес!",
-    sessions: 2,
-    stars: 5
-  },
-  {
-    id: 2,
-    name: "Игорь",
-    age: 45,
-    problem: "хроническая усталость от стресса",
-    solution: "Я вернул энергию и радость жизни",
-    sessions: 4,
-    stars: 5
-  },
-  {
-    id: 3,
-    name: "Мария",
-    age: 27,
-    problem: "разрушенные отношения из-за старых обид",
-    solution: "Я отпустила прошлое и теперь счастлива в новых отношениях",
-    sessions: 3,
-    stars: 5
-  },
-  {
-    id: 4,
-    name: "Дмитрий",
-    age: 39,
-    problem: "социальная тревожность",
-    solution: "Я больше не боюсь общаться с новыми людьми и публичных выступлений",
-    sessions: 3,
-    stars: 5
-  },
-  {
-    id: 5,
-    name: "Екатерина",
-    age: 31,
-    problem: "постоянное откладывание важных дел",
-    solution: "Я победила прокрастинацию и теперь достигаю поставленных целей",
-    sessions: 2,
-    stars: 5
-  }
-];
-
 const ReviewsSection = () => {
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
-  const [currentTranslate, setCurrentTranslate] = useState(0);
-  const totalReviews = reviews.length;
+  const sectionRef = useRef<HTMLDivElement>(null);
+  
+  // Загрузка отзывов из localStorage
+  useEffect(() => {
+    try {
+      const savedReviews = localStorage.getItem('reviews');
+      if (savedReviews) {
+        const parsedReviews = JSON.parse(savedReviews);
+        // Сортировка по дате (новые сначала)
+        const sortedReviews = parsedReviews.sort((a: Review, b: Review) => 
+          new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+        setReviews(sortedReviews);
+      }
+    } catch (error) {
+      console.error('Error loading reviews:', error);
+    }
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -90,24 +61,30 @@ const ReviewsSection = () => {
   }, []);
 
   useEffect(() => {
+    if (reviews.length === 0) return;
+    
     const interval = setInterval(() => {
       if (!isDragging) {
-        setActiveIndex((current) => (current + 1) % totalReviews);
+        setActiveIndex((current) => (current + 1) % reviews.length);
       }
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [totalReviews, isDragging]);
+  }, [reviews.length, isDragging]);
 
   const goToReview = (index: number) => {
     setActiveIndex(index);
   };
 
   const renderStars = (count: number) => {
-    return Array(count)
+    return Array(5)
       .fill(0)
       .map((_, i) => (
-        <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
+        <Star 
+          key={i} 
+          size={16} 
+          className={i < count ? "fill-yellow-400 text-yellow-400" : "text-gray-300"} 
+        />
       ));
   };
 
@@ -118,11 +95,11 @@ const ReviewsSection = () => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging) return;
+    if (!isDragging || reviews.length === 0) return;
     const currentX = e.touches[0].clientX;
     const diff = startX - currentX;
     if (Math.abs(diff) > 50) {
-      if (diff > 0 && activeIndex < totalReviews - 1) {
+      if (diff > 0 && activeIndex < reviews.length - 1) {
         setActiveIndex(activeIndex + 1);
       } else if (diff < 0 && activeIndex > 0) {
         setActiveIndex(activeIndex - 1);
@@ -134,6 +111,10 @@ const ReviewsSection = () => {
   const handleTouchEnd = () => {
     setIsDragging(false);
   };
+
+  if (reviews.length === 0) {
+    return null; // Не показываем секцию, если нет отзывов
+  }
 
   return (
     <section ref={sectionRef} className="py-20 bg-transparent">
@@ -164,25 +145,30 @@ const ReviewsSection = () => {
                       <div className="absolute inset-0 rounded-xl shadow-2xl opacity-20 pointer-events-none"></div>
                       <Card className="border-0 shadow-lg bg-gradient-to-r from-brand-50 to-cyan-50 relative z-10 hover:shadow-xl transition-shadow duration-300">
                         <CardContent className="p-8">
-                          <div className="flex items-center gap-1 mb-4">
-                            {renderStars(review.stars)}
-                          </div>
-
-                          <blockquote className="mb-6">
-                            <p className="text-xl italic text-gray-700 mb-4">
-                              "Я {review.sessions > 1 ? `всего за ${review.sessions} сеанса` : `всего за ${review.sessions} сеанс`} избавился от {review.problem}. {review.solution}"
-                            </p>
-                          </blockquote>
-
-                          <div className="flex items-center gap-4">
-                            <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 flex items-center justify-center text-white font-bold">
-                              {review.name.charAt(0)}
-                            </div>
+                          <div className="flex justify-between items-start mb-4">
                             <div>
                               <p className="font-medium text-gray-800">
                                 {review.name}, {review.age} {review.age % 10 === 1 && review.age !== 11 ? "год" : (review.age % 10 >= 2 && review.age % 10 <= 4 && (review.age < 10 || review.age > 20) ? "года" : "лет")}
                               </p>
                             </div>
+                            <div className="flex items-center gap-1">
+                              {renderStars(review.rating)}
+                            </div>
+                          </div>
+
+                          <blockquote className="mb-6">
+                            <p className="text-xl italic text-gray-700 mb-4">
+                              "{review.description}"
+                            </p>
+                          </blockquote>
+
+                          <div className="text-right">
+                            <Button asChild className="text-brand-600 hover:text-brand-700 px-0 flex items-center group">
+                              <Link to={`/reviews#review-${review.id}`}>
+                                Прочитать отзыв полностью 
+                                <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                              </Link>
+                            </Button>
                           </div>
                         </CardContent>
                       </Card>

@@ -7,6 +7,14 @@ import { Skeleton } from '@/components/ui/skeleton';
 import CallToAction from '@/components/CallToAction';
 import { formatDate } from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "@/components/ui/pagination";
 
 interface Article {
   id: number;
@@ -26,6 +34,8 @@ interface Article {
 const Articles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const articlesPerPage = 10;
   const { toast } = useToast();
 
   useEffect(() => {
@@ -42,7 +52,11 @@ const Articles = () => {
         if (savedArticles) {
           const parsedArticles = JSON.parse(savedArticles);
           // Only show published articles
-          adminArticles = parsedArticles.filter((article: Article) => article.status === 'published');
+          adminArticles = parsedArticles
+            .filter((article: Article) => article.status === 'published')
+            .sort((a: Article, b: Article) => 
+              new Date(b.date).getTime() - new Date(a.date).getTime()
+            );
         }
         
         // Combine with existing fetchArticles functionality if needed
@@ -74,6 +88,13 @@ const Articles = () => {
 
     loadArticles();
   }, [toast]);
+
+  // Calculate paged articles
+  const pageCount = Math.ceil(articles.length / articlesPerPage);
+  const displayedArticles = articles.slice(
+    (page - 1) * articlesPerPage,
+    page * articlesPerPage
+  );
 
   return (
     <>
@@ -113,41 +134,79 @@ const Articles = () => {
                   </Card>
                 ))}
               </div>
-            ) : articles.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {articles.map((article) => (
-                  <Card 
-                    key={article.id} 
-                    className="overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
-                  >
-                    <CardContent className="p-0">
-                      <div className="p-5 border-b border-gray-100">
-                        <div className="flex items-center justify-end mb-3">
-                          <span className="text-xs text-gray-500">
-                            {formatDate(article.date)}
-                          </span>
+            ) : displayedArticles.length > 0 ? (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {displayedArticles.map((article) => (
+                    <Card 
+                      key={article.id} 
+                      className="overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
+                    >
+                      <CardContent className="p-0">
+                        <div className="p-5 border-b border-gray-100">
+                          <div className="flex items-center justify-end mb-3">
+                            <span className="text-xs text-gray-500">
+                              {formatDate(article.date)}
+                            </span>
+                          </div>
+                          <Link to={`/articles/${article.slug}`}>
+                            <h3 
+                              className="text-lg font-semibold mb-2 text-gray-800 line-clamp-2 hover:text-brand-600"
+                              dangerouslySetInnerHTML={{ __html: article.title }}
+                            />
+                          </Link>
+                          <p className="text-gray-600 line-clamp-3 mb-4">
+                            {article.excerpt}
+                          </p>
+                          <Link 
+                            to={`/articles/${article.slug}`} 
+                            className="inline-flex items-center text-brand-600 hover:text-brand-700 font-medium text-sm"
+                          >
+                            Читать полностью
+                            <ArrowRight size={16} className="ml-1" />
+                          </Link>
                         </div>
-                        <Link to={`/articles/${article.slug}`}>
-                          <h3 
-                            className="text-lg font-semibold mb-2 text-gray-800 line-clamp-2 hover:text-brand-600"
-                            dangerouslySetInnerHTML={{ __html: article.title }}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+
+                {pageCount > 1 && (
+                  <Pagination className="mt-10">
+                    <PaginationContent>
+                      {page > 1 && (
+                        <PaginationItem>
+                          <PaginationPrevious 
+                            onClick={() => setPage(page - 1)} 
+                            className="cursor-pointer"
                           />
-                        </Link>
-                        <p className="text-gray-600 line-clamp-3 mb-4">
-                          {article.excerpt}
-                        </p>
-                        <Link 
-                          to={`/articles/${article.slug}`} 
-                          className="inline-flex items-center text-brand-600 hover:text-brand-700 font-medium text-sm"
-                        >
-                          Читать полностью
-                          <ArrowRight size={16} className="ml-1" />
-                        </Link>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                        </PaginationItem>
+                      )}
+                      
+                      {Array.from({ length: pageCount }).map((_, i) => (
+                        <PaginationItem key={i}>
+                          <PaginationLink
+                            isActive={page === i + 1}
+                            onClick={() => setPage(i + 1)}
+                            className="cursor-pointer"
+                          >
+                            {i + 1}
+                          </PaginationLink>
+                        </PaginationItem>
+                      ))}
+                      
+                      {page < pageCount && (
+                        <PaginationItem>
+                          <PaginationNext 
+                            onClick={() => setPage(page + 1)} 
+                            className="cursor-pointer"
+                          />
+                        </PaginationItem>
+                      )}
+                    </PaginationContent>
+                  </Pagination>
+                )}
+              </>
             ) : (
               <div className="mt-16 p-8 bg-gradient-to-r from-brand-50 to-blue-50 rounded-xl shadow-md">
                 <h2 className="text-2xl font-bold mb-4 text-gray-800">Статьи не найдены</h2>

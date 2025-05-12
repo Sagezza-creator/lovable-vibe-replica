@@ -1,116 +1,100 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
+import { 
+  Pagination, 
+  PaginationContent, 
+  PaginationItem, 
+  PaginationLink, 
+  PaginationNext, 
+  PaginationPrevious 
+} from "@/components/ui/pagination";
+import { useToast } from '@/hooks/use-toast';
+import { useLocation } from 'react-router-dom';
 
 interface Review {
   id: number;
   name: string;
   age: number;
+  rating: number;
   problem: string;
-  solution: string;
-  sessions: number;
-  stars: number;
-  longText: string;
+  victories: string;
+  description: string;
+  date: string;
 }
 
-const reviews: Review[] = [
-  {
-    id: 1,
-    name: "Анна",
-    age: 34,
-    problem: "страх начинать новые проекты",
-    solution: "Я научилась доверять себе и запустила свой бизнес!",
-    sessions: 2,
-    stars: 5,
-    longText: "Я долгое время не могла решиться открыть свое дело, хотя была уверена в своей бизнес-идее. Каждый раз, когда нужно было сделать конкретный шаг, меня парализовал страх. После работы с Александром я поняла, что мой страх был связан с детским опытом, когда любая моя инициатива критиковалась. За два сеанса эта подсознательная программа была деактивирована, и я наконец смогла действовать. Сейчас мой бизнес успешно растет, а я чувствую уверенность в своих решениях."
-  },
-  {
-    id: 2,
-    name: "Игорь",
-    age: 45,
-    problem: "хроническая усталость от стресса",
-    solution: "Я вернул энергию и радость жизни",
-    sessions: 4,
-    stars: 5,
-    longText: "Последние три года я постоянно чувствовал изнеможение, несмотря на нормальный сон и отсутствие серьезных заболеваний. Врачи разводили руками. Оказалось, моя усталость — это реакция на постоянный неосознаваемый стресс из-за глубинных установок о том, что я должен всегда быть продуктивным и успешным. Александр помог мне обнаружить и деактивировать эти подсознательные программы. После четырех сеансов я заметил разительные перемены: энергия вернулась, появилась радость и легкость, которых я не чувствовал много лет."
-  },
-  {
-    id: 3,
-    name: "Мария",
-    age: 27,
-    problem: "разрушенные отношения из-за старых обид",
-    solution: "Я отпустила прошлое и теперь счастлива в новых отношениях",
-    sessions: 3,
-    stars: 5,
-    longText: "У меня было три серьезных отношения, и все они заканчивались одинаково — я не могла отпустить прошлые обиды и постоянно их припоминала, что в итоге разрушало связь. Работа с Александром помогла мне осознать, что эта модель поведения связана с моими отношениями с отцом в детстве. За три сеанса мы проработали эту глубинную причину, и сейчас я в отношениях, где впервые чувствую себя спокойно и счастливо. Я научилась отпускать и не накапливать негатив."
-  },
-  {
-    id: 4,
-    name: "Дмитрий",
-    age: 39,
-    problem: "социальная тревожность",
-    solution: "Я больше не боюсь общаться с новыми людьми и публичных выступлений",
-    sessions: 3,
-    stars: 5,
-    longText: "Всю жизнь я испытывал панический страх перед публичными выступлениями и даже обычными разговорами с незнакомцами. Это сильно ограничивало мою карьеру и личную жизнь. На сеансах с Александром выяснилось, что в основе этой проблемы лежит случай из детства, когда меня высмеяли перед всем классом. Мое подсознание создало защитную реакцию, которая со временем только усилилась. После трех сеансов я заметил удивительные изменения — я начал спокойно общаться с людьми и даже провел презентацию на работе без обычного ужаса."
-  },
-  {
-    id: 5,
-    name: "Екатерина",
-    age: 31,
-    problem: "постоянное откладывание важных дел",
-    solution: "Я победила прокрастинацию и теперь достигаю поставленных целей",
-    sessions: 2,
-    stars: 5,
-    longText: "Прокрастинация была моим главным врагом на протяжении многих лет. Я постоянно откладывала важные дела на последний момент, а потом испытывала стресс, выполняя их в спешке. Никакие техники тайм-менеджмента не помогали. Александр помог мне понять, что моя прокрастинация — это подсознательный страх неудачи и перфекционизм. Мы проработали эти глубинные причины, и результаты появились уже после первого сеанса. Сейчас я намного продуктивнее, спокойнее и уверена в себе."
-  },
-  {
-    id: 6,
-    name: "Сергей",
-    age: 42,
-    problem: "финансовые проблемы",
-    solution: "Я изменил свое отношение к деньгам и увеличил доход",
-    sessions: 4,
-    stars: 5,
-    longText: "Несмотря на хорошее образование и профессиональные навыки, я постоянно сталкивался с финансовыми трудностями. Казалось, что деньги утекают сквозь пальцы. Работа с Александром показала, что у меня есть глубинные негативные установки о деньгах, унаследованные от родителей. За четыре сеанса мы проработали эти блоки, и я заметил, как начало меняться мое отношение к финансам. Я стал принимать более разумные решения, появились новые возможности для заработка, и сейчас мое финансовое положение стабильно улучшается."
-  },
-  {
-    id: 7,
-    name: "Ольга",
-    age: 36,
-    problem: "хронические головные боли",
-    solution: "Я избавилась от мигреней, которые мучили меня годами",
-    sessions: 5,
-    stars: 5,
-    longText: "Более десяти лет я страдала от сильных мигреней, которые случались несколько раз в месяц и полностью выбивали меня из колеи. Я прошла множество обследований, принимала разные препараты, но ничего не помогало надолго. Решив попробовать подход Александра, я не особо верила в успех. Однако после пяти сеансов частота и интенсивность головных болей значительно снизились, а потом они практически прекратились. Оказалось, что мои мигрени были напрямую связаны с подавленными эмоциями и постоянным внутренним напряжением."
-  },
-  {
-    id: 8,
-    name: "Николай",
-    age: 29,
-    problem: "страх вождения после аварии",
-    solution: "Я снова могу спокойно водить машину без панических атак",
-    sessions: 3,
-    stars: 5,
-    longText: "После небольшой аварии, в которую я попал два года назад, я не мог заставить себя сесть за руль. При одной мысли о вождении у меня начиналась паническая атака. Это создавало массу неудобств в повседневной жизни. На сеансах с Александром мы проработали травматический опыт аварии и связанный с ним страх. Уже после второго сеанса я смог сесть за руль и проехать небольшое расстояние, а после третьего вернулся к полноценному вождению. Это кажется чудом, но метод действительно работает."
-  }
-];
-
 const Reviews = () => {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const reviewsPerPage = 10;
+  const location = useLocation();
+  const { toast } = useToast();
+  
+  // Get reviews from localStorage
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
-  }, []);
+    
+    const loadReviews = () => {
+      try {
+        const savedReviews = localStorage.getItem('reviews');
+        if (savedReviews) {
+          // Sort reviews by date descending (newest first)
+          const parsedReviews = JSON.parse(savedReviews);
+          const sortedReviews = parsedReviews.sort((a: Review, b: Review) => 
+            new Date(b.date).getTime() - new Date(a.date).getTime()
+          );
+          setReviews(sortedReviews);
+        } else {
+          setReviews([]);
+        }
+      } catch (error) {
+        console.error('Error loading reviews:', error);
+        toast({
+          title: "Ошибка загрузки",
+          description: "Не удалось загрузить отзывы. Пожалуйста, попробуйте позже.",
+          variant: "destructive",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadReviews();
+
+    // Check if we have a hash in the URL to scroll to a specific review
+    if (location.hash) {
+      const reviewId = location.hash.replace('#', '');
+      setTimeout(() => {
+        const element = document.getElementById(reviewId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
+  }, [location.hash, toast]);
 
   const renderStars = (count: number) => {
-    return Array(count)
+    return Array(5)
       .fill(0)
       .map((_, i) => (
-        <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
+        <Star 
+          key={i} 
+          size={16} 
+          className={i < count ? "fill-yellow-400 text-yellow-400" : "text-gray-300"} 
+        />
       ));
   };
+
+  // Calculate paged reviews
+  const pageCount = Math.ceil(reviews.length / reviewsPerPage);
+  const displayedReviews = reviews.slice(
+    (page - 1) * reviewsPerPage,
+    page * reviewsPerPage
+  );
 
   return (
     <>
@@ -130,53 +114,95 @@ const Reviews = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 gap-8">
-              {reviews.map((review) => (
-                <Card 
-                  key={review.id} 
-                  className="border-0 shadow-md overflow-hidden hover:shadow-lg transition-shadow animate-fade-in"
-                >
-                  <CardContent className="p-0">
-                    <div className="p-6 border-b bg-white">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="h-12 w-12 rounded-full bg-gradient-to-r from-blue-400 to-cyan-300 flex items-center justify-center text-white font-bold">
-                          {review.name.charAt(0)}
-                        </div>
+            {isLoading ? (
+              <div className="text-center py-8">Загрузка...</div>
+            ) : displayedReviews.length > 0 ? (
+              <div className="grid grid-cols-1 gap-8">
+                {displayedReviews.map((review) => (
+                  <Card 
+                    key={review.id} 
+                    id={`review-${review.id}`}
+                    className="border-0 shadow-md overflow-hidden hover:shadow-lg transition-shadow animate-fade-in"
+                  >
+                    <CardContent className="p-6 border-b bg-white">
+                      <div className="mb-4">
                         <div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center justify-between mb-2">
                             <h3 className="font-medium text-gray-800">
                               {review.name}, {review.age} {review.age % 10 === 1 && review.age !== 11 ? "год" : (review.age % 10 >= 2 && review.age % 10 <= 4 && (review.age < 10 || review.age > 20) ? "года" : "лет")}
                             </h3>
-                          </div>
-                          <div className="flex items-center mt-1">
-                            {renderStars(review.stars)}
+                            <div className="flex items-center">
+                              {renderStars(review.rating)}
+                            </div>
                           </div>
                         </div>
                       </div>
 
                       <blockquote>
                         <p className="text-lg italic text-gray-700 mb-4">
-                          "Я {review.sessions > 1 ? `всего за ${review.sessions} сеанса` : `всего за ${review.sessions} сеанс`} избавилась от проблемы: <strong>{review.problem}</strong>. {review.solution}"
+                          "Моя проблема: <strong>{review.problem}</strong>. Мои достижения: {review.victories}"
                         </p>
                         <p className="text-gray-600">
-                          {review.longText}
+                          {review.description}
                         </p>
                       </blockquote>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-xl text-gray-600">Отзывы еще не добавлены</p>
+              </div>
+            )}
 
-            <div className="mt-16 p-8 bg-gradient-to-r from-brand-50 to-cyan-50 rounded-xl shadow-md">
-              <h2 className="text-2xl font-bold mb-4 text-gray-800">Ваша история успеха может быть следующей</h2>
-              <p className="text-gray-700 mb-4">
-                Эти отзывы отражают реальные результаты, которых достигли мои клиенты. Независимо от того, с какой проблемой вы столкнулись, эпигенетический подход может помочь вам найти ее корень и освободиться от ограничивающих подсознательных программ.
-              </p>
-              <p className="text-gray-700">
-                Свяжитесь со мной для консультации, и мы обсудим, как я могу помочь именно вам.
-              </p>
-            </div>
+            {pageCount > 1 && (
+              <Pagination className="mt-8">
+                <PaginationContent>
+                  {page > 1 && (
+                    <PaginationItem>
+                      <PaginationPrevious 
+                        onClick={() => setPage(page - 1)} 
+                        className="cursor-pointer"
+                      />
+                    </PaginationItem>
+                  )}
+                  
+                  {Array.from({ length: pageCount }).map((_, i) => (
+                    <PaginationItem key={i}>
+                      <PaginationLink
+                        isActive={page === i + 1}
+                        onClick={() => setPage(i + 1)}
+                        className="cursor-pointer"
+                      >
+                        {i + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  
+                  {page < pageCount && (
+                    <PaginationItem>
+                      <PaginationNext 
+                        onClick={() => setPage(page + 1)} 
+                        className="cursor-pointer"
+                      />
+                    </PaginationItem>
+                  )}
+                </PaginationContent>
+              </Pagination>
+            )}
+
+            {reviews.length > 0 && (
+              <div className="mt-16 p-8 bg-gradient-to-r from-brand-50 to-cyan-50 rounded-xl shadow-md">
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Ваша история успеха может быть следующей</h2>
+                <p className="text-gray-700 mb-4">
+                  Эти отзывы отражают реальные результаты, которых достигли мои клиенты. Независимо от того, с какой проблемой вы столкнулись, эпигенетический подход может помочь вам найти ее корень и освободиться от ограничивающих подсознательных программ.
+                </p>
+                <p className="text-gray-700">
+                  Свяжитесь со мной для консультации, и мы обсудим, как я могу помочь именно вам.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>

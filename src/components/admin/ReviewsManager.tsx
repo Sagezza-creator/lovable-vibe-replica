@@ -32,7 +32,12 @@ const ReviewsManager = () => {
       try {
         const savedReviews = localStorage.getItem('reviews');
         if (savedReviews) {
-          setReviews(JSON.parse(savedReviews));
+          // Parse and sort reviews by date (newest first)
+          const parsedReviews = JSON.parse(savedReviews);
+          const sortedReviews = parsedReviews.sort((a: Review, b: Review) => 
+            new Date(b.date).getTime() - new Date(a.date).getTime()
+          );
+          setReviews(sortedReviews);
         }
       } catch (error) {
         console.error('Error loading reviews:', error);
@@ -46,7 +51,11 @@ const ReviewsManager = () => {
 
   const saveReviewsToStorage = (updatedReviews: Review[]) => {
     localStorage.setItem('reviews', JSON.stringify(updatedReviews));
-    setReviews(updatedReviews);
+    // Sort reviews by date (newest first) before setting state
+    const sortedReviews = updatedReviews.sort((a: Review, b: Review) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    setReviews(sortedReviews);
   };
 
   const handleCreateReview = () => {
@@ -96,7 +105,7 @@ const ReviewsManager = () => {
   const renderRating = (rating: number) => {
     return (
       <div className="flex items-center">
-        {[...Array(5)].map((_, index) => (
+        {Array(5).fill(0).map((_, index) => (
           <Star
             key={index}
             size={16}

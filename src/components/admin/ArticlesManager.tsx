@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -36,7 +35,12 @@ const ArticlesManager = () => {
       try {
         const savedArticles = localStorage.getItem('articles');
         if (savedArticles) {
-          setArticles(JSON.parse(savedArticles));
+          // Parse and sort articles by date (newest first)
+          const parsedArticles = JSON.parse(savedArticles);
+          const sortedArticles = parsedArticles.sort((a: Article, b: Article) => 
+            new Date(b.date).getTime() - new Date(a.date).getTime()
+          );
+          setArticles(sortedArticles);
         }
       } catch (error) {
         console.error('Error loading articles:', error);
@@ -50,7 +54,11 @@ const ArticlesManager = () => {
 
   const saveArticlesToStorage = (updatedArticles: Article[]) => {
     localStorage.setItem('articles', JSON.stringify(updatedArticles));
-    setArticles(updatedArticles);
+    // Sort articles by date (newest first) before setting state
+    const sortedArticles = updatedArticles.sort((a: Article, b: Article) => 
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    setArticles(sortedArticles);
   };
 
   const handleCreateArticle = () => {
