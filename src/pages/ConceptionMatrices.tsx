@@ -222,7 +222,7 @@ const ConceptionMatrices = () => {
             </div>
 
             <div className="bg-secondary/50 p-8 rounded-lg mb-12 animate-fade-in-up animation-delay-100">
-              <h3 className="text-2xl font-medium mb-6 text-brand-600 animate-fade-in-up animation-delay-200">
+              <h3 className="text-3xl font-medium mb-6 text-brand-600 animate-fade-in-up animation-delay-200">
                 Как матрицы зачатия влияют на нашу жизнь?
               </h3>
               <div className="space-y-4 text-gray-700 animate-fade-in-up animation-delay-300">
@@ -258,7 +258,7 @@ const ConceptionMatrices = () => {
               </p>
             </div>
 
-              <h3 className="text-2xl font-medium mb-6 text-brand-600 text-center animate-fade-in-up animation-delay-200">
+              <h3 className="text-3xl font-medium mb-6 text-brand-600 text-center animate-fade-in-up animation-delay-200">
                 Преимущества работы с матрицами зачатия
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 animate-fade-in-up animation-delay-300">
