@@ -258,7 +258,6 @@ const ConceptionMatrices = () => {
               </p>
             </div>
 
-            <div className="bg-secondary/50 rounded-lg p-8 mb-8 animate-fade-in-up animation-delay-100">
               <h3 className="text-2xl font-medium mb-6 text-brand-600 text-center animate-fade-in-up animation-delay-200">
                 Преимущества работы с матрицами зачатия
               </h3>
@@ -279,7 +278,6 @@ const ConceptionMatrices = () => {
                   <p className="font-medium text-gray-800 text-center">Ускорение результатов</p>
                   <p className="text-gray-600 text-sm text-center">Делает более эффективной работу с последующими коррекциями</p>
                 </div>
-              </div>
             </div>
           </div>
         </div>
