@@ -1,4 +1,3 @@
-
 import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
@@ -68,6 +67,32 @@ const Correction = () => {
 
   return (
     <>
+      <style>
+        {`
+          .physiology-container {
+            position: relative;
+            overflow: hidden;
+          }
+          .physiology-bg-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 40%;
+            background-image: url('https://svobodarazuma.ru/Images/molecul.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right center;
+            opacity: 1;
+          }
+          .physiology-content {
+            position: relative;
+            z-index: 1;
+            width: 60%;
+          }
+        `}
+      </style>
+
       <div className="relative overflow-hidden" ref={heroRef} style={{ height: '885px', position: 'relative' }}>
         <div className="absolute inset-0 z-0">
           <img
@@ -225,23 +250,15 @@ const Correction = () => {
                 </div>
               </div>
 
-              <div className="mb-16 bg-secondary/50 p-8 rounded-2xl">
-                <h3 className="text-2xl font-medium mb-6 text-brand-600">
-                  Что происходит на физиологическом уровне?
-                </h3>
-                <div className="flex flex-col md:flex-row gap-8 items-center">
-                  <div className="md:w-1/3 order-2 md:order-1">
-                    <div className="bg-white p-5 rounded-xl shadow-sm">
-                      <div className="aspect-square bg-gray-100 rounded-lg flex items-center justify-center">
-                        <div className="text-gray-400 text-sm">Изображение нейронных связей</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="md:w-2/3 order-1 md:order-2">
-                    <p className="text-gray-700 mb-4">
-                      Когда мы переживаем стресс, в мозге формируется нейронная связь на основе гормона стресса — кортизола. В момент нейрокоррекции мы создаём новую нейронную связь, но уже на основе гормона удовольствия — дофамина. Это позволяет мозгу «переключиться» с режима защиты на режим удовольствия и роста.
-                    </p>
-                  </div>
+              <div className="mb-16 bg-secondary/50 p-8 rounded-2xl physiology-container">
+                <div className="physiology-bg-image"></div>
+                <div className="physiology-content">
+                  <h3 className="text-2xl font-medium mb-6 text-brand-600">
+                    Что происходит на физиологическом уровне?
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    Когда мы переживаем стресс, в мозге формируется нейронная связь на основе гормона стресса — кортизола. В момент нейрокоррекции мы создаём новую нейронную связь, но уже на основе гормона удовольствия — дофамина. Это позволяет мозгу «переключиться» с режима защиты на режим удовольствия и роста.
+                  </p>
                 </div>
               </div>
             </div>
@@ -289,7 +306,6 @@ const Correction = () => {
                 </div>
               </div>
               
-              {/* Relocated quote to the end of the page before CallToAction */}
               <div className="mt-16 bg-secondary/50 rounded-xl p-8 mb-12">
                 <p className="italic text-gray-700 text-center">
                   Признание проблемы — первый шаг к её решению. Его вы уже сделали. Следующий шаг — действие.
@@ -306,4 +322,3 @@ const Correction = () => {
 };
 
 export default Correction;
-
