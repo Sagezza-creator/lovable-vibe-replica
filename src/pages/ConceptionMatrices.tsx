@@ -289,7 +289,7 @@ const ConceptionMatrices = () => {
       <YoutubeVideosSection />
       
       {/* Articles Section */}
-      <ArticlesPreviewSection className="bg-transparent" />
+      <ArticlesPreviewSection />
 
       <CallToAction />
     </>

@@ -5,7 +5,6 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* White */
     --foreground: 0 0% 29%; /* Dark Gray #4A4A4A */
     --card: 0 0% 100%;
     --card-foreground: 0 0% 29%;
