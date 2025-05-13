@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
@@ -21,39 +20,44 @@ interface Article {
 
 const ArticlesPreviewSection = () => {
   const [articles, setArticles] = useState<Article[]>([]);
-  
+
   useEffect(() => {
     const loadArticles = () => {
       try {
         const savedArticles = localStorage.getItem('articles');
         if (savedArticles) {
           const parsedArticles = JSON.parse(savedArticles);
-          
-          // Filter only published articles and get the 3 most recent ones
+
           const publishedArticles = parsedArticles
             .filter((article: Article) => article.status === 'published')
             .sort((a: Article, b: Article) => new Date(b.date).getTime() - new Date(a.date).getTime())
             .slice(0, 3);
-          
+
           setArticles(publishedArticles);
         }
       } catch (error) {
         console.error('Error loading articles:', error);
       }
     };
-    
+
     loadArticles();
   }, []);
 
   if (articles.length === 0) return null;
-  
+
   return (
-    <section className="py-16 bg-transparent">
-      <div className="container mx-auto px-4">
+    <section className="py-16 bg-transparent relative isolate">
+      {/* Защитный прозрачный слой */}
+      <div 
+        className="absolute inset-0 -z-10 bg-transparent"
+        aria-hidden="true"
+      />
+
+      <div className="container mx-auto px-4 relative z-0">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-600 mb-4">Полезные статьи</h2>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.map((article) => (
             <Link 
@@ -61,9 +65,7 @@ const ArticlesPreviewSection = () => {
               key={article.id}
               className="group block transition-all duration-300 hover:-translate-y-1"
             >
-              <div 
-                className="h-64 rounded-lg overflow-hidden relative shadow-md"
-              >
+              <div className="h-64 rounded-lg overflow-hidden relative shadow-md">
                 {article.image ? (
                   <img 
                     src={article.image} 
@@ -84,7 +86,7 @@ const ArticlesPreviewSection = () => {
             </Link>
           ))}
         </div>
-        
+
         <div className="flex justify-center mt-12">
           <Link 
             to="/articles" 
