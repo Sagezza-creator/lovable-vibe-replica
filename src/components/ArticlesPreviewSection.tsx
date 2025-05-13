@@ -28,7 +28,6 @@ const ArticlesPreviewSection = () => {
         if (savedArticles) {
           const parsedArticles = JSON.parse(savedArticles);
           
-          // Filter only published articles and get the 3 most recent ones
           const publishedArticles = parsedArticles
             .filter((article: Article) => article.status === 'published')
             .sort((a: Article, b: Article) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -47,10 +46,18 @@ const ArticlesPreviewSection = () => {
   if (articles.length === 0) return null;
   
   return (
-    <section className="py-16 bg-transparent">
+    <section 
+      className="py-16 !bg-transparent" 
+      style={{
+        backgroundColor: 'transparent !important',
+        backgroundImage: 'none !important'
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-600 mb-4">Полезные статьи</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-600 mb-4">
+            Полезные статьи
+          </h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -60,9 +67,7 @@ const ArticlesPreviewSection = () => {
               key={article.id}
               className="group block transition-all duration-300 hover:-translate-y-1"
             >
-              <div 
-                className="h-64 rounded-lg overflow-hidden relative shadow-md"
-              >
+              <div className="h-64 rounded-lg overflow-hidden relative shadow-md">
                 {article.image ? (
                   <img 
                     src={article.image} 
