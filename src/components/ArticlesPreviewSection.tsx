@@ -46,14 +46,14 @@ const ArticlesPreviewSection = () => {
   if (articles.length === 0) return null;
   
   return (
-    <section 
-      className="py-16 !bg-transparent" 
-      style={{
-        backgroundColor: 'transparent !important',
-        backgroundImage: 'none !important'
-      }}
-    >
-      <div className="container mx-auto px-4">
+    <section className="py-16 relative">
+      {/* Затемнение фона (если нужно) */}
+      <div 
+        className="absolute inset-0 -z-10 bg-transparent"
+        aria-hidden="true"
+      />
+      
+      <div className="container mx-auto px-4 relative z-0">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-brand-600 mb-4">
             Полезные статьи
