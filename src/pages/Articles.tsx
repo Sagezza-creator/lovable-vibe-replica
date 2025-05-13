@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight } from 'lucide-react';
@@ -110,6 +111,7 @@ const Articles = () => {
                 {[1, 2, 3, 4, 5, 6].map((i) => (
                   <Card key={i} className="overflow-hidden border border-gray-100 shadow-sm">
                     <CardContent className="p-0">
+                      <Skeleton className="h-48 w-full" />
                       <div className="p-5 border-b border-gray-100">
                         <div className="flex items-center justify-end mb-3">
                           <Skeleton className="h-5 w-20" />
@@ -134,6 +136,19 @@ const Articles = () => {
                       className="overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all"
                     >
                       <CardContent className="p-0">
+                        <Link to={`/articles/${article.slug}`}>
+                          <div className="w-full h-48 overflow-hidden">
+                            {article.image ? (
+                              <img 
+                                src={article.image} 
+                                alt={article.title}
+                                className="w-full h-full object-cover transition-all duration-300 hover:scale-105" 
+                              />
+                            ) : (
+                              <div className="w-full h-full bg-gradient-to-br from-brand-100 to-blue-100" />
+                            )}
+                          </div>
+                        </Link>
                         <div className="p-5 border-b border-gray-100">
                           <div className="flex items-center justify-end mb-3">
                             <span className="text-xs text-gray-500">

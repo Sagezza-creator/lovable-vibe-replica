@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -9,6 +10,7 @@ import FAQSection from '@/components/FAQSection';
 import CallToAction from '@/components/CallToAction';
 import MatricesSection from '@/components/MatricesSection';
 import CorrectionSection from '@/components/CorrectionSection';
+import ArticlesPreviewSection from '@/components/ArticlesPreviewSection';
 
 const Home = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -70,6 +72,7 @@ const Home = () => {
           <CorrectionSection />
           <MatricesSection />
           <ComparisonSection />
+          <ArticlesPreviewSection />
           <ReviewsSection />
         </div>
       </div>

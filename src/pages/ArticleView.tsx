@@ -30,7 +30,7 @@ const sanitizeHtml = (html: string) => {
       'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'div', 'span',
       'ul', 'ol', 'li', 'a', 'strong', 'em', 'br', 'hr', 'img'
     ],
-    ALLOWED_ATTR: ['class', 'href', 'target', 'src', 'alt', 'title']
+    ALLOWED_ATTR: ['class', 'href', 'target', 'src', 'alt', 'title', 'style']
   });
 };
 
@@ -157,6 +157,15 @@ const ArticleView = () => {
               </>
             ) : article ? (
               <>
+                {article.image && (
+                  <div className="w-full h-64 md:h-80 mb-6 rounded-lg overflow-hidden">
+                    <img 
+                      src={article.image} 
+                      alt={article.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
                 <h1 
                   className="text-3xl md:text-4xl font-bold text-gray-800 mb-3"
                   dangerouslySetInnerHTML={{ __html: article.title }} 

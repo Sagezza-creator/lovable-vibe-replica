@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -16,6 +17,7 @@ interface Article {
   date: string;
   slug: string;
   status: 'published' | 'draft';
+  image?: string | null;
   meta: {
     title: string;
     description: string;
@@ -70,6 +72,7 @@ const ArticlesManager = () => {
       date: new Date().toISOString(),
       slug: '',
       status: 'draft' as const,
+      image: null,
       meta: {
         title: '',
         description: '',

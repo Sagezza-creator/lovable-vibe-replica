@@ -1,23 +1,15 @@
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { 
   Save, 
-  Eye, 
-  Bold, 
-  Italic, 
-  Underline, 
-  List, 
-  ListOrdered,
-  AlignLeft,
-  AlignCenter,
-  AlignRight,
-  Heading1,
-  Heading2,
-  Link as LinkIcon
+  Eye,
+  Image
 } from 'lucide-react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 interface Article {
   id: number;
@@ -27,6 +19,7 @@ interface Article {
   date: string;
   slug: string;
   status: 'published' | 'draft';
+  image?: string | null;
   meta: {
     title: string;
     description: string;
@@ -42,8 +35,32 @@ interface ArticleEditorProps {
 
 const ArticleEditor = ({ article, onSave, onPublish, onCancel }: ArticleEditorProps) => {
   const [formData, setFormData] = useState<Article>(article);
-  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(article.image || null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
   
+  const quillModules = {
+    toolbar: [
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ color: [] }, { background: [] }],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      [{ indent: '-1' }, { indent: '+1' }],
+      [{ align: [] }],
+      ['link', 'image'],
+      ['clean'],
+    ],
+  };
+  
+  const quillFormats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike',
+    'color', 'background',
+    'list', 'bullet',
+    'indent',
+    'align',
+    'link', 'image',
+  ];
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     
@@ -74,6 +91,29 @@ const ArticleEditor = ({ article, onSave, onPublish, onCancel }: ArticleEditorPr
       });
     }
   };
+
+  const handleContentChange = (content: string) => {
+    setFormData({
+      ...formData,
+      content
+    });
+  };
+  
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      setImagePreview(base64String);
+      setFormData({
+        ...formData,
+        image: base64String
+      });
+    };
+    reader.readAsDataURL(file);
+  };
   
   const handleSubmit = (e: React.FormEvent, publish: boolean = false) => {
     e.preventDefault();
@@ -95,70 +135,6 @@ const ArticleEditor = ({ article, onSave, onPublish, onCancel }: ArticleEditorPr
     }
   };
 
-  // Функции для форматирования текста
-  const formatText = (tag: string) => {
-    if (!contentRef.current) return;
-    
-    const textArea = contentRef.current;
-    const start = textArea.selectionStart;
-    const end = textArea.selectionEnd;
-    const selectedText = formData.content.substring(start, end);
-    let formattedText = '';
-    
-    switch (tag) {
-      case 'b':
-        formattedText = `<strong>${selectedText}</strong>`;
-        break;
-      case 'i':
-        formattedText = `<em>${selectedText}</em>`;
-        break;
-      case 'u':
-        formattedText = `<u>${selectedText}</u>`;
-        break;
-      case 'ul':
-        formattedText = `\n<ul>\n\t<li>${selectedText}</li>\n</ul>\n`;
-        break;
-      case 'ol':
-        formattedText = `\n<ol>\n\t<li>${selectedText}</li>\n</ol>\n`;
-        break;
-      case 'h1':
-        formattedText = `<h1>${selectedText}</h1>`;
-        break;
-      case 'h2':
-        formattedText = `<h2>${selectedText}</h2>`;
-        break;
-      case 'center':
-        formattedText = `<div style="text-align: center;">${selectedText}</div>`;
-        break;
-      case 'right':
-        formattedText = `<div style="text-align: right;">${selectedText}</div>`;
-        break;
-      case 'link':
-        const url = prompt('Введите URL ссылки:', 'https://');
-        if (url) {
-          formattedText = `<a href="${url}" target="_blank">${selectedText || url}</a>`;
-        } else {
-          return;
-        }
-        break;
-      default:
-        formattedText = selectedText;
-    }
-    
-    const newContent = formData.content.substring(0, start) + formattedText + formData.content.substring(end);
-    
-    setFormData({
-      ...formData,
-      content: newContent
-    });
-    
-    // Set focus back to the textarea after applying format
-    setTimeout(() => {
-      textArea.focus();
-      textArea.setSelectionRange(start + formattedText.length, start + formattedText.length);
-    }, 0);
-  };
-  
   return (
     <form className="h-full flex flex-col" onSubmit={(e) => handleSubmit(e, false)}>
       <div className="grid gap-4 mb-4 flex-grow overflow-y-auto">
@@ -190,117 +166,49 @@ const ArticleEditor = ({ article, onSave, onPublish, onCancel }: ArticleEditorPr
             rows={3}
           />
         </div>
+
+        <div>
+          <label htmlFor="image" className="block text-sm font-medium mb-1">
+            Изображение для статьи
+          </label>
+          <div className="flex items-end gap-4">
+            <div className="flex-1">
+              <Input
+                ref={imageInputRef}
+                id="image"
+                name="image"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="w-full"
+              />
+            </div>
+            {imagePreview && (
+              <div className="w-32 h-24 relative">
+                <img 
+                  src={imagePreview} 
+                  alt="Предпросмотр" 
+                  className="w-32 h-24 object-cover rounded" 
+                />
+              </div>
+            )}
+          </div>
+        </div>
         
         <div>
           <label htmlFor="content" className="block text-sm font-medium mb-1">
             Содержание статьи
           </label>
-          <div className="bg-gray-100 p-1 mb-2 rounded flex flex-wrap gap-1">
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('b')}
-              className="h-8 px-2"
-            >
-              <Bold size={16} />
-            </Button>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('i')}
-              className="h-8 px-2"
-            >
-              <Italic size={16} />
-            </Button>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('u')}
-              className="h-8 px-2"
-            >
-              <Underline size={16} />
-            </Button>
-            <div className="h-8 border-l mx-1"></div>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('h1')}
-              className="h-8 px-2"
-            >
-              <Heading1 size={16} />
-            </Button>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('h2')}
-              className="h-8 px-2"
-            >
-              <Heading2 size={16} />
-            </Button>
-            <div className="h-8 border-l mx-1"></div>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('ul')}
-              className="h-8 px-2"
-            >
-              <List size={16} />
-            </Button>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('ol')}
-              className="h-8 px-2"
-            >
-              <ListOrdered size={16} />
-            </Button>
-            <div className="h-8 border-l mx-1"></div>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('center')}
-              className="h-8 px-2"
-            >
-              <AlignCenter size={16} />
-            </Button>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('right')}
-              className="h-8 px-2"
-            >
-              <AlignRight size={16} />
-            </Button>
-            <div className="h-8 border-l mx-1"></div>
-            <Button 
-              type="button" 
-              variant="outline" 
-              size="sm" 
-              onClick={() => formatText('link')}
-              className="h-8 px-2"
-            >
-              <LinkIcon size={16} />
-            </Button>
+          <div className="min-h-[400px]">
+            <ReactQuill 
+              theme="snow"
+              value={formData.content}
+              onChange={handleContentChange}
+              modules={quillModules}
+              formats={quillFormats}
+              className="h-[350px] mb-12"
+            />
           </div>
-          <Textarea
-            ref={contentRef}
-            id="content"
-            name="content"
-            value={formData.content}
-            onChange={handleChange}
-            placeholder="Введите содержание статьи"
-            className="w-full"
-            rows={15}
-          />
         </div>
         
         <div className="grid grid-cols-2 gap-4">
