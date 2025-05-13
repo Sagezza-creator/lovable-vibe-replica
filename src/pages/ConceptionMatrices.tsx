@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
+import YoutubeVideosSection from '@/components/YoutubeVideosSection';
+import ArticlesPreviewSection from '@/components/ArticlesPreviewSection';
 
 const ConceptionMatrices = () => {
   const parallaxRef1 = useRef(null);
@@ -282,6 +284,12 @@ const ConceptionMatrices = () => {
           </div>
         </div>
       </section>
+
+      {/* YouTube Videos Section */}
+      <YoutubeVideosSection />
+      
+      {/* Articles Section */}
+      <ArticlesPreviewSection />
 
       <CallToAction />
     </>

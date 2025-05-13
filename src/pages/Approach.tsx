@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import CallToAction from '@/components/CallToAction';
+import YoutubeVideosSection from '@/components/YoutubeVideosSection';
+import ArticlesPreviewSection from '@/components/ArticlesPreviewSection';
 
 const Approach = () => {
   const [scale, setScale] = useState(1);
@@ -334,6 +336,12 @@ const Approach = () => {
           </div>
         </div>
       </section>
+
+      {/* YouTube Videos Section */}
+      <YoutubeVideosSection />
+      
+      {/* Articles Section */}
+      <ArticlesPreviewSection />
 
       <CallToAction />
     </>

@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import CallToAction from '@/components/CallToAction';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import YoutubeVideosSection from '@/components/YoutubeVideosSection';
 
 const Correction = () => {
   const parallaxRef1 = useRef(null);
@@ -403,6 +404,9 @@ const Correction = () => {
           </div>
         </div>
       </section>
+
+      {/* YouTube Videos Section */}
+      <YoutubeVideosSection />
 
       <CallToAction />
     </>
