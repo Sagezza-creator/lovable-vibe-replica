@@ -11,6 +11,7 @@ import CallToAction from '@/components/CallToAction';
 import MatricesSection from '@/components/MatricesSection';
 import CorrectionSection from '@/components/CorrectionSection';
 import ArticlesPreviewSection from '@/components/ArticlesPreviewSection';
+import YoutubeVideosSection from '@/components/YoutubeVideosSection';
 
 const Home = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -69,6 +70,7 @@ const Home = () => {
           <AboutSection />
           <ProblemsSection />
           <ApproachSection />
+          <YoutubeVideosSection /> {/* Добавлена новая секция с YouTube видео */}
           <CorrectionSection />
           <MatricesSection />
           <ComparisonSection />

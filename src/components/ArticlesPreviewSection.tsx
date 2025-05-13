@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
@@ -48,13 +47,10 @@ const ArticlesPreviewSection = () => {
   if (articles.length === 0) return null;
   
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-16 bg-transparent">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Полезные статьи</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Познавательные материалы о подсознании, эпигенетике и психологическом здоровье
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-600 mb-4">Полезные статьи</h2>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -35,7 +35,7 @@ const Articles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = 10;
+  const articlesPerPage = 9; // Изменено с 10 на 9
   const { toast } = useToast();
 
   useEffect(() => {
