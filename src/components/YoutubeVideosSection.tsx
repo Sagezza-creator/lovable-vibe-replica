@@ -1,5 +1,4 @@
 
-import { useState, useEffect, useRef } from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -13,7 +12,6 @@ interface YoutubeVideo {
   title: string;
   thumbnailUrl: string;
   videoUrl: string;
-}
 
 const YoutubeVideosSection = () => {
   const [videos, setVideos] = useState<YoutubeVideo[]>([
