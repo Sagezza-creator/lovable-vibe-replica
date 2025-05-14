@@ -285,12 +285,10 @@ const ConceptionMatrices = () => {
         </div>
       </section>
 
-          <div className="relative overflow-hidden">
-            <div className="relative z-10 bg-transparent">
-              <YoutubeVideosSection />
-              <ArticlesPreviewSection />
-            </div>
-          </div>
+        <div style={{ background: 'transparent' }}>
+          <YoutubeVideosSection />
+          <ArticlesPreviewSection />
+        </div>
 
       <CallToAction />
     </>
