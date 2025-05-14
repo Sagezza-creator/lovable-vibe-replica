@@ -7,7 +7,7 @@
   :root {
     --background: transparent; /* White */
     --foreground: 0 0% 29%; /* Dark Gray #4A4A4A */
-    --card: 0 0% 100%;
+    --card: transparent;
     --card-foreground: 0 0% 29%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 29%;
