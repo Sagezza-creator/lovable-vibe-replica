@@ -403,10 +403,9 @@ const Correction = () => {
             </div>
           </div>
         </div>
-      </section>
-
       {/* YouTube Videos Section */}
-      <YoutubeVideosSection />
+      <YoutubeVideosSection />        
+      </section>
 
       <CallToAction />
     </>
