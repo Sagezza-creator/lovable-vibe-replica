@@ -283,13 +283,12 @@ const ConceptionMatrices = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* YouTube Videos Section */}
+        {/* YouTube Videos Section */}
       <YoutubeVideosSection />
       
       {/* Articles Section */}
       <ArticlesPreviewSection />
+      </section>
 
       <CallToAction />
     </>
