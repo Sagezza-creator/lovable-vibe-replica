@@ -285,10 +285,11 @@ const ConceptionMatrices = () => {
         </div>
       </section>
 
-        <div style={{ background: 'transparent' }}>
-          <YoutubeVideosSection />
-          <ArticlesPreviewSection />
-        </div>
+      {/* YouTube Videos Section */}
+      <YoutubeVideosSection />
+      
+      {/* Articles Section */}
+      <ArticlesPreviewSection />
 
       <CallToAction />
     </>
